@@ -1,0 +1,168 @@
+/* ==========================================================================
+   ECOLOKA — DESIGN SYSTEM VARIABLES (DESIGN TOKENS)
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Subtema: "Going Green Through Smart Digital Solutions"
+   Arsitektur: 100% Client-Side Static Website
+   ========================================================================== */
+
+/*
+ * FILOSOFI DESAIN & SISTEM WARNA "SMART GREEN":
+ * Desain ini merefleksikan nilai keberlanjutan (sustainability): keseimbangan 
+ * harmonis antara kelestarian alam dan presisi teknologi digital.
+ *
+ * Aturan Penerapan Warna (Modifikasi Prinsip 60-30-10):
+ * - 60%: Kanvas Utama & Ruang Bernapas (--color-neutral-mist)
+ *        Merefleksikan kesederhanaan, kejernihan, dan anti-pemborosan visual.
+ * - 30%: Struktur & Hirarki Visual (--color-primary-forest, leaf, sprout)
+ *        Membangun identitas ekologis yang kokoh, stabil, dan bertumbuh.
+ * - 10%: Aksen & Titik Fokus (--color-accent-sun, sky, warning)
+ *        Mengarahkan perhatian pengguna pada CTA krusial, indikator data, dan urgensi.
+ *
+ * Kepatuhan Aksesibilitas:
+ * Seluruh kombinasi kontras teks dan latar belakang dirancang memenuhi standar
+ * WCAG AA (Rasio kontras >= 4.5:1 untuk teks biasa, >= 3.0:1 untuk teks besar).
+ */
+
+:root {
+  /* ------------------------------------------------------------------------
+   * 1. PALET WARNA UTAMA (PRIMARY COLORS)
+   * ------------------------------------------------------------------------ */
+  /* Hijau hutan tua — melambangkan akar, keteguhan, bumi yang dijaga */
+  --color-primary-forest: #1B4332;
+  --color-primary-forest-dark: #112B20;
+  --color-primary-forest-light: #245842;
+
+  /* Hijau daun — melambangkan pertumbuhan, keberlanjutan, aksi nyata */
+  --color-primary-leaf: #2D6A4F;
+  --color-primary-leaf-light: #408A68;
+
+  /* ------------------------------------------------------------------------
+   * 2. WARNA AKSEN (ACCENT COLORS)
+   * ------------------------------------------------------------------------ */
+  /* Hijau tunas muda — melambangkan harapan, generasi baru, inovasi digital */
+  --color-accent-sprout: #74C69D;
+  --color-accent-sprout-light: #95D5B2;
+  --color-accent-sprout-soft: #D8F3DC;
+
+  /* Kuning-oranye matahari terbenam — melambangkan energi surya, kehangatan manusia */
+  --color-accent-sun: #F4A259;
+  --color-accent-sun-light: #F7BA82;
+  --color-accent-sun-soft: #FEF3E8;
+
+  /* Biru langit pucat — melambangkan udara bersih, kejernihan, teknologi yang tenang */
+  --color-accent-sky: #A8DADC;
+  --color-accent-sky-dark: #457B9D;
+  --color-accent-sky-soft: #EDF6F7;
+
+  /* Oranye kemerahan — melambangkan peringatan/urgensi isu lingkungan */
+  --color-alert-warning: #E76F51;
+  --color-alert-warning-soft: #FDECE8;
+
+  /* ------------------------------------------------------------------------
+   * 3. WARNA NETRAL & KANVAS (NEUTRAL COLORS)
+   * ------------------------------------------------------------------------ */
+  /* Abu gelap kecoklatan — tanah, kestabilan, teks utama kontras tinggi */
+  --color-neutral-soil: #2B2D2F;
+  --color-neutral-soil-light: #4A4D50;
+  --color-neutral-soil-muted: #6C7278;
+
+  /* Putih kehijauan pucat — kabut pagi, ruang kosong yang tenang (background) */
+  --color-neutral-mist: #F7F9F7;
+  --color-neutral-white: #FFFFFF;
+
+  /* Abu-hijau muda — elemen sekunder, kartu, border, divider */
+  --color-neutral-stone: #DDE5DD;
+  --color-neutral-stone-light: #EDF2ED;
+
+  /* ------------------------------------------------------------------------
+   * 4. TIPOGRAFI MODULAR (MODULAR TYPOGRAPHY - RATIO 1.25 MAJOR THIRD)
+   * ------------------------------------------------------------------------ */
+  --font-family-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-family-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'JetBrains Mono', Consolas, monospace;
+
+  /* Skala Font Hierarkis */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px - Base Body */
+  --font-size-md: 1.125rem;   /* 18px - Subhead / Lead */
+  --font-size-lg: 1.25rem;    /* 20px - H5 */
+  --font-size-xl: 1.563rem;   /* 25px - H4 */
+  --font-size-2xl: 1.953rem;  /* 31px - H3 */
+  --font-size-3xl: 2.441rem;  /* 39px - H2 */
+  --font-size-4xl: 3.052rem;  /* 49px - H1 Hero */
+  --font-size-5xl: 3.815rem;  /* 61px - Display Title */
+
+  /* Ketebalan Huruf */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Tinggi Baris (Line Height) */
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.3;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+
+  /* ------------------------------------------------------------------------
+   * 5. SISTEM SPACING GRID 8PX (SPACING SCALE)
+   * ------------------------------------------------------------------------ */
+  --space-0: 0;
+  --space-1: 0.5rem;    /* 8px */
+  --space-2: 1rem;      /* 16px */
+  --space-3: 1.5rem;    /* 24px */
+  --space-4: 2rem;      /* 32px */
+  --space-5: 2.5rem;    /* 40px */
+  --space-6: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-10: 5rem;     /* 80px */
+  --space-12: 6rem;     /* 96px */
+  --space-16: 8rem;     /* 128px */
+
+  /* ------------------------------------------------------------------------
+   * 6. KELENGKUNGAN & SHADOW (ORGANIC RADII & SHADOWS)
+   * ------------------------------------------------------------------------ */
+  /* Sudut membulat organik merepresentasikan bentuk alami */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Bayangan berlapis halus (soft organic elevation) */
+  --shadow-sm: 0 2px 6px rgba(27, 67, 50, 0.05);
+  --shadow-md: 0 6px 18px rgba(27, 67, 50, 0.08);
+  --shadow-lg: 0 14px 32px rgba(27, 67, 50, 0.10);
+  --shadow-xl: 0 24px 48px rgba(27, 67, 50, 0.12);
+  --shadow-inner: inset 0 2px 4px rgba(27, 67, 50, 0.04);
+
+  /* ------------------------------------------------------------------------
+   * 7. TATA LETAK & CONTAINER (LAYOUT SPECS)
+   * ------------------------------------------------------------------------ */
+  --container-max-width: 1200px;
+  --container-padding: var(--space-3);
+  --header-height: 80px;
+  --header-height-scrolled: 70px;
+
+  /* ------------------------------------------------------------------------
+   * 8. TRANSISI & Z-INDEX (MOTION & DEPTH STANDARDS TAHAP 3)
+   * ------------------------------------------------------------------------ */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --transition-fast: 150ms var(--ease-standard);
+  --transition-normal: 250ms var(--ease-standard);
+  --transition-base: 300ms var(--ease-standard);
+  --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 500ms var(--ease-standard);
+
+  --z-negative: -1;
+  --z-elevate: 1;
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+}
+

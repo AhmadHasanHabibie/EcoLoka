@@ -1,0 +1,188 @@
+/* ==========================================================================
+   ECOLOKA — BASE STYLES & RESET (base.css)
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Fungsi: Modern CSS Reset, Tipografi Dasar, Pengaturan Aksesibilitas WCAG
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. MODERN CSS RESET & BOX SIZING
+ * -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Aksesibilitas: Menghilangkan animasi untuk pengguna yang sensitif terhadap gerak */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 2. ELEMEN ROOT & BODY
+ * -------------------------------------------------------------------------- */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-neutral-soil);
+  background-color: var(--color-neutral-mist);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+ * 3. AKSESIBILITAS: SKIP LINK & FOCUS VISIBLE
+ * -------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-3);
+  z-index: var(--z-modal);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-primary-forest);
+  color: var(--color-neutral-white);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-3);
+  outline: 3px solid var(--color-accent-sun);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary-leaf);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. TIPOGRAFI DASAR
+ * -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  color: var(--color-primary-forest);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+  font-weight: var(--font-weight-extrabold);
+}
+
+h2 {
+  font-size: clamp(var(--font-size-2xl), 3.5vw, var(--font-size-3xl));
+  margin-bottom: var(--space-2);
+}
+
+h3 {
+  font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-2xl));
+  margin-bottom: var(--space-2);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin-bottom: var(--space-3);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-primary-leaf);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-forest);
+}
+
+strong, b {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+}
+
+small {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-muted);
+}
+
+/* --------------------------------------------------------------------------
+ * 5. MEDIA, DAFTAR & FORM ELEMENTS DASAR
+ * -------------------------------------------------------------------------- */
+img, svg, picture, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-neutral-stone);
+  margin: var(--space-6) 0;
+}
+
+/* Seleksi teks bertema alam */
+::selection {
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+}

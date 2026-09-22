@@ -1,0 +1,65 @@
+{
+  "rendah": {
+    "tier": "Rendah (Green Hero)",
+    "deskripsi": "Luar biasa! Jejak emisi karbon tahunan Anda berada di bawah ambang batas aman pemanasan global (< 1.500 kg CO₂/tahun). Anda adalah teladan gaya hidup hijau ramah lingkungan.",
+    "rekomendasi": [
+      {
+        "judul": "Menjadi Duta Edukasi Komunitas",
+        "deskripsi": "Bagikan kiat gaya hidup hemat energi dan minim sampah Anda kepada teman sebaya dan tetangga sekitar.",
+        "ikon": "fa-solid fa-bullhorn"
+      },
+      {
+        "judul": "Eksplorasi Urban Farming Mandiri",
+        "deskripsi": "Mulai menanam sayuran herbal organik di pot atau hidroponik pekarangan untuk memangkas emisi logistik pangan.",
+        "ikon": "fa-solid fa-seedling"
+      },
+      {
+        "judul": "Mendukung Komposting Lingkungan",
+        "deskripsi": "Ajak RT/RW setempat menginisiasi tempat pengolahan sampah organik terpadu untuk pupuk taman kota.",
+        "ikon": "fa-solid fa-recycle"
+      }
+    ]
+  },
+  "sedang": {
+    "tier": "Sedang (Eco Learner)",
+    "deskripsi": "Jejak emisi Anda berada pada kisaran 1.500 – 2.800 kg CO₂/tahun, mendekati rata-rata penduduk perkotaan di Indonesia (2.300 kg CO₂/tahun). Anda berpotensi besar menekan emisi menjadi kategori Rendah.",
+    "rekomendasi": [
+      {
+        "judul": "Satu Hari Tanpa Kendaraan Bermotor Pribadi",
+        "deskripsi": "Terapkan satu hari dalam seminggu untuk berjalan kaki, bersepeda, atau naik transportasi umum saat bepergian.",
+        "ikon": "fa-solid fa-bicycle"
+      },
+      {
+        "judul": "Optimasi Suhu Pendingin Ruangan (AC)",
+        "deskripsi": "Atur suhu AC pada 24°C–25°C dan manfaatkan timer otomatis matikan 1 jam sebelum bangun tidur untuk memangkas listrik hingga 15%.",
+        "ikon": "fa-solid fa-snowflake"
+      },
+      {
+        "judul": "Bawa Botol dan Wadah Makanan Sendiri",
+        "deskripsi": "Hentikan pembelian air minum dalam botol plastik sekali pakai dan kurangi kemasan makanan styrofoam harian.",
+        "ikon": "fa-solid fa-bottle-water"
+      }
+    ]
+  },
+  "tinggi": {
+    "tier": "Tinggi (Carbon Alert)",
+    "deskripsi": "Jejak emisi karbon Anda melampaui 2.800 kg CO₂/tahun. Penggunaan kendaraan berbahan bakar fosil dan konsumsi energi rumah tangga Anda memerlukan aksi intervensi segera.",
+    "rekomendasi": [
+      {
+        "judul": "Transisi ke Transportasi Massal / Carpooling",
+        "deskripsi": "Beralihlah ke transportasi umum (Trans/KRL/Bus) atau berbagi tumpangan (carpooling) untuk memangkas emisi bensin harian hingga 60%.",
+        "ikon": "fa-solid fa-bus"
+      },
+      {
+        "judul": "Audit dan Putus Daya Listrik Siaga (Vampire Draw)",
+        "deskripsi": "Cabut colokan charger, matikan sakelar TV dan komputer yang tidak digunakan, serta ganti seluruh lampu ke tipe LED hemat energi.",
+        "ikon": "fa-solid fa-plug"
+      },
+      {
+        "judul": "Kurangi Daging Merah & Minimalisir Sisa Makanan",
+        "deskripsi": "Terapkan konsep 'Meatless Monday' dan rencanakan belanja dapur secara cermat agar tidak ada makanan yang terbuang percuma ke tempat sampah.",
+        "ikon": "fa-solid fa-utensils"
+      }
+    ]
+  }
+}

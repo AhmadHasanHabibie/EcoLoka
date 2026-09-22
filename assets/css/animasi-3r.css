@@ -1,0 +1,151 @@
+/* ==========================================================================
+   ECOLOKA — ANIMASI 3R SCROLL-LINKED (animasi-3r.css) - REVISI
+   Fitur: "Dari Garis Lurus Menjadi Siklus" (Reduce → Reuse → Recycle)
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Mekanisme: Natural Scroll (Viewport Position-Based, Zero Sticky-Pinning)
+   Arsitektur: 100% Client-Side Vanilla CSS (Zero External Animation Library)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. SECTION WRAPPER DENGAN TINGGI NATURAL (TANPA STICKY PINNING)
+ * -------------------------------------------------------------------------- */
+.section-3r-transition {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--space-8);
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(116, 198, 157, 0.15) 0%, transparent 70%),
+    var(--color-neutral-mist);
+  border-bottom: 1px solid var(--color-neutral-stone-light);
+  overflow: visible;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .section-3r-transition {
+    padding-block: var(--space-10);
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 2. HEADER SECTION (FILOSOFI & JUDUL)
+ * -------------------------------------------------------------------------- */
+.section-3r-transition__header {
+  margin-bottom: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.section-3r-transition__title {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.35rem, 3.2vw, 2.15rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+}
+
+/* --------------------------------------------------------------------------
+ * 3. LOGO SVG & ELEMEN PANAH (GEOMETRI 3R)
+ * -------------------------------------------------------------------------- */
+.logo-3r {
+  width: min(60vw, 380px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 6px 16px rgba(27, 67, 50, 0.07));
+}
+
+@media (max-width: 640px) {
+  .logo-3r {
+    width: min(72vw, 280px);
+  }
+}
+
+/* Pengaturan titik pusat rotasi di tengah SVG viewBox (200, 200) */
+.r-arrow {
+  transform-origin: 200px 200px;
+  will-change: transform;
+}
+
+/* Pewarnaan orisinal berbasis sistem token (variables.css) */
+.r-arrow--reduce path {
+  fill: var(--color-primary-leaf);
+}
+
+.r-arrow--reuse path {
+  fill: var(--color-accent-sprout);
+}
+
+.r-arrow--recycle path {
+  fill: var(--color-accent-sun);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. FALLBACK STATE DEFAULT (TANPA JAVASCRIPT / PREFERS-REDUCED-MOTION)
+ * --------------------------------------------------------------------------
+ * Desain Fallback WCAG: Jika JS dinonaktifkan di browser, logo langsung tampil 
+ * dalam bentuk segitiga siklus 3R yang lengkap, utuh, dan bermakna.
+ */
+.r-arrow--reduce {
+  transform: translate(0px, -90px) rotate(0deg);
+}
+
+.r-arrow--reuse {
+  transform: translate(78px, 45px) rotate(120deg);
+}
+
+.r-arrow--recycle {
+  transform: translate(-78px, 45px) rotate(240deg);
+}
+
+/* --------------------------------------------------------------------------
+ * 5. LABEL TEKS & CAPTION SINKRON
+ * -------------------------------------------------------------------------- */
+.r-label {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  fill: var(--color-neutral-soil);
+  opacity: 1; /* Default tanpa JS = terlihat */
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.r-label--reduce {
+  fill: var(--color-primary-forest);
+}
+
+.r-label--reuse {
+  fill: var(--color-primary-leaf);
+}
+
+.r-label--recycle {
+  fill: #C67D28; /* Kontras tinggi terbaca untuk teks latar terang WCAG AA */
+}
+
+.section-3r-transition__caption {
+  font-family: var(--font-family-display);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  letter-spacing: 0.01em;
+  margin-top: var(--space-3);
+  opacity: 1; /* Default tanpa JS = terlihat */
+  transition: opacity 0.2s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+ * 6. KEPATUHAN AKSESIBILITAS: PREFERS-REDUCED-MOTION
+ * -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .r-label,
+  .section-3r-transition__caption {
+    opacity: 1 !important;
+  }
+}

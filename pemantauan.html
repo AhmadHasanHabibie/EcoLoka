@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dashboard Pemantauan Lingkungan & Riwayat Emisi — EcoLoka | INVENTION 2026</title>
+  <meta name="description" content="Pantau riwayat perhitungan jejak karbon mandiri Anda dan amati indikator simulatif keberlanjutan lingkungan komunitas secara transparan dan terukur.">
+  <meta name="author" content="Tim Pengembang EcoLoka">
+  <meta name="theme-color" content="#1B4332">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ecoloka.id/pemantauan.html">
+  <meta property="og:title" content="Dashboard Pemantauan Lingkungan — EcoLoka">
+  <meta property="og:description" content="Pantau riwayat perhitungan jejak karbon mandiri Anda dan amati indikator simulatif keberlanjutan lingkungan.">
+  <meta property="og:image" content="assets/img/hero_nature_tech.jpg">
+
+  <!-- Twitter Meta Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dashboard Pemantauan Lingkungan — EcoLoka">
+  <meta name="twitter:description" content="Pantau riwayat perhitungan jejak karbon mandiri Anda dan unduh sertifikat aksi hijau.">
+  <meta name="twitter:image" content="assets/img/hero_nature_tech.jpg">
+
+  <!-- Favicon SVG Inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D6A4F'><path d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z'/></svg>">
+
+  <!-- Google Fonts & Font Awesome 6 CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Cascading Style Sheets -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Menuju ke Konten Utama</a>
+
+  <!-- ========================================================================
+       HEADER & NAVIGASI
+       ======================================================================== -->
+  <header class="header" id="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="navbar__brand" aria-label="EcoLoka Beranda">
+        <div class="navbar__logo-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <div class="navbar__brand-text">
+          <span class="navbar__title">Eco<span>Loka</span></span>
+          <span class="navbar__subtitle">Smart Digital Solution</span>
+        </div>
+      </a>
+
+      <button class="navbar__toggle" id="navbar-toggle" aria-expanded="false" aria-controls="navbar-menu" aria-label="Buka navigasi menu">
+        <span class="navbar__toggle-line"></span>
+        <span class="navbar__toggle-line"></span>
+        <span class="navbar__toggle-line"></span>
+      </button>
+
+      <nav class="navbar__nav" id="navbar-menu" aria-label="Navigasi Utama Situs">
+        <ul class="navbar__list">
+          <li class="navbar__item">
+            <a href="index.html" class="navbar__link">Beranda</a>
+          </li>
+          <li class="navbar__item">
+            <a href="tentang.html" class="navbar__link">Tentang</a>
+          </li>
+          <li class="navbar__item">
+            <a href="edukasi.html" class="navbar__link">Edukasi</a>
+          </li>
+          <li class="navbar__item">
+            <a href="aksi-hijau.html" class="navbar__link">Aksi Hijau</a>
+          </li>
+          <li class="navbar__item">
+            <a href="pemantauan.html" class="navbar__link is-active">Pemantauan</a>
+          </li>
+          <li class="navbar__item">
+            <a href="komunitas.html" class="navbar__link">Komunitas</a>
+          </li>
+          <li class="navbar__item">
+            <a href="kontak.html" class="navbar__link">Kontak</a>
+          </li>
+        </ul>
+
+        <div class="navbar__actions">
+          <a href="aksi-hijau.html" class="btn btn--primary btn--sm">
+            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+            <span>Mulai Aksi</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="navbar__overlay" id="navbar-overlay" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       KONTEN UTAMA
+       ======================================================================== -->
+  <main class="main-content" id="main-content">
+
+    <!-- Page Hero Sub-Halaman & Breadcrumb -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero__content">
+          <div class="page-hero__badge">
+            <span class="badge badge--sprout">
+              <i class="fa-solid fa-chart-line"></i> Dashboard EcoTracker
+            </span>
+          </div>
+          <h1 class="page-hero__title">Pusat Pemantauan Emisi & Indikator Lingkungan</h1>
+          <p class="page-hero__desc">
+            Visualisasikan capaian jejak karbon Anda yang tersimpan aman di browser, serta amati estimasi dampak positif dari aksi kolektif pelestarian alam.
+          </p>
+          <nav class="breadcrumb" aria-label="Jejak navigasi">
+            <a href="index.html" class="breadcrumb__link"><i class="fa-solid fa-house"></i> Beranda</a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">Dashboard Pemantauan</span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Riwayat Jejak Karbon Personal (LocalStorage) -->
+    <section class="section section--lg">
+      <div class="container">
+        
+        <header class="section__header" style="text-align: left; margin-bottom: var(--space-6);">
+          <span class="section__tagline"><i class="fa-solid fa-user"></i> Metrik Personal Anda</span>
+          <h2 class="section__title" style="margin-bottom: 4px;">Status Jejak Emisi Pribadi</h2>
+          <p class="section__subtitle" style="font-size: var(--font-size-sm); margin: 0;">Data disinkronkan secara otomatis dari hasil kalkulator jejak karbon di perangkat ini.</p>
+        </header>
+
+        <!-- Empty State (Jika Pengguna Belum Pernah Mengisi Kalkulator) -->
+        <div id="dashboard-empty-state" class="empty-state" style="display: none;">
+          <div class="empty-state__icon-box">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3 class="empty-state__title">Belum Ada Catatan Emisi</h3>
+          <p class="empty-state__desc">
+            Anda belum pernah melakukan perhitungan jejak karbon di peramban ini. Luangkan waktu 1 menit untuk menjawab 3 pertanyaan sederhana dan pantau profil emisi tahunan Anda di sini.
+          </p>
+          <a href="aksi-hijau.html" class="btn btn--primary btn--lg">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Mulai Hitung Jejak Emisi</span>
+          </a>
+        </div>
+
+        <!-- Dashboard User Results (Ditampilkan jika LocalStorage Ada Data) -->
+        <div id="dashboard-user-results" style="display: none;">
+          
+          <div class="grid grid--2-col" style="gap: var(--space-6); align-items: stretch; margin-bottom: var(--space-6);">
+            
+            <!-- Kartu Ringkasan Hasil Personal -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                  <span class="badge badge--sprout"><i class="fa-solid fa-check"></i> Riwayat Tersimpan</span>
+                  <small id="dash-user-date" style="color: var(--color-neutral-soil-muted);"></small>
+                </div>
+
+                <div style="margin-bottom: var(--space-4);">
+                  <span style="font-size: var(--font-size-xs); text-transform: uppercase; color: var(--color-neutral-soil-muted); letter-spacing: 0.05em;">Estimasi Jejak Karbon Anda</span>
+                  <div style="display: flex; align-items: baseline; gap: 8px; margin: 6px 0;">
+                    <span id="dash-user-number" style="font-family: var(--font-family-display); font-size: clamp(2.4rem, 4vw, 3.2rem); font-weight: 800; color: var(--color-primary-forest); line-height: 1;">0</span>
+                    <span style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-muted); font-weight: 600;">kg CO₂e / thn</span>
+                  </div>
+                  <div id="dash-user-tier" class="badge badge--sun" style="font-size: 0.8rem; padding: 4px 14px;">Sedang</div>
+                </div>
+
+                <!-- Rincian Breakdown Sumber Emisi -->
+                <div style="background-color: var(--color-neutral-stone-light); border-radius: var(--radius-md); padding: var(--space-3); margin-top: var(--space-3);">
+                  <h4 style="font-size: var(--font-size-xs); text-transform: uppercase; color: var(--color-primary-forest); margin-bottom: 8px;">Rincian Berdasarkan Kategori:</h4>
+                  <ul style="font-size: var(--font-size-xs); display: flex; flex-direction: column; gap: 6px; color: var(--color-neutral-soil);">
+                    <li style="display: flex; justify-content: space-between;">
+                      <span><i class="fa-solid fa-car u-text-leaf"></i> Transportasi:</span>
+                      <strong id="breakdown-trans">-</strong>
+                    </li>
+                    <li style="display: flex; justify-content: space-between;">
+                      <span><i class="fa-solid fa-bolt u-text-sun"></i> Energi Rumah:</span>
+                      <strong id="breakdown-energy">-</strong>
+                    </li>
+                    <li style="display: flex; justify-content: space-between;">
+                      <span><i class="fa-solid fa-utensils u-text-forest"></i> Konsumsi & Sampah:</span>
+                      <strong id="breakdown-food">-</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Tombol Aksi Riwayat -->
+              <div style="display: flex; gap: var(--space-2); margin-top: var(--space-4); border-top: 1px dashed var(--color-neutral-stone); padding-top: var(--space-3); flex-wrap: wrap;">
+                <button type="button" id="btn-open-cert-dash" class="btn btn--accent btn--sm">
+                  <i class="fa-solid fa-award"></i>
+                  <span>Unduh Sertifikat Aksi</span>
+                </button>
+                <a href="aksi-hijau.html" class="btn btn--outline btn--sm">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  <span>Hitung Ulang</span>
+                </a>
+                <button type="button" id="btn-reset-history" class="btn btn--secondary btn--sm" style="color: var(--color-alert-warning); border-color: var(--color-neutral-stone);">
+                  <i class="fa-solid fa-trash"></i>
+                  <span>Hapus Riwayat</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Kartu Grafik Pembanding Emisi (Custom SVG/CSS Bar Chart) -->
+            <div class="chart-card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3);">
+                <h3 style="font-size: var(--font-size-base); color: var(--color-primary-forest); margin: 0;">Perbandingan dengan Standar Acuan</h3>
+                <span class="badge badge--sky" style="font-size: 0.7rem;">Basis 4.000 kg</span>
+              </div>
+              <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-light); margin-bottom: var(--space-4);">
+                Bagan komparasi emisi pribadi Anda terhadap rata-rata nasional perkotaan dan batas target iklim global:
+              </p>
+
+              <!-- Bar 1: Jejak Anda -->
+              <div class="chart-bar-row">
+                <div class="chart-bar-header">
+                  <span>Jejak Emisi Anda</span>
+                  <span id="bar-val-user" class="u-text-leaf">0 kg CO₂/thn</span>
+                </div>
+                <div class="chart-bar-track">
+                  <div id="bar-fill-user" class="chart-bar-fill chart-bar-fill--user" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Bar 2: Rata-rata Indonesia -->
+              <div class="chart-bar-row">
+                <div class="chart-bar-header">
+                  <span>Rata-rata Nasional (Perkotaan)</span>
+                  <span style="color: #C05621;">2.300 kg CO₂/thn</span>
+                </div>
+                <div class="chart-bar-track">
+                  <div id="bar-fill-national" class="chart-bar-fill chart-bar-fill--national" style="width: 0%;"></div>
+                </div>
+                <small style="font-size: 0.7rem; color: var(--color-neutral-soil-muted);">Sumber: Estimasi Neraca Emisi ESDM & KLHK RI</small>
+              </div>
+
+              <!-- Bar 3: Target Paris Agreement -->
+              <div class="chart-bar-row" style="margin-top: var(--space-3);">
+                <div class="chart-bar-header">
+                  <span>Target Ambang Aman Global (Batas 1.5°C)</span>
+                  <span class="u-text-sky">1.500 kg CO₂/thn</span>
+                </div>
+                <div class="chart-bar-track">
+                  <div id="bar-fill-target" class="chart-bar-fill chart-bar-fill--target" style="width: 0%;"></div>
+                </div>
+                <small style="font-size: 0.7rem; color: var(--color-neutral-soil-muted);">Sumber: Rekomendasi IPCC untuk batas aman kenaikan suhu bumi</small>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Indikator Lingkungan Kolektif (Simulatif / Demonstratif) -->
+    <section class="section section--lg u-bg-white">
+      <div class="container">
+        
+        <header class="section__header">
+          <span class="section__tagline"><i class="fa-solid fa-satellite-dish"></i> Pemantauan Lingkungan</span>
+          <h2 class="section__title">Indikator Keberlanjutan Komunitas Hijau</h2>
+          <p class="section__subtitle">
+            Gambaran estimasi dampak positif yang dihasilkan ketika ribuan individu mengadopsi solusi digital cerdas untuk pelestarian alam.
+          </p>
+        </header>
+
+        <div class="grid grid--4-col" style="margin-bottom: var(--space-6);">
+          
+          <div class="stat-card stat-card--smart">
+            <div class="stat-card__top">
+              <div class="stat-card__icon stat-card__icon--smart"><i class="fa-solid fa-wind"></i></div>
+              <span class="badge badge--sun">AQI 68</span>
+            </div>
+            <div class="stat-card__number" style="font-size: 2.2rem;">Kualitas Udara</div>
+            <h3 class="stat-card__title">Status: Sedang (Moderat)</h3>
+            <p class="stat-card__desc">Estimasi rata-rata indeks partikulat PM2.5 di area urban pantauan dengan rekomendasi perlunya perluasan ruang hijau.</p>
+          </div>
+
+          <div class="stat-card stat-card--growth">
+            <div class="stat-card__top">
+              <div class="stat-card__icon stat-card__icon--growth"><i class="fa-solid fa-box-archive"></i></div>
+              <span class="badge badge--sprout">Tereduksi</span>
+            </div>
+            <div class="stat-card__number" style="font-size: 2.2rem;">4.280 kg</div>
+            <h3 class="stat-card__title">Plastik Tertahan dari TPA</h3>
+            <p class="stat-card__desc">Akumulasi estimasi sampah anorganik yang berhasil dipilah dan didaur ulang oleh komunitas relawan bulan ini.</p>
+          </div>
+
+          <div class="stat-card stat-card--clean">
+            <div class="stat-card__top">
+              <div class="stat-card__icon stat-card__icon--clean"><i class="fa-solid fa-tree"></i></div>
+              <span class="badge badge--sky">Konservasi</span>
+            </div>
+            <div class="stat-card__number" style="font-size: 2.2rem;">1.420</div>
+            <h3 class="stat-card__title">Pohon Virtual Teradopsi</h3>
+            <p class="stat-card__desc">Pohon yang terhubung dengan aksi pemilahan sampah dan restorasi bibit bakau pesisir oleh relawan muda.</p>
+          </div>
+
+          <div class="stat-card stat-card--urgency">
+            <div class="stat-card__top">
+              <div class="stat-card__icon stat-card__icon--warning"><i class="fa-solid fa-bolt"></i></div>
+              <span class="badge badge--warning">Efisiensi</span>
+            </div>
+            <div class="stat-card__number" style="font-size: 2.2rem;">12.500</div>
+            <h3 class="stat-card__title">kWh Listrik Ditekan</h3>
+            <p class="stat-card__desc">Penghematan konsumsi daya kolektif melalui pemutusan daya siaga (*vampire draw*) dan optimasi suhu AC 25°C.</p>
+          </div>
+
+        </div>
+
+        <!-- Banner Transparansi Data Lomba -->
+        <div style="background-color: var(--color-neutral-mist); border: 1px solid var(--color-neutral-stone); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-circle-info u-text-leaf" style="font-size: 1.2rem;"></i>
+          <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-muted); margin: 0; line-height: 1.5;">
+            <strong>Catatan Transparansi Karya:</strong> Seluruh indikator pada seksi komunitas di atas disajikan sebagai data simulasi ilustratif untuk mendemonstrasikan kapabilitas antarmuka pemantauan (*monitoring capabilities*) sesuai subtema lomba INVENTION 2026 tanpa bergantung pada API eksternal berbayar.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-title">Eco<span>Loka</span></div>
+          <p class="footer__desc">Platform edukasi dan solusi digital cerdas pendukung pelestarian lingkungan hidup dan gaya hidup berkelanjutan di Indonesia.</p>
+          <div style="display: flex; gap: var(--space-2); margin-top: var(--space-1);">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" style="color: var(--color-accent-sprout); border-color: rgba(116, 198, 157, 0.4); padding: 8px 12px;" aria-label="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" style="color: var(--color-accent-sprout); border-color: rgba(116, 198, 157, 0.4); padding: 8px 12px;" aria-label="Instagram Resmi"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:ecoloka.invention@example.com" class="btn btn--outline btn--sm" style="color: var(--color-accent-sprout); border-color: rgba(116, 198, 157, 0.4); padding: 8px 12px;" aria-label="Email Kontak"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Navigasi Halaman</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Beranda</a></li>
+            <li><a href="tentang.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Tentang Kami</a></li>
+            <li><a href="edukasi.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Edukasi Hijau</a></li>
+            <li><a href="aksi-hijau.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Kalkulator Jejak Karbon</a></li>
+            <li><a href="pemantauan.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Dashboard Pemantauan</a></li>
+            <li><a href="komunitas.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Aksi Komunitas</a></li>
+            <li><a href="kontak.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Kontak & FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Fitur Unggulan</h4>
+          <ul class="footer__links">
+            <li><a href="edukasi.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Modul EcoLearn</a></li>
+            <li><a href="aksi-hijau.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> EcoCalc Interaktif</a></li>
+            <li><a href="pemantauan.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Pemantauan Emisi</a></li>
+            <li><a href="komunitas.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Galeri Kampanye</a></li>
+            <li><a href="kontak.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> FAQ Lingkungan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Kompetisi</h4>
+          <div class="footer__competition-badge">
+            <h5>INVENTION 2026</h5>
+            <p><strong>Lomba Web Design</strong> tingkat SMA/SMK/Sederajat</p>
+            <p style="margin-top: 4px;">Program Studi Informatika, FMIPA, Universitas Udayana</p>
+            <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+              <span class="badge badge--sprout" style="font-size: 0.68rem; padding: 2px 8px;">
+                <i class="fa-solid fa-circle-check"></i> 100% Static Client-Side
+              </span>
+            </div>
+          </div>
+        <div class="footer__easter-egg" style="grid-column: 1 / -1; margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: var(--font-size-xs); color: rgba(255, 255, 255, 0.5);">
+          <div>
+            <i class="fa-solid fa-seedling u-text-leaf"></i> Anda adalah pejuang bumi ke-<span class="visitor-counter-val" style="font-weight: 700; color: var(--color-accent-sprout);">...</span> yang mengunjungi situs ini hari ini.
+          </div>
+          <div>
+            <i class="fa-solid fa-feather"></i> Mode Emisi Rendah: <span style="color: var(--color-accent-sprout);">Aktif</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div>&copy; <span id="current-year">2026</span> EcoLoka. Seluruh hak cipta dilindungi undang-undang.</div>
+        <div class="footer__legal-links">
+          <span>Karya Orisinal Tanpa Template</span>
+          <span>•</span>
+          <span>Standar Aksesibilitas WCAG AA</span>
+          <span>•</span>
+          <span>Subtema: Going Green</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL SERTIFIKAT DIGITAL AKSI HIJAU (SIGNATURE FEATURE)
+       ======================================================================== -->
+  <div class="modal" id="certificate-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title" aria-hidden="true">
+    <div class="certificate-modal-dialog">
+      <div class="modal__header no-print">
+        <div>
+          <h3 id="cert-modal-title" style="font-size: var(--font-size-lg); color: var(--color-primary-forest); margin: 0;">Sertifikat Komitmen Aksi Hijau</h3>
+          <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-light); margin: 0;">Sesuaikan nama Anda dan simpan/cetak sebagai sertifikat resmi EcoLoka.</p>
+        </div>
+        <button type="button" class="modal__close" id="cert-modal-close" aria-label="Tutup jendela sertifikat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Kontrol Edit Nama Personal (Disembunyikan saat print) -->
+      <div class="no-print" style="padding: var(--space-4) var(--space-5); background-color: var(--color-neutral-mist); border-bottom: 1px solid var(--color-neutral-stone); display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between;">
+        <div style="flex: 1; min-width: 240px;">
+          <label for="cert-input-name" class="form-label" style="margin-bottom: 4px; font-size: var(--font-size-xs);">Nama Pemegang Sertifikat:</label>
+          <input type="text" id="cert-input-name" class="form-control" placeholder="Ketik nama lengkap Anda..." value="Pejuang Aksi Hijau">
+        </div>
+        <div style="display: flex; gap: var(--space-2); align-self: flex-end;">
+          <button type="button" id="btn-print-certificate" class="btn btn--primary">
+            <i class="fa-solid fa-print"></i>
+            <span>Cetak / Unduh PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Area Sertifikat Cetak / Tampilan -->
+      <div class="certificate-card" id="print-certificate-area">
+        <div class="certificate-seal">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        
+        <div class="certificate-subtitle">EcoLoka • INVENTION 2026 Universitas Udayana</div>
+        <h2 class="certificate-title">SERTIFIKAT KOMITMEN HIJAU</h2>
+        <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-light); margin-bottom: var(--space-4);">Diberikan sebagai pengakuan dedikasi kepedulian iklim dan aksi digital cerdas kepada:</p>
+
+        <div class="certificate-recipient" id="cert-display-name">Pejuang Aksi Hijau</div>
+
+        <p class="certificate-statement">
+          Telah berhasil melakukan audit mandiri jejak karbon tahunan dan berkomitmen mengimplementasikan solusi digital cerdas ramah lingkungan demi pengurangan emisi gas rumah kaca dan pemulihan ekosistem Indonesia.
+        </p>
+
+        <div class="certificate-meta-grid">
+          <div class="certificate-meta-item">
+            <span>Estimasi Emisi:</span>
+            <strong id="cert-display-score">1.240 kg CO₂e/thn</strong>
+          </div>
+          <div class="certificate-meta-item">
+            <span>Kategori Evaluasi:</span>
+            <strong id="cert-display-tier">Prajurit Rendah Karbon</strong>
+          </div>
+          <div class="certificate-meta-item">
+            <span>Tanggal Terbit:</span>
+            <strong id="cert-display-date">20 September 2026</strong>
+          </div>
+        </div>
+
+        <div class="certificate-footer-signatures">
+          <div style="text-align: left;">
+            <span style="display: block; font-size: 0.7rem; color: var(--color-neutral-soil-muted);">Nomor Verifikasi Digital:</span>
+            <span id="cert-display-code" style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--color-primary-forest);">ECOLOKA-INV26-A89F</span>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary-forest);">Inisiatif EcoLoka Indonesia</div>
+            <div style="font-size: 0.68rem; color: var(--color-neutral-soil-muted);">Going Green Through Smart Digital Solutions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/pemantauan.js"></script>
+</body>
+</html>

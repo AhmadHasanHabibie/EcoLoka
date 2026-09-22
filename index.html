@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Meta Tags Informasi Karya -->
+  <title>EcoLoka — Solusi Digital Cerdas untuk Aksi Hijau & Keberlanjutan | INVENTION 2026</title>
+  <meta name="description" content="EcoLoka adalah platform web inovatif yang mengintegrasikan edukasi keberlanjutan, kalkulator jejak karbon mandiri, dan pelacak aksi hijau harian. Karya lomba Web Design INVENTION 2026 Universitas Udayana.">
+  <meta name="keywords" content="EcoLoka, Going Green, Smart Digital Solutions, INVENTION 2026, Universitas Udayana, Web Design, Lingkungan Hidup, Edukasi Berkelanjutan, Jejak Karbon, Zero Waste">
+  <meta name="author" content="Tim Pengembang EcoLoka">
+  <!-- Open Graph & Social Media Sharing -->
+  <meta property="og:title" content="EcoLoka — Solusi Digital Cerdas untuk Aksi Hijau & Keberlanjutan">
+  <meta property="og:description" content="Platform web inovatif karya lomba Web Design INVENTION 2026. Menghitung jejak karbon mandiri, modul edukasi interaktif, dan pemantauan aksi hijau.">
+  <meta property="og:image" content="assets/img/hero_nature_tech.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon SVG Inline Berbasis Vektor Ramah Lingkungan -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D6A4F'><path d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Free (CDN Resmi) untuk Ikon UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Cascading Style Sheets (Urutan Wajib Sesuai Arsitektur Fondasi) -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/animasi-3r.css">
+  <link rel="stylesheet" href="assets/css/animasi-kartu.css">
+</head>
+<body id="beranda">
+
+  <!-- Aksesibilitas WCAG: Tautan Langsung ke Konten Utama -->
+  <a href="#main-content" class="skip-link">Menuju ke Konten Utama</a>
+
+  <!-- ========================================================================
+       HEADER & NAVIGASI (STICKY NAVBAR)
+       ======================================================================== -->
+  <header class="header" id="site-header">
+    <div class="container navbar">
+      <!-- Identitas Brand / Logo -->
+      <a href="#beranda" class="navbar__brand" aria-label="EcoLoka Beranda">
+        <div class="navbar__logo-icon" aria-hidden="true">
+          <!-- Ikon Daun Vektor Orisinal (SVG Inline) -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <div class="navbar__brand-text">
+          <span class="navbar__title">Eco<span>Loka</span></span>
+          <span class="navbar__subtitle">Smart Digital Solution</span>
+        </div>
+      </a>
+
+      <!-- Tombol Toggle Hamburger (Mobile Navigation) -->
+      <button class="navbar__toggle" id="navbar-toggle" aria-expanded="false" aria-controls="navbar-menu" aria-label="Buka navigasi menu">
+        <span class="navbar__toggle-line"></span>
+        <span class="navbar__toggle-line"></span>
+        <span class="navbar__toggle-line"></span>
+      </button>
+
+      <!-- Navigasi Menu (7 Halaman / Struktur Navigasi Terencana) -->
+      <nav class="navbar__nav" id="navbar-menu" aria-label="Navigasi Utama Situs">
+        <ul class="navbar__list">
+          <li class="navbar__item">
+            <a href="index.html" class="navbar__link is-active">Beranda</a>
+          </li>
+          <li class="navbar__item">
+            <a href="tentang.html" class="navbar__link">Tentang</a>
+          </li>
+          <li class="navbar__item">
+            <a href="edukasi.html" class="navbar__link">Edukasi</a>
+          </li>
+          <li class="navbar__item">
+            <a href="aksi-hijau.html" class="navbar__link">Aksi Hijau</a>
+          </li>
+          <li class="navbar__item">
+            <a href="pemantauan.html" class="navbar__link">Pemantauan</a>
+          </li>
+          <li class="navbar__item">
+            <a href="komunitas.html" class="navbar__link">Komunitas</a>
+          </li>
+          <li class="navbar__item">
+            <a href="kontak.html" class="navbar__link">Kontak</a>
+          </li>
+        </ul>
+
+        <!-- Tombol Aksi Cepat pada Header -->
+        <div class="navbar__actions">
+          <a href="aksi-hijau.html" class="btn btn--primary btn--sm">
+            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+            <span>Mulai Aksi</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Overlay Layar Gelap Saat Menu Mobile Aktif -->
+      <div class="navbar__overlay" id="navbar-overlay" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       KONTEN UTAMA (MAIN CONTENT)
+       ======================================================================== -->
+  <main class="main-content" id="main-content">
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 1: HERO SECTION
+         ---------------------------------------------------------------------- -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__grid">
+          
+          <!-- Konten Teks Hero -->
+          <div class="hero__content">
+            <div class="hero__badge">
+              <span class="badge badge--sprout">
+                <span class="badge__dot badge__dot--pulse"></span>
+                Inovasi Digital Berkelanjutan • INVENTION 2026
+              </span>
+            </div>
+
+            <h1 class="hero__title" id="hero-title">
+              Transformasi Langkah Kecil Menjadi <span class="hero__title-gradient">Dampak Nyata</span> Bagi Bumi
+            </h1>
+
+            <p class="hero__desc">
+              EcoLoka memberdayakan generasi muda melalui platform digital cerdas berbasis web untuk mempelajari isu lingkungan, menghitung jejak karbon mandiri, dan mencatat aksi pelestarian alam tanpa membebani server.
+            </p>
+
+            <div class="hero__actions">
+              <a href="#fitur-utama" class="btn btn--primary btn--lg">
+                <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+                <span>Mulai Aksi Hijau</span>
+              </a>
+              <a href="#isu-lingkungan" class="btn btn--secondary btn--lg">
+                <i class="fa-solid fa-compass" aria-hidden="true"></i>
+                <span>Pelajari Urgensi</span>
+              </a>
+            </div>
+
+            <!-- Bukti & Jaminan Ramah Lingkungan (Green Web Compliance) -->
+            <div class="hero__proof">
+              <div class="hero__proof-item">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                <span>100% Client-Side Mandiri</span>
+              </div>
+              <div class="hero__proof-item">
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                <span>Ultra Ringan & Rendah Emisi</span>
+              </div>
+              <div class="hero__proof-item">
+                <i class="fa-solid fa-award" aria-hidden="true"></i>
+                <span>Orisinalitas Tanpa Template</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Komposisi Visual Hero: Eco Digital Dashboard Preview -->
+          <div class="hero__visual reveal-on-scroll delay-1" aria-hidden="true">
+            <div class="hero__visual-blob"></div>
+
+            <!-- Kartu Pratinjau Interaktif Dashboard dengan Aset Orisinal -->
+            <div class="eco-card-preview">
+              <!-- Visual Karya Orisinal Dibuat Khusus untuk EcoLoka INVENTION 2026 -->
+              <div class="media-frame media-frame--16-9" style="margin-bottom: var(--space-3); border-radius: var(--radius-md);">
+                <!-- Sumber: Dibuat khusus secara orisinal oleh tim pengembang EcoLoka -->
+                <img src="assets/img/hero_nature_tech.jpg" alt="Konsep tunas tanaman hijau dengan partikel data digital cerdas dan tanah subur" loading="eager">
+              </div>
+
+              <div class="eco-card-preview__header">
+                <div class="eco-card-preview__title">
+                  <i class="fa-solid fa-gauge-high u-text-leaf"></i>
+                  <span>EcoTracker Mandiri</span>
+                </div>
+                <span class="badge badge--sprout">Aktif</span>
+              </div>
+
+              <!-- Metrik Sorotan Utama -->
+              <div class="eco-card-preview__circle-chart">
+                <div class="eco-card-preview__circle-metric">
+                  <h4>-14.8 kg</h4>
+                  <p>Estimasi Reduksi Emisi CO₂ Bulan Ini</p>
+                </div>
+                <div style="font-size: 2.2rem; opacity: 0.9;">
+                  <i class="fa-solid fa-tree"></i>
+                </div>
+              </div>
+
+              <!-- Bar Metrik Aksi Hijau Harian -->
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">
+                    <span>Pengurangan Sampah Plastik</span>
+                    <span class="u-text-leaf">82%</span>
+                  </div>
+                  <div style="width: 100%; height: 6px; background-color: var(--color-neutral-stone-light); border-radius: 99px; overflow: hidden;">
+                    <div style="width: 82%; height: 100%; background: linear-gradient(90deg, var(--color-primary-leaf), var(--color-accent-sprout)); border-radius: 99px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">
+                    <span>Efisiensi Pemakaian Energi</span>
+                    <span class="u-text-leaf">74%</span>
+                  </div>
+                  <div style="width: 100%; height: 6px; background-color: var(--color-neutral-stone-light); border-radius: 99px; overflow: hidden;">
+                    <div style="width: 74%; height: 100%; background: linear-gradient(90deg, var(--color-accent-sun), #E76F51); border-radius: 99px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Micro-Badge Atas -->
+            <div class="hero__floating-badge hero__floating-badge--top">
+              <div class="hero__floating-icon hero__floating-icon--green">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
+              <div class="hero__floating-text">
+                <strong>Gaya Hidup Hijau</strong>
+                <span>Langkah digital terukur</span>
+              </div>
+            </div>
+
+            <!-- Floating Micro-Badge Bawah -->
+            <div class="hero__floating-badge hero__floating-badge--bottom">
+              <div class="hero__floating-icon hero__floating-icon--sun">
+                <i class="fa-solid fa-sun"></i>
+              </div>
+              <div class="hero__floating-text">
+                <strong>Solusi Cerdas</strong>
+                <span>Ramah energi & privat</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION INTERAKTIF: TRANSFORMASI SIKLUS 3R (SCROLL-LINKED)
+         ---------------------------------------------------------------------- -->
+    <section class="section-3r-transition" id="transisi3r" aria-label="Transformasi Siklus 3R Reduce, Reuse, Recycle">
+      <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <div class="section-3r-transition__header">
+          <span class="badge badge--sprout">
+            <i class="fa-solid fa-arrows-spin" aria-hidden="true"></i> Filosofi Sirkular
+          </span>
+          <h2 class="section-3r-transition__title">Dari Garis Lurus Menjadi Siklus</h2>
+        </div>
+
+        <!-- Inline SVG 3R (Reduce Reuse Recycle) Berbasis Vektor Murni -->
+        <svg
+          id="logo3r"
+          class="logo-3r"
+          viewBox="0 0 400 400"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Ilustrasi transformasi Reduce, Reuse, Recycle menjadi satu siklus"
+        >
+          <!-- Panah 1: Reduce (Hijau Daun) -->
+          <g id="arrow-reduce" class="r-arrow r-arrow--reduce">
+            <path d="M 162,194 Q 195,188 222,191 L 220,183 L 242,200 L 220,217 L 222,209 Q 195,212 165,206 Z"></path>
+          </g>
+
+          <!-- Panah 2: Reuse (Hijau Tunas Muda) -->
+          <g id="arrow-reuse" class="r-arrow r-arrow--reuse">
+            <path d="M 162,194 Q 195,188 222,191 L 220,183 L 242,200 L 220,217 L 222,209 Q 195,212 165,206 Z"></path>
+          </g>
+
+          <!-- Panah 3: Recycle (Kuning-Oranye Surya) -->
+          <g id="arrow-recycle" class="r-arrow r-arrow--recycle">
+            <path d="M 162,194 Q 195,188 222,191 L 220,183 L 242,200 L 220,217 L 222,209 Q 195,212 165,206 Z"></path>
+          </g>
+
+          <!-- Label Teks Sinkron (Muncul saat siklus terbentuk) -->
+          <text class="r-label r-label--reduce" x="200" y="60" text-anchor="middle">REDUCE</text>
+          <text class="r-label r-label--reuse" x="330" y="300" text-anchor="middle">REUSE</text>
+          <text class="r-label r-label--recycle" x="70" y="300" text-anchor="middle">RECYCLE</text>
+        </svg>
+
+        <p class="section-3r-transition__caption" id="caption-3r">
+          Tiga aksi. Satu siklus. Satu bumi.
+        </p>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 2: ISU & URGENSI LINGKUNGAN (ENVIRONMENTAL INSIGHTS)
+         ---------------------------------------------------------------------- -->
+    <section class="section section--lg" id="isu-lingkungan" aria-labelledby="issues-title">
+      <div class="container">
+        
+        <header class="section__header">
+          <span class="section__tagline">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            Kondisi Nyata Lingkungan
+          </span>
+          <h2 class="section__title" id="issues-title">Mengapa Kita Harus Bertindak Sekarang?</h2>
+          <p class="section__subtitle">
+            Krisis iklim dan penumpukan sampah bukan lagi prediksi masa depan, melainkan realitas harian di Indonesia yang membutuhkan partisipasi digital dari setiap individu.
+          </p>
+        </header>
+
+        <!-- Grid 4 Kartu Data Urgensi Lingkungan -->
+        <!-- Grid 4 Kartu Data Urgensi Lingkungan (Perspektif 3D Card Deal) -->
+        <div class="grid grid--4-col stats-grid" id="statsGrid">
+          
+          <!-- Kartu 1: Timbunan Sampah Nasional -->
+          <div class="stat-card-wrap" style="--card-index: 0;">
+            <div class="stat-card-flip">
+              <!-- Sisi Belakang Punggung Kartu -->
+              <div class="stat-card-face stat-card-face--back" aria-hidden="true">
+                <svg class="stat-card-back-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+                <span class="stat-card-back-text">EcoLoka</span>
+              </div>
+              <!-- Sisi Depan (Muka Data Asli) -->
+              <article class="stat-card-face stat-card-face--front stat-card stat-card--urgency">
+                <div class="stat-card__top">
+                  <div class="stat-card__icon stat-card__icon--warning">
+                    <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                  </div>
+                  <span class="badge badge--warning">Urgensi Tinggi</span>
+                </div>
+                <div class="stat-card__number">19,4 Juta</div>
+                <h3 class="stat-card__title">Ton Sampah per Tahun</h3>
+                <p class="stat-card__desc">
+                  Total timbunan sampah nasional di Indonesia, di mana lebih dari 35% di antaranya belum terkelola dengan baik dan berakhir mencemari perairan serta laut.
+                </p>
+                <div class="stat-card__source">
+                  <i class="fa-solid fa-database" aria-hidden="true"></i>
+                  <span>Sumber: SIPSN KLHK RI (Estimasi Tahunan)</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Kartu 2: Emisi Karbon Per Kapita -->
+          <div class="stat-card-wrap" style="--card-index: 1;">
+            <div class="stat-card-flip">
+              <!-- Sisi Belakang Punggung Kartu -->
+              <div class="stat-card-face stat-card-face--back" aria-hidden="true">
+                <svg class="stat-card-back-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+                <span class="stat-card-back-text">EcoLoka</span>
+              </div>
+              <!-- Sisi Depan (Muka Data Asli) -->
+              <article class="stat-card-face stat-card-face--front stat-card stat-card--clean">
+                <div class="stat-card__top">
+                  <div class="stat-card__icon stat-card__icon--clean">
+                    <i class="fa-solid fa-smog" aria-hidden="true"></i>
+                  </div>
+                  <span class="badge badge--sky">Emisi Karbon</span>
+                </div>
+                <div class="stat-card__number">2,3 Ton</div>
+                <h3 class="stat-card__title">CO₂ per Kapita / Tahun</h3>
+                <p class="stat-card__desc">
+                  Rata-rata jejak karbon masyarakat urban di Indonesia yang bersumber dari penggunaan listrik berbasis batubara, transportasi berbahan bakar fosil, dan konsumsi.
+                </p>
+                <div class="stat-card__source">
+                  <i class="fa-solid fa-database" aria-hidden="true"></i>
+                  <span>Sumber: Data Emisi ESDM & Global Carbon Atlas</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Kartu 3: Kualitas Ruang Terbuka Hijau -->
+          <div class="stat-card-wrap" style="--card-index: 2;">
+            <div class="stat-card-flip">
+              <!-- Sisi Belakang Punggung Kartu -->
+              <div class="stat-card-face stat-card-face--back" aria-hidden="true">
+                <svg class="stat-card-back-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+                <span class="stat-card-back-text">EcoLoka</span>
+              </div>
+              <!-- Sisi Depan (Muka Data Asli) -->
+              <article class="stat-card-face stat-card-face--front stat-card stat-card--growth">
+                <div class="stat-card__top">
+                  <div class="stat-card__icon stat-card__icon--growth">
+                    <i class="fa-solid fa-tree-city" aria-hidden="true"></i>
+                  </div>
+                  <span class="badge badge--sprout">Tutupan Hijau</span>
+                </div>
+                <div class="stat-card__number">48%</div>
+                <h3 class="stat-card__title">Defisit Ruang Hijau</h3>
+                <p class="stat-card__desc">
+                  Banyak wilayah perkotaan di Indonesia belum memenuhi target proporsi 30% Ruang Terbuka Hijau (RTH), memicu fenomena pulau panas perkotaan (*urban heat island*).
+                </p>
+                <div class="stat-card__source">
+                  <i class="fa-solid fa-database" aria-hidden="true"></i>
+                  <span>Sumber: Kajian Tata Ruang & SDGs Nasional</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Kartu 4: Potensi Aksi Kolektif Digital -->
+          <div class="stat-card-wrap" style="--card-index: 3;">
+            <div class="stat-card-flip">
+              <!-- Sisi Belakang Punggung Kartu -->
+              <div class="stat-card-face stat-card-face--back" aria-hidden="true">
+                <svg class="stat-card-back-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+                <span class="stat-card-back-text">EcoLoka</span>
+              </div>
+              <!-- Sisi Depan (Muka Data Asli) -->
+              <article class="stat-card-face stat-card-face--front stat-card stat-card--smart">
+                <div class="stat-card__top">
+                  <div class="stat-card__icon stat-card__icon--smart">
+                    <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+                  </div>
+                  <span class="badge badge--sun">Potensi Solusi</span>
+                </div>
+                <div class="stat-card__number">85%</div>
+                <h3 class="stat-card__title">Efektivitas Kebiasaan Mikro</h3>
+                <p class="stat-card__desc">
+                  Penelitian membuktikan bahwa edukasi interaktif dan pemantauan mandiri secara digital mampu melipatgandakan kepatuhan terhadap kebiasaan ramah lingkungan.
+                </p>
+                <div class="stat-card__source">
+                  <i class="fa-solid fa-database" aria-hidden="true"></i>
+                  <span>Sumber: Studi Behavioral Insights & Green Tech</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 3: SOLUSI & TIGA PILAR UTAMA (CORE PILLARS)
+         ---------------------------------------------------------------------- -->
+    <section class="section section--lg u-bg-white" id="fitur-utama" aria-labelledby="features-title">
+      <div class="container">
+        
+        <header class="section__header">
+          <span class="section__tagline">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+            Inovasi Digital Cerdas
+          </span>
+          <h2 class="section__title" id="features-title">Tiga Pilar Utama Ekosistem EcoLoka</h2>
+          <p class="section__subtitle">
+            Kami menggabungkan kekuatan teknologi web modern dengan pemahaman ekologis lokal untuk menciptakan pengalaman pelestarian lingkungan yang menyenangkan, terukur, dan berdampak.
+          </p>
+        </header>
+
+        <!-- Grid 3 Pilar Solusi -->
+        <div class="grid grid--3-col">
+
+          <!-- Pilar 1: EcoLearn -->
+          <article class="feature-card">
+            <div class="feature-card__badge-wrapper">
+              <span class="badge badge--sprout">Pilar 01 • Edukasi</span>
+              <span style="font-size: 0.8rem; color: var(--color-neutral-soil-muted);">Literasi Hijau</span>
+            </div>
+            <div class="feature-card__icon-box">
+              <i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>
+            </div>
+            <h3 class="feature-card__title">EcoLearn</h3>
+            <p class="feature-card__desc">
+              Pusat literasi keberlanjutan interaktif yang membedah isu lingkungan kompleks menjadi panduan praktis: prinsip zero waste, daur ulang sampah rumah tangga, dan efisiensi energi.
+            </p>
+            <div class="feature-card__highlight-list">
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Modul Zero Waste & Pemilahan Sampah</span>
+              </div>
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Panduan Konservasi Air & Energi Rumahan</span>
+              </div>
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Kuis Interaktif Uji Pemahaman Ekologis</span>
+              </div>
+            </div>
+            <div class="feature-card__footer">
+              <a href="#gabung-aksi" class="feature-card__link">
+                <span>Pelajari Modul Lengkap</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Pilar 2: EcoCalc -->
+          <article class="feature-card">
+            <div class="feature-card__badge-wrapper">
+              <span class="badge badge--sky">Pilar 02 • Pemantauan</span>
+              <span style="font-size: 0.8rem; color: var(--color-neutral-soil-muted);">Client-Side Tool</span>
+            </div>
+            <div class="feature-card__icon-box">
+              <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+            </div>
+            <h3 class="feature-card__title">EcoCalc</h3>
+            <p class="feature-card__desc">
+              Kalkulator jejak karbon cerdas yang menghitung estimasi emisi gas rumah kaca harian Anda dari transportasi, listrik, dan makanan secara instan di peramban tanpa mengunggah data privasi ke server.
+            </p>
+            <div class="feature-card__highlight-list">
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Perhitungan Cepat Berdasarkan Standar Lokal</span>
+              </div>
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>100% Privat — Data Tetap di Perangkat Anda</span>
+              </div>
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Rekomendasi Aksi Reduksi Emisi Personal</span>
+              </div>
+            </div>
+            <div class="feature-card__footer">
+              <a href="#gabung-aksi" class="feature-card__link">
+                <span>Coba Kalkulator Emisi</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Pilar 3: EcoAction -->
+          <article class="feature-card">
+            <div class="feature-card__badge-wrapper">
+              <span class="badge badge--sun">Pilar 03 • Aksi Nyata</span>
+              <span style="font-size: 0.8rem; color: var(--color-neutral-soil-muted);">Habit Tracker</span>
+            </div>
+            <div class="feature-card__icon-box">
+              <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+            </div>
+            <h3 class="feature-card__title">EcoAction</h3>
+            <p class="feature-card__desc">
+              Pelacak kebiasaan hijau harian yang membantu Anda mempertahankan komitmen: membawa tas belanja sendiri, menghemat air, mematikan peralatan listrik siaga, dan menanam pohon.
+            </p>
+            <div class="feature-card__highlight-list">
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Checklist Kebiasaan Berkelanjutan Harian</span>
+              </div>
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Pencatatan Riwayat via LocalStorage Browser</span>
+              </div>
+              <div class="feature-card__highlight-item">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <span>Ringkasan Dampak Hijau Kumulatif Anda</span>
+              </div>
+            </div>
+            <div class="feature-card__footer">
+              <a href="#gabung-aksi" class="feature-card__link">
+                <span>Mulai Pelacak Kebiasaan</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 4: TENTANG & FILOSOFI PROYEK (ABOUT SECTION)
+         ---------------------------------------------------------------------- -->
+    <section class="section" id="tentang" aria-labelledby="about-title">
+      <div class="container">
+        <div class="grid grid--2-col" style="align-items: center; gap: var(--space-8);">
+          
+          <div>
+            <span class="section__tagline">
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+              Filosofi & Visi
+            </span>
+            <h2 class="section__title" id="about-title">Teknologi Cerdas yang Bersinergi Harmonis dengan Alam</h2>
+            <p>
+              Nama <strong>EcoLoka</strong> lahir dari perpaduan kata *Eco* (ekologi dan kelestarian hayati) dan *Loka* (bahasa Sanskerta/Jawa Kuno yang berarti ruang, ranah, atau dunia). Kami percaya bahwa teknologi digital tidak harus menjadi beban emisi baru bagi planet, melainkan katalis perubahan perilaku manusia.
+            </p>
+            <p>
+              Dengan mengadopsi arsitektur <em>100% Static Client-Side</em>, EcoLoka membuktikan bahwa website modern dapat tampil memukau, responsif, dan kaya fitur tanpa memerlukan server database yang mengonsumsi energi listrik tanpa henti.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-4);">
+              <div style="background-color: var(--color-neutral-white); border: 1px solid var(--color-neutral-stone); border-radius: var(--radius-md); padding: var(--space-3);">
+                <h4 style="font-size: var(--font-size-base); color: var(--color-primary-leaf); margin-bottom: 4px;">Konsumsi Minimal</h4>
+                <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-muted); margin: 0;">Ukuran kode ramping, tanpa aset berat yang memboroskan bandwidth.</p>
+              </div>
+              <div style="background-color: var(--color-neutral-white); border: 1px solid var(--color-neutral-stone); border-radius: var(--radius-md); padding: var(--space-3);">
+                <h4 style="font-size: var(--font-size-base); color: var(--color-accent-sun); margin-bottom: 4px;">Inklusif & Terbuka</h4>
+                <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-muted); margin: 0;">Aksesibel bagi seluruh perangkat tanpa hambatan spesifikasi.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Komposisi Estetika Visual Orisinal -->
+          <div style="position: relative;">
+            <div style="background: linear-gradient(135deg, var(--color-primary-forest), var(--color-primary-leaf)); border-radius: var(--radius-xl); padding: var(--space-6); color: var(--color-neutral-white); box-shadow: var(--shadow-xl); position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -20px; right: -20px; width: 140px; height: 140px; background: rgba(116, 198, 157, 0.15); border-radius: var(--radius-full);"></div>
+              
+              <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); padding: 4px 12px; border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: 700; margin-bottom: var(--space-4);">
+                <i class="fa-solid fa-seedling"></i>
+                <span>Prinsip Keberlanjutan</span>
+              </div>
+
+              <blockquote style="font-family: var(--font-family-display); font-size: var(--font-size-lg); font-weight: 600; line-height: 1.5; margin-bottom: var(--space-4);">
+                "Bumi tidak membutuhkan segelintir orang yang mempraktikkan hidup hijau secara sempurna. Bumi membutuhkan miliaran orang yang memulainya dari langkah kecil yang konsisten."
+              </blockquote>
+
+              <div style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: var(--space-3);">
+                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-accent-sprout); display: flex; align-items: center; justify-content: center; color: var(--color-primary-forest); font-weight: 800;">
+                  EL
+                </div>
+                <div>
+                  <h5 style="color: var(--color-neutral-white); font-size: var(--font-size-sm); margin: 0;">Manifesto EcoLoka</h5>
+                  <p style="color: rgba(221, 229, 221, 0.8); font-size: 0.75rem; margin: 0;">INVENTION 2026 — Universitas Udayana</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 5: CALL TO ACTION (CTA BANNER)
+         ---------------------------------------------------------------------- -->
+    <section class="section section--lg" id="gabung-aksi" aria-labelledby="cta-title">
+      <div class="container">
+        
+        <div class="cta-banner">
+          <div class="cta-banner__decorative-circle cta-banner__decorative-circle--1" aria-hidden="true"></div>
+          <div class="cta-banner__decorative-circle cta-banner__decorative-circle--2" aria-hidden="true"></div>
+
+          <div class="cta-banner__content">
+            <span class="badge cta-banner__badge">
+              <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+              Mulai Langkah Nyata Hari Ini
+            </span>
+
+            <h2 class="cta-banner__title" id="cta-title">
+              Siap Memulai Perjalanan Hidup Lebih Hijau & Berkelanjutan?
+            </h2>
+
+            <p class="cta-banner__desc">
+              Bergabunglah dengan gerakan kesadaran ekologis generasi muda Indonesia. Akses panduan edukasi interaktif, ukur emisi harian Anda, dan rasakan dampak nyata perubahan positif Anda bagi lingkungan sekitar.
+            </p>
+
+            <div class="cta-banner__actions">
+              <a href="#fitur-utama" class="btn btn--accent btn--lg">
+                <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                <span>Jelajahi Fitur EcoLoka</span>
+              </a>
+              <a href="#tentang" class="btn btn--secondary btn--lg">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                <span>Tentang Proyek Ini</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer" id="kontak">
+    <div class="container">
+      
+      <div class="footer__grid">
+        
+        <!-- Kolom 1: Profil Brand & Visi -->
+        <div class="footer__brand">
+          <div class="footer__brand-title">
+            Eco<span>Loka</span>
+          </div>
+          <p class="footer__desc">
+            Platform edukasi dan solusi digital cerdas pendukung pelestarian lingkungan hidup dan gaya hidup berkelanjutan di Indonesia.
+          </p>
+          <div style="display: flex; gap: var(--space-2); margin-top: var(--space-1);">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" style="color: var(--color-accent-sprout); border-color: rgba(116, 198, 157, 0.4); padding: 8px 12px;" aria-label="GitHub Repository">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" style="color: var(--color-accent-sprout); border-color: rgba(116, 198, 157, 0.4); padding: 8px 12px;" aria-label="Instagram Resmi">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:ecoloka.invention@example.com" class="btn btn--outline btn--sm" style="color: var(--color-accent-sprout); border-color: rgba(116, 198, 157, 0.4); padding: 8px 12px;" aria-label="Email Kontak">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi Cepat (7 Halaman Terencana) -->
+        <div>
+          <h4 class="footer__col-title">Navigasi Halaman</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Beranda</a></li>
+            <li><a href="tentang.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Tentang Kami</a></li>
+            <li><a href="edukasi.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Edukasi Hijau</a></li>
+            <li><a href="aksi-hijau.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Kalkulator Jejak Karbon</a></li>
+            <li><a href="pemantauan.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Dashboard Pemantauan</a></li>
+            <li><a href="komunitas.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Aksi Komunitas</a></li>
+            <li><a href="kontak.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Kontak & FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Fitur Unggulan -->
+        <div>
+          <h4 class="footer__col-title">Fitur Unggulan</h4>
+          <ul class="footer__links">
+            <li><a href="edukasi.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Modul EcoLearn</a></li>
+            <li><a href="aksi-hijau.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> EcoCalc Interaktif</a></li>
+            <li><a href="pemantauan.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Pemantauan Emisi</a></li>
+            <li><a href="komunitas.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> Galeri Kampanye</a></li>
+            <li><a href="kontak.html" class="footer__link"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i> FAQ Lingkungan</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Keterangan Lomba INVENTION 2026 -->
+        <div>
+          <h4 class="footer__col-title">Kompetisi</h4>
+          <div class="footer__competition-badge">
+            <h5>INVENTION 2026</h5>
+            <p><strong>Lomba Web Design</strong> tingkat SMA/SMK/Sederajat</p>
+            <p style="margin-top: 4px;">Program Studi Informatika, FMIPA, Universitas Udayana</p>
+            <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+              <span class="badge badge--sprout" style="font-size: 0.68rem; padding: 2px 8px;">
+                <i class="fa-solid fa-circle-check"></i> 100% Static Client-Side
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Baris Hak Cipta & Aksesibilitas -->
+      <div class="footer__bottom">
+        <div>
+          &copy; <span id="current-year">2026</span> EcoLoka. Seluruh hak cipta dilindungi undang-undang.
+          <div class="footer__easter-egg">
+            <i class="fa-solid fa-leaf anim-breeze"></i>
+            <span>Pengunjung peduli bumi ke-<strong id="visitor-count-number">3.482</strong> hari ini</span>
+          </div>
+        </div>
+        <div class="footer__legal-links">
+          <span>Karya Orisinal Tanpa Template</span>
+          <span>•</span>
+          <span>Standar Aksesibilitas WCAG AA</span>
+          <span>•</span>
+          <span>Subtema: Going Green</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Core JavaScript (Vanilla JS Murni) -->
+  <script src="assets/js/main.js"></script>
+  <!-- Shared Scroll Progress Utility -->
+  <script src="assets/js/scroll-utils.js"></script>
+  <!-- Animasi 3R Scroll-Linked Interaktif -->
+  <script src="assets/js/animasi-3r.js" defer></script>
+  <!-- Animasi Kartu Statistik (Card Deal + Flip Reveal) -->
+  <script src="assets/js/animasi-kartu-statistik.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1935 @@
+/* ==========================================================================
+   ECOLOKA — REUSABLE COMPONENTS (components.css)
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Fungsi: Tombol, Kartu, Badges, Hero Graphic Box, Stat Card, Banner CTA
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. TOMBOL (BUTTONS)
+ * -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--transition-fast), 
+              box-shadow var(--transition-fast), 
+              background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Tombol Utama (Primary) - Hijau Daun Terarah */
+.btn--primary {
+  background: linear-gradient(135deg, var(--color-primary-leaf), var(--color-primary-forest));
+  color: var(--color-neutral-white);
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.28);
+}
+
+.btn--primary:hover {
+  background: linear-gradient(135deg, var(--color-primary-leaf-light), var(--color-primary-leaf));
+  color: var(--color-neutral-white);
+  box-shadow: 0 6px 20px rgba(45, 106, 79, 0.38);
+  transform: translateY(-2px);
+}
+
+/* Tombol Sekunder (Secondary) - Bersih dan Berkontur */
+.btn--secondary {
+  background-color: var(--color-neutral-white);
+  color: var(--color-primary-forest);
+  border-color: var(--color-neutral-stone);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-neutral-stone-light);
+  border-color: var(--color-primary-leaf);
+  color: var(--color-primary-forest);
+  transform: translateY(-2px);
+}
+
+/* Tombol Outline (Batas Tipis) */
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-primary-forest);
+  border-color: var(--color-primary-leaf);
+}
+
+.btn--outline:hover {
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+  border-color: var(--color-primary-leaf);
+}
+
+/* Tombol Aksen Surya (Sun Accent) */
+.btn--accent {
+  background: linear-gradient(135deg, var(--color-accent-sun), #E76F51);
+  color: var(--color-neutral-white);
+  box-shadow: 0 4px 14px rgba(244, 162, 89, 0.35);
+}
+
+.btn--accent:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 20px rgba(244, 162, 89, 0.45);
+  transform: translateY(-2px);
+  color: var(--color-neutral-white);
+}
+
+/* Variasi Ukuran */
+.btn--sm {
+  padding: 8px 16px;
+  font-size: var(--font-size-xs);
+}
+
+.btn--lg {
+  padding: 16px 32px;
+  font-size: var(--font-size-base);
+}
+
+/* --------------------------------------------------------------------------
+ * 2. BADGE & CHIP STATUS
+ * -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-display);
+  border-radius: var(--radius-full);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge--sprout {
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+  border: 1px solid rgba(116, 198, 157, 0.5);
+}
+
+.badge--sun {
+  background-color: var(--color-accent-sun-soft);
+  color: #B25A14;
+  border: 1px solid rgba(244, 162, 89, 0.4);
+}
+
+.badge--sky {
+  background-color: var(--color-accent-sky-soft);
+  color: var(--color-accent-sky-dark);
+  border: 1px solid rgba(168, 218, 220, 0.6);
+}
+
+.badge--warning {
+  background-color: var(--color-alert-warning-soft);
+  color: var(--color-alert-warning);
+  border: 1px solid rgba(231, 111, 81, 0.35);
+}
+
+/* Titik Indikator Status */
+.badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background-color: currentColor;
+}
+
+.badge__dot--pulse {
+  box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.7);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(45, 106, 79, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0); }
+}
+
+/* --------------------------------------------------------------------------
+ * 3. KARTU UMUM (GENERIC CARDS)
+ * -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  transition: transform var(--transition-normal), 
+              box-shadow var(--transition-normal),
+              border-color var(--transition-normal);
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--color-accent-sprout);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. HERO SECTION COMPONENTS
+ * -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-12);
+  background: radial-gradient(circle at 80% 20%, rgba(168, 218, 220, 0.35) 0%, transparent 45%),
+              radial-gradient(circle at 10% 80%, rgba(116, 198, 157, 0.25) 0%, transparent 50%),
+              var(--color-neutral-mist);
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .hero__grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__badge {
+  margin-bottom: var(--space-3);
+}
+
+.hero__title {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.15;
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.03em;
+}
+
+.hero__title-gradient {
+  background: linear-gradient(135deg, var(--color-primary-leaf), var(--color-accent-sprout));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero__desc {
+  font-size: var(--font-size-md);
+  color: var(--color-neutral-soil);
+  margin-bottom: var(--space-5);
+  line-height: var(--line-height-relaxed);
+  max-width: 540px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.hero__proof {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-neutral-stone);
+  width: 100%;
+}
+
+.hero__proof-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-soil-light);
+}
+
+.hero__proof-item i {
+  color: var(--color-primary-leaf);
+  font-size: 14px;
+}
+
+/* Komposisi Visual Hero: Eco Digital Dashboard Card */
+.hero__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__visual-blob {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(135deg, rgba(116, 198, 157, 0.35), rgba(168, 218, 220, 0.4));
+  filter: blur(40px);
+  border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+  z-index: 0;
+  animation: blob-float 10s ease-in-out infinite alternate;
+}
+
+@keyframes blob-float {
+  0% { transform: scale(0.95) rotate(0deg); }
+  100% { transform: scale(1.05) rotate(12deg); }
+}
+
+.eco-card-preview {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(27, 67, 50, 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  overflow: hidden;
+}
+
+.eco-card-preview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-neutral-stone-light);
+}
+
+.eco-card-preview__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eco-card-preview__circle-chart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--color-primary-forest), var(--color-primary-leaf));
+  color: var(--color-neutral-white);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3);
+}
+
+.eco-card-preview__circle-metric h4 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-accent-sprout);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.eco-card-preview__circle-metric p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--font-size-xs);
+  margin: 0;
+}
+
+/* Floating micro-badges */
+.hero__floating-badge {
+  position: absolute;
+  z-index: 2;
+  background: var(--color-neutral-white);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 24px rgba(27, 67, 50, 0.12);
+  border: 1px solid var(--color-neutral-stone);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: float-badge 4s ease-in-out infinite alternate;
+}
+
+.hero__floating-badge--top {
+  top: -16px;
+  right: -10px;
+}
+
+.hero__floating-badge--bottom {
+  bottom: -20px;
+  left: -15px;
+  animation-delay: 2s;
+}
+
+@keyframes float-badge {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.hero__floating-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.hero__floating-icon--green {
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+}
+
+.hero__floating-icon--sun {
+  background-color: var(--color-accent-sun-soft);
+  color: var(--color-accent-sun);
+}
+
+.hero__floating-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__floating-text strong {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary-forest);
+  line-height: 1.2;
+}
+
+.hero__floating-text span {
+  font-size: 0.7rem;
+  color: var(--color-neutral-soil-muted);
+}
+
+/* --------------------------------------------------------------------------
+ * 5. SECTION ISU & URGENSI LINGKUNGAN (STAT CARDS)
+ * -------------------------------------------------------------------------- */
+.stat-card {
+  background-color: var(--color-neutral-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  border: 1px solid var(--color-neutral-stone);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-neutral-stone);
+  transition: background-color var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-card--urgency::before {
+  background: linear-gradient(90deg, var(--color-alert-warning), var(--color-accent-sun));
+}
+
+.stat-card--growth::before {
+  background: linear-gradient(90deg, var(--color-primary-leaf), var(--color-accent-sprout));
+}
+
+.stat-card--clean::before {
+  background: linear-gradient(90deg, var(--color-accent-sky-dark), var(--color-accent-sky));
+}
+
+.stat-card--smart::before {
+  background: linear-gradient(90deg, var(--color-accent-sprout), var(--color-primary-forest));
+}
+
+.stat-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.stat-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.stat-card__icon--warning {
+  background-color: var(--color-alert-warning-soft);
+  color: var(--color-alert-warning);
+}
+
+.stat-card__icon--growth {
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+}
+
+.stat-card__icon--clean {
+  background-color: var(--color-accent-sky-soft);
+  color: var(--color-accent-sky-dark);
+}
+
+.stat-card__icon--smart {
+  background-color: var(--color-accent-sun-soft);
+  color: #C05621;
+}
+
+.stat-card__number {
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary-forest);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+
+.stat-card__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-1);
+}
+
+.stat-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--space-3);
+}
+
+.stat-card__source {
+  font-size: 0.72rem;
+  color: var(--color-neutral-soil-muted);
+  border-top: 1px dashed var(--color-neutral-stone);
+  padding-top: var(--space-2);
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --------------------------------------------------------------------------
+ * 6. SECTION FITUR UTAMA & PILAR (FEATURE CARDS)
+ * -------------------------------------------------------------------------- */
+.feature-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-accent-sprout);
+  box-shadow: 0 16px 36px rgba(27, 67, 50, 0.1);
+}
+
+.feature-card__badge-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.feature-card__icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-neutral-mist), var(--color-accent-sprout-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-3);
+  transition: transform var(--transition-normal);
+}
+
+.feature-card:hover .feature-card__icon-box {
+  transform: scale(1.1) rotate(-4deg);
+  background: linear-gradient(135deg, var(--color-primary-leaf), var(--color-primary-forest));
+  color: var(--color-neutral-white);
+}
+
+.feature-card__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-2);
+}
+
+.feature-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-4);
+  flex-grow: 1;
+}
+
+.feature-card__highlight-list {
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-card__highlight-item {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature-card__highlight-item i {
+  color: var(--color-primary-leaf);
+  font-size: 12px;
+}
+
+.feature-card__footer {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-neutral-stone-light);
+}
+
+.feature-card__link {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-leaf);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.feature-card__link:hover {
+  gap: 12px;
+  color: var(--color-primary-forest);
+}
+
+/* --------------------------------------------------------------------------
+ * 7. CALL TO ACTION (CTA BANNER)
+ * -------------------------------------------------------------------------- */
+.cta-banner {
+  background: linear-gradient(135deg, var(--color-primary-forest-dark) 0%, var(--color-primary-forest) 55%, var(--color-primary-leaf) 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-5);
+  color: var(--color-neutral-white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(27, 67, 50, 0.22);
+}
+
+@media (min-width: 768px) {
+  .cta-banner {
+    padding: var(--space-10) var(--space-8);
+  }
+}
+
+.cta-banner__decorative-circle {
+  position: absolute;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+.cta-banner__decorative-circle--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(116, 198, 157, 0.25) 0%, transparent 70%);
+  top: -150px;
+  right: -100px;
+}
+
+.cta-banner__decorative-circle--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(244, 162, 89, 0.18) 0%, transparent 70%);
+  bottom: -100px;
+  left: -50px;
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-banner__badge {
+  margin-bottom: var(--space-3);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-accent-sprout);
+  border: 1px solid rgba(116, 198, 157, 0.4);
+}
+
+.cta-banner__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-neutral-white);
+  line-height: 1.2;
+  margin-bottom: var(--space-3);
+}
+
+.cta-banner__desc {
+  font-size: var(--font-size-md);
+  color: rgba(221, 229, 221, 0.9);
+  margin-bottom: var(--space-6);
+  line-height: var(--line-height-relaxed);
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.cta-banner .btn--secondary {
+  background-color: transparent;
+  color: var(--color-neutral-white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.cta-banner .btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-neutral-white);
+}
+
+/* ==========================================================================
+   TAHAP 2 KOMPONEN: INNER PAGE HERO, BREADCRUMB & FORMULIR INTERAKTIF
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   8. INNER PAGE HERO & BREADCRUMB
+   -------------------------------------------------------------------------- */
+.page-hero {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  background: radial-gradient(circle at 90% 10%, rgba(116, 198, 157, 0.22) 0%, transparent 40%),
+              radial-gradient(circle at 10% 90%, rgba(168, 218, 220, 0.25) 0%, transparent 50%),
+              var(--color-neutral-mist);
+  border-bottom: 1px solid var(--color-neutral-stone);
+  position: relative;
+}
+
+.page-hero__content {
+  max-width: 780px;
+}
+
+.page-hero__badge {
+  margin-bottom: var(--space-2);
+}
+
+.page-hero__title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-2);
+  line-height: 1.2;
+}
+
+.page-hero__desc {
+  font-size: var(--font-size-md);
+  color: var(--color-neutral-soil);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-3);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--space-3);
+}
+
+.breadcrumb__link {
+  color: var(--color-primary-leaf);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.breadcrumb__link:hover {
+  color: var(--color-primary-forest);
+  text-decoration: underline;
+}
+
+.breadcrumb__separator {
+  color: var(--color-neutral-soil-muted);
+}
+
+.breadcrumb__current {
+  color: var(--color-neutral-soil-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. MULTI-STEP FORM (KALKULATOR JEJAK KARBON)
+   -------------------------------------------------------------------------- */
+.multistep {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 768px) {
+  .multistep {
+    padding: var(--space-8);
+  }
+}
+
+.multistep__steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  position: relative;
+}
+
+.multistep__steps::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  right: 30px;
+  height: 2px;
+  background-color: var(--color-neutral-stone);
+  z-index: 0;
+}
+
+.multistep__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  flex: 1;
+}
+
+.multistep__step-num {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-stone-light);
+  border: 2px solid var(--color-neutral-stone);
+  color: var(--color-neutral-soil-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  margin-bottom: 8px;
+  transition: all var(--transition-normal);
+}
+
+.multistep__step-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-soil-muted);
+  transition: color var(--transition-normal);
+}
+
+.multistep__step.is-active .multistep__step-num {
+  background-color: var(--color-primary-forest);
+  border-color: var(--color-accent-sprout);
+  color: var(--color-neutral-white);
+  box-shadow: 0 0 0 4px var(--color-accent-sprout-soft);
+}
+
+.multistep__step.is-active .multistep__step-label {
+  color: var(--color-primary-forest);
+  font-weight: var(--font-weight-bold);
+}
+
+.multistep__step.is-completed .multistep__step-num {
+  background-color: var(--color-primary-leaf);
+  border-color: var(--color-primary-leaf);
+  color: var(--color-neutral-white);
+}
+
+.multistep__step.is-completed .multistep__step-label {
+  color: var(--color-primary-leaf);
+}
+
+.multistep__panel {
+  display: none;
+}
+
+.multistep__panel.is-active {
+  display: block;
+  animation: panel-fade-in 300ms ease-out;
+}
+
+@keyframes panel-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.multistep__panel-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-1);
+}
+
+.multistep__panel-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  margin-bottom: var(--space-5);
+}
+
+.multistep__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-neutral-stone-light);
+}
+
+/* --------------------------------------------------------------------------
+   10. RADIO CARDS (PILIHAN FORM OPSI)
+   -------------------------------------------------------------------------- */
+.radio-card-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .radio-card-group--2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.radio-card {
+  position: relative;
+  cursor: pointer;
+  display: block;
+}
+
+.radio-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-card__content {
+  background-color: var(--color-neutral-white);
+  border: 1.5px solid var(--color-neutral-stone);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.radio-card:hover .radio-card__content {
+  border-color: var(--color-primary-leaf);
+  background-color: var(--color-neutral-stone-light);
+}
+
+.radio-card input[type="radio"]:checked + .radio-card__content {
+  border-color: var(--color-primary-forest);
+  background-color: var(--color-accent-sprout-soft);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.12);
+}
+
+.radio-card input[type="radio"]:focus-visible + .radio-card__content {
+  outline: 3px solid var(--color-primary-leaf);
+  outline-offset: 2px;
+}
+
+.radio-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-neutral-mist);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-leaf);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.radio-card input[type="radio"]:checked + .radio-card__content .radio-card__icon {
+  background-color: var(--color-primary-forest);
+  color: var(--color-accent-sprout);
+}
+
+.radio-card__text {
+  flex-grow: 1;
+}
+
+.radio-card__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  margin-bottom: 2px;
+}
+
+.radio-card__desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-light);
+  line-height: 1.4;
+}
+
+.radio-card__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-primary-leaf);
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   11. FORM CONTROLS & VALIDASI
+   -------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-1);
+}
+
+.form-label .required {
+  color: var(--color-alert-warning);
+}
+
+.form-control,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-neutral-white);
+  border: 1.5px solid var(--color-neutral-stone);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary-leaf);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+  outline: none;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid {
+  border-color: var(--color-alert-warning);
+  background-color: #FFF9F8;
+}
+
+.form-feedback {
+  font-size: var(--font-size-xs);
+  margin-top: 6px;
+  display: none;
+}
+
+.form-feedback--error {
+  color: var(--color-alert-warning);
+}
+
+.form-feedback--success {
+  color: var(--color-primary-leaf);
+}
+
+.form-group.has-error .form-feedback--error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-muted);
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   12. FILTER BAR & SEARCH BOX (EDUKASI)
+   -------------------------------------------------------------------------- */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .filter-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+}
+
+.search-box__input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-neutral-stone);
+  background-color: var(--color-neutral-white);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+}
+
+.search-box__input:focus {
+  border-color: var(--color-primary-leaf);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+  outline: none;
+}
+
+.search-box__icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: var(--color-neutral-soil-muted);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-btn {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  color: var(--color-neutral-soil);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-primary-leaf);
+  color: var(--color-primary-forest);
+}
+
+.filter-btn.is-active {
+  background-color: var(--color-primary-forest);
+  border-color: var(--color-primary-forest);
+  color: var(--color-neutral-white);
+}
+
+/* --------------------------------------------------------------------------
+   13. ARTICLE CARD & MODAL OVERLAY (EDUKASI)
+   -------------------------------------------------------------------------- */
+.article-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-sprout);
+  box-shadow: var(--shadow-md);
+}
+
+.article-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.article-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-2);
+  line-height: 1.3;
+}
+
+.article-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-4);
+  flex-grow: 1;
+}
+
+.article-card__footer {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-neutral-stone);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-card__read-time {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Modal Dialog */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 43, 32, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--space-3);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.modal-backdrop.is-open {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-dialog {
+  background-color: var(--color-neutral-white);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px rgba(17, 43, 32, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: modal-pop 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-pop {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal__header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-neutral-stone);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.modal__title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-forest);
+  line-height: 1.25;
+}
+
+.modal__close {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-stone-light);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-soil);
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.modal__close:hover {
+  background-color: var(--color-alert-warning-soft);
+  color: var(--color-alert-warning);
+}
+
+.modal__body {
+  padding: var(--space-5);
+  overflow-y: auto;
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-soil);
+  line-height: var(--line-height-relaxed);
+}
+
+.modal__body h3 {
+  font-size: var(--font-size-md);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.modal__body ul, .modal__body ol {
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-4);
+}
+
+.modal__body li {
+  list-style: disc;
+  margin-bottom: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   14. VISUALISASI HASIL KALKULATOR (SVG GAUGE & BAR CHART)
+   -------------------------------------------------------------------------- */
+.gauge-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge-svg-wrapper {
+  position: relative;
+  width: 240px;
+  height: 130px;
+  margin: 0 auto var(--space-3);
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.gauge-needle {
+  transform-origin: 100px 100px;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gauge-result-number {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary-forest);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.gauge-result-unit {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+/* Manual SVG Bar Chart Comparison */
+.chart-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.chart-bar-row {
+  margin-bottom: var(--space-3);
+}
+
+.chart-bar-row:last-child {
+  margin-bottom: 0;
+}
+
+.chart-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 6px;
+}
+
+.chart-bar-track {
+  width: 100%;
+  height: 12px;
+  background-color: var(--color-neutral-stone-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.chart-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 1s ease-out;
+}
+
+.chart-bar-fill--user {
+  background: linear-gradient(90deg, var(--color-primary-leaf), var(--color-accent-sprout));
+}
+
+.chart-bar-fill--national {
+  background: linear-gradient(90deg, var(--color-accent-sun), #E76F51);
+}
+
+.chart-bar-fill--target {
+  background: linear-gradient(90deg, var(--color-accent-sky-dark), var(--color-accent-sky));
+}
+
+/* Recommendation Cards */
+.rec-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  gap: var(--space-3);
+  transition: transform var(--transition-fast);
+}
+
+.rec-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent-sprout);
+}
+
+.rec-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.rec-card__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  margin-bottom: 4px;
+}
+
+.rec-card__desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-light);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   15. EMPTY STATE (DASHBOARD PEMANTAUAN)
+   -------------------------------------------------------------------------- */
+.empty-state {
+  background-color: var(--color-neutral-white);
+  border: 2px dashed var(--color-neutral-stone);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.empty-state__icon-box {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent-sprout-soft);
+  color: var(--color-primary-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto var(--space-4);
+}
+
+.empty-state__title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+   16. ACCORDION FAQ (KONTAK)
+   -------------------------------------------------------------------------- */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.accordion__item {
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-md);
+  background-color: var(--color-neutral-white);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.accordion__item.is-open {
+  border-color: var(--color-primary-leaf);
+}
+
+.accordion__trigger {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.accordion__trigger:hover {
+  background-color: var(--color-neutral-stone-light);
+}
+
+.accordion__icon {
+  font-size: 12px;
+  color: var(--color-primary-leaf);
+  transition: transform var(--transition-normal);
+}
+
+.accordion__item.is-open .accordion__icon {
+  transform: rotate(180deg);
+}
+
+.accordion__panel {
+  display: none;
+  padding: 0 var(--space-4) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+}
+
+.accordion__item.is-open .accordion__panel {
+  display: block;
+  animation: accordion-fade 250ms ease-out;
+}
+
+@keyframes accordion-fade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   17. CAMPAIGN CARDS & PROGRESS (KOMUNITAS)
+   -------------------------------------------------------------------------- */
+.campaign-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.campaign-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-accent-sprout);
+  box-shadow: var(--shadow-md);
+}
+
+.campaign-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.campaign-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-accent-sprout-soft), var(--color-accent-sky-soft));
+  color: var(--color-primary-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: var(--space-2);
+}
+
+.campaign-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-forest);
+  margin-bottom: var(--space-2);
+}
+
+.campaign-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-4);
+  flex-grow: 1;
+}
+
+.campaign-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-muted);
+  margin-bottom: var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 1px dashed var(--color-neutral-stone);
+  border-bottom: 1px dashed var(--color-neutral-stone);
+}
+
+.campaign-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.campaign-card__meta-item i {
+  color: var(--color-primary-leaf);
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 4px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-neutral-stone-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary-leaf), var(--color-accent-sprout));
+  border-radius: var(--radius-full);
+  transition: width 1s ease;
+}
+
+/* ==========================================================================
+   TAHAP 3 KOMPONEN: REFINED MOTION, DIGITAL CERTIFICATE & PRINT STYLES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   18. SCROLL REVEAL & MICRO-ANIMASI (60FPS TRANSFORM & OPACITY)
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 80ms; }
+.delay-2 { transition-delay: 160ms; }
+.delay-3 { transition-delay: 240ms; }
+.delay-4 { transition-delay: 320ms; }
+
+/* Subtle Idle Breeze Animation */
+@keyframes subtle-breeze {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.anim-breeze {
+  animation: subtle-breeze 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* --------------------------------------------------------------------------
+   19. MEDIA FRAME & FOTO ORISINAL
+   -------------------------------------------------------------------------- */
+.media-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(221, 229, 221, 0.8);
+}
+
+.media-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.media-frame:hover img {
+  transform: scale(1.03);
+}
+
+.media-frame--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.media-frame--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.media-frame__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-4);
+  background: linear-gradient(to top, rgba(17, 43, 32, 0.85) 0%, rgba(17, 43, 32, 0.4) 60%, transparent 100%);
+  color: var(--color-neutral-white);
+}
+
+.media-frame__caption {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   20. SIGNATURE TOUCH: SERTIFIKAT DIGITAL AKSI HIJAU & PRINT STYLES
+   -------------------------------------------------------------------------- */
+.certificate-modal-dialog {
+  background-color: var(--color-neutral-white);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 780px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(17, 43, 32, 0.4);
+  overflow-y: auto;
+  position: relative;
+}
+
+.certificate-card {
+  background-color: #FAFBF9;
+  border: 3px double var(--color-primary-forest);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin: var(--space-4);
+  position: relative;
+  text-align: center;
+  box-shadow: inset 0 0 30px rgba(45, 106, 79, 0.04);
+}
+
+.certificate-seal {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary-forest), var(--color-primary-leaf));
+  color: var(--color-accent-sprout);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto var(--space-3);
+  box-shadow: 0 6px 16px rgba(27, 67, 50, 0.25);
+  border: 3px solid var(--color-accent-sprout);
+}
+
+.certificate-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-primary-forest);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.certificate-subtitle {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-leaf);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.certificate-recipient {
+  border-bottom: 2px solid var(--color-accent-sprout);
+  display: inline-block;
+  min-width: 240px;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-primary-forest);
+  padding: 4px 16px;
+  margin-bottom: var(--space-3);
+}
+
+.certificate-statement {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-soil);
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 auto var(--space-4);
+}
+
+.certificate-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  border-top: 1px dashed var(--color-neutral-stone);
+  border-bottom: 1px dashed var(--color-neutral-stone);
+  padding: var(--space-3) 0;
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-xs);
+}
+
+.certificate-meta-item strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary-forest);
+  margin-top: 2px;
+}
+
+.certificate-footer-signatures {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-soil-muted);
+}
+
+/* Print Stylesheet Kepatuhan Penuh */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #print-certificate-area,
+  #print-certificate-area * {
+    visibility: visible !important;
+  }
+
+  #print-certificate-area {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 30px !important;
+    background: #FFF !important;
+    border: 4px double #1B4332 !important;
+    box-shadow: none !important;
+    z-index: 999999 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   21. FOOTER EASTER EGG & BADGES
+   -------------------------------------------------------------------------- */
+.footer__easter-egg {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(116, 198, 157, 0.25);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  color: var(--color-accent-sprout);
+  margin-top: var(--space-2);
+}
+
+

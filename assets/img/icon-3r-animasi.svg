@@ -1,0 +1,49 @@
+<svg
+  id="logo3r"
+  class="logo-3r"
+  viewBox="0 0 400 400"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Ilustrasi transformasi Reduce, Reuse, Recycle menjadi satu siklus"
+>
+  <style>
+    .r-arrow {
+      transform-origin: 200px 200px;
+      will-change: transform;
+    }
+    .r-arrow--reduce path { fill: var(--color-primary-leaf, #2D6A4F); }
+    .r-arrow--reuse path { fill: var(--color-accent-sprout, #74C69D); }
+    .r-arrow--recycle path { fill: var(--color-accent-sun, #F4A259); }
+    .r-label {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      fill: var(--color-neutral-soil, #2B2D2F);
+    }
+    /* Fallback default state: Segitiga siklus lengkap */
+    #arrow-reduce { transform: translate(0px, -90px) rotate(0deg); }
+    #arrow-reuse { transform: translate(78px, 45px) rotate(120deg); }
+    #arrow-recycle { transform: translate(-78px, 45px) rotate(240deg); }
+  </style>
+
+  <!-- Panah Reduce (Atas: Hijau Daun) -->
+  <g id="arrow-reduce" class="r-arrow r-arrow--reduce">
+    <path d="M 162,194 Q 195,188 222,191 L 220,183 L 242,200 L 220,217 L 222,209 Q 195,212 165,206 Z"></path>
+  </g>
+
+  <!-- Panah Reuse (Kanan Bawah: Hijau Tunas Muda) -->
+  <g id="arrow-reuse" class="r-arrow r-arrow--reuse">
+    <path d="M 162,194 Q 195,188 222,191 L 220,183 L 242,200 L 220,217 L 222,209 Q 195,212 165,206 Z"></path>
+  </g>
+
+  <!-- Panah Recycle (Kiri Bawah: Kuning-Oranye Surya) -->
+  <g id="arrow-recycle" class="r-arrow r-arrow--recycle">
+    <path d="M 162,194 Q 195,188 222,191 L 220,183 L 242,200 L 220,217 L 222,209 Q 195,212 165,206 Z"></path>
+  </g>
+
+  <!-- Label Teks Siklus 3R -->
+  <text class="r-label r-label--reduce" x="200" y="60" text-anchor="middle">REDUCE</text>
+  <text class="r-label r-label--reuse" x="330" y="300" text-anchor="middle">REUSE</text>
+  <text class="r-label r-label--recycle" x="70" y="300" text-anchor="middle">RECYCLE</text>
+</svg>

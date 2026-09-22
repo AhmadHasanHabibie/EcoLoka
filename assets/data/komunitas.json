@@ -1,0 +1,54 @@
+[
+  {
+    "id": "kampanye-mangrove-bali",
+    "judul": "Aksi Restorasi 1.000 Bibit Mangrove Pesisir",
+    "kategori": "Konservasi Pesisir",
+    "lokasi": "Denpasar & Teluk Benoa, Bali",
+    "tanggal": "27 September 2026",
+    "peserta_terdaftar": 142,
+    "target_peserta": 200,
+    "persentase": 71,
+    "ikon": "fa-solid fa-water",
+    "ringkasan": "Gerakan penanaman bibit bakau bersama pelajar SMA dan mahasiswa untuk menahan abrasi pantai serta menyerap karbon biru (blue carbon) pesisir.",
+    "status": "Pendaftaran Dibuka"
+  },
+  {
+    "id": "gerakan-pilah-sampah-sekolah",
+    "judul": "Kompetisi Bank Sampah Digital Antar Sekolah",
+    "kategori": "Pengelolaan Sampah",
+    "lokasi": "Nasional (Daring / Hybrid)",
+    "tanggal": "1 – 31 Oktober 2026",
+    "peserta_terdaftar": 38,
+    "target_peserta": 50,
+    "persentase": 76,
+    "ikon": "fa-solid fa-school",
+    "ringkasan": "Program pemilahan sampah anorganik di sekolah menengah dengan pencatatan bobot digital terpusat untuk memperebutkan Green School Award 2026.",
+    "status": "Pendaftaran Dibuka"
+  },
+  {
+    "id": "gowes-bebas-emisi",
+    "judul": "Bike to School / Work: Sepekan Bebas Polusi",
+    "kategori": "Transportasi Hijau",
+    "lokasi": "Berbagai Kota di Indonesia",
+    "tanggal": "12 – 18 Oktober 2026",
+    "peserta_terdaftar": 520,
+    "target_peserta": 600,
+    "persentase": 87,
+    "ikon": "fa-solid fa-bicycle",
+    "ringkasan": "Tantangan komutasi harian tanpa kendaraan bermotor pribadi. Catat jarak kayuhan Anda di dashboard EcoLoka untuk kalkulasi reduksi emisi gabungan.",
+    "status": "Segera Dimulai"
+  },
+  {
+    "id": "workshop-ecobrick-kreatif",
+    "judul": "Workshop Pengolahan Residu Plastik Menjadi Ecobrick",
+    "kategori": "Daur Ulang",
+    "lokasi": "Kampus Bukit Jimbaran, Universitas Udayana",
+    "tanggal": "24 Oktober 2026",
+    "peserta_terdaftar": 85,
+    "target_peserta": 100,
+    "persentase": 85,
+    "ikon": "fa-solid fa-cubes-stacked",
+    "ringkasan": "Pelatihan memadatkan sampah sachet plastik tak bernilai jual ke dalam botol PET menjadi modul bata modular ramah lingkungan untuk kursi taman.",
+    "status": "Pendaftaran Dibuka"
+  }
+]
