@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="assets/css/utilities.css">
   <link rel="stylesheet" href="assets/css/animasi-3r.css">
   <link rel="stylesheet" href="assets/css/animasi-kartu.css">
+  <link rel="stylesheet" href="assets/css/animasi-tiga-pilar.css">
 </head>
 <body id="beranda">
 
@@ -138,7 +139,7 @@
             </p>
 
             <div class="hero__actions">
-              <a href="#fitur-utama" class="btn btn--primary btn--lg">
+              <a href="#tigaPilar" class="btn btn--primary btn--lg">
                 <i class="fa-solid fa-seedling" aria-hidden="true"></i>
                 <span>Mulai Aksi Hijau</span>
               </a>
@@ -450,129 +451,141 @@
     </section>
 
     <!-- ----------------------------------------------------------------------
-         SECTION 3: SOLUSI & TIGA PILAR UTAMA (CORE PILLARS)
+         SECTION 3: SOLUSI & TIGA PILAR UTAMA (POHON TUMBUH BERPUTAR)
          ---------------------------------------------------------------------- -->
-    <section class="section section--lg u-bg-white" id="fitur-utama" aria-labelledby="features-title">
+    <section class="section-tiga-pilar section--lg u-bg-white" id="tigaPilar" aria-labelledby="features-title">
+      <!-- Target anchor kompatibilitas tautan lama -->
+      <span id="fitur-utama" class="u-sr-only"></span>
+
       <div class="container">
         
-        <header class="section__header">
+        <header class="section__header" style="text-align: center; margin-bottom: var(--space-8, 64px);">
           <span class="section__tagline">
-            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
-            Inovasi Digital Cerdas
+            <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+            Fondasi Gerakan Keberlanjutan
           </span>
           <h2 class="section__title" id="features-title">Tiga Pilar Utama Ekosistem EcoLoka</h2>
-          <p class="section__subtitle">
-            Kami menggabungkan kekuatan teknologi web modern dengan pemahaman ekologis lokal untuk menciptakan pengalaman pelestarian lingkungan yang menyenangkan, terukur, dan berdampak.
+          <p class="section__subtitle" style="max-width: 720px; margin-inline: auto;">
+            Perjalanan transformasi hijau yang tumbuh bertahap layaknya pohon kehidupan: berakar pada pemahaman mendalam, bertumbuh kokoh dalam aksi nyata harian, dan merimbun menaungi sesama lewat kolaborasi komunitas.
           </p>
         </header>
 
-        <!-- Grid 3 Pilar Solusi -->
-        <div class="grid grid--3-col">
+        <div class="tiga-pilar__container">
 
-          <!-- Pilar 1: EcoLearn -->
-          <article class="feature-card">
-            <div class="feature-card__badge-wrapper">
-              <span class="badge badge--sprout">Pilar 01 • Edukasi</span>
-              <span style="font-size: 0.8rem; color: var(--color-neutral-soil-muted);">Literasi Hijau</span>
-            </div>
-            <div class="feature-card__icon-box">
-              <i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>
-            </div>
-            <h3 class="feature-card__title">EcoLearn</h3>
-            <p class="feature-card__desc">
-              Pusat literasi keberlanjutan interaktif yang membedah isu lingkungan kompleks menjadi panduan praktis: prinsip zero waste, daur ulang sampah rumah tangga, dan efisiensi energi.
-            </p>
-            <div class="feature-card__highlight-list">
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Modul Zero Waste & Pemilahan Sampah</span>
-              </div>
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Panduan Konservasi Air & Energi Rumahan</span>
-              </div>
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Kuis Interaktif Uji Pemahaman Ekologis</span>
-              </div>
-            </div>
-            <div class="feature-card__footer">
-              <a href="#gabung-aksi" class="feature-card__link">
-                <span>Pelajari Modul Lengkap</span>
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
+          <!-- KIRI: Ilustrasi pohon tumbuh berputar -->
+          <div class="tiga-pilar__visual">
+            <svg id="pohonTumbuh" class="pohon-svg" viewBox="0 0 400 500"
+                 role="img" aria-label="Ilustrasi pohon tumbuh melambangkan tiga pilar EcoLoka: Edukasi sebagai akar, Aksi Nyata sebagai batang, dan Kolaborasi Komunitas sebagai tajuk daun">
+              
+              <!-- Garis Horizon / Lapisan Tanah (Dashed Soil Guide) -->
+              <path class="pohon-soil-line" d="M 60 380 Q 200 376 340 380" />
 
-          <!-- Pilar 2: EcoCalc -->
-          <article class="feature-card">
-            <div class="feature-card__badge-wrapper">
-              <span class="badge badge--sky">Pilar 02 • Pemantauan</span>
-              <span style="font-size: 0.8rem; color: var(--color-neutral-soil-muted);">Client-Side Tool</span>
-            </div>
-            <div class="feature-card__icon-box">
-              <i class="fa-solid fa-calculator" aria-hidden="true"></i>
-            </div>
-            <h3 class="feature-card__title">EcoCalc</h3>
-            <p class="feature-card__desc">
-              Kalkulator jejak karbon cerdas yang menghitung estimasi emisi gas rumah kaca harian Anda dari transportasi, listrik, dan makanan secara instan di peramban tanpa mengunggah data privasi ke server.
-            </p>
-            <div class="feature-card__highlight-list">
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Perhitungan Cepat Berdasarkan Standar Lokal</span>
-              </div>
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>100% Privat — Data Tetap di Perangkat Anda</span>
-              </div>
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Rekomendasi Aksi Reduksi Emisi Personal</span>
-              </div>
-            </div>
-            <div class="feature-card__footer">
-              <a href="#gabung-aksi" class="feature-card__link">
-                <span>Coba Kalkulator Emisi</span>
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
+              <!-- Tahap 1: Akar / Benih (Pilar 01: Edukasi) -->
+              <g id="tahap-akar" class="pohon-tahap pohon-tahap--akar">
+                <!-- Benih Pusat Kehidupan -->
+                <circle class="pohon-seed-center" cx="200" cy="380" r="5" />
+                <!-- Pola Vektor Akar Mengakar ke Dalam Tanah -->
+                <path d="M 200 380 C 198 405 204 435 200 468 M 200 382 C 182 408 150 422 118 442 M 168 412 C 152 430 138 446 126 462 M 188 424 C 176 442 165 456 150 468 M 200 382 C 218 408 250 422 282 442 M 232 412 C 248 430 262 446 274 462 M 212 424 C 224 442 235 456 250 468 M 199 438 C 194 452 190 466 186 476 M 201 438 C 206 452 210 466 214 476" />
+              </g>
 
-          <!-- Pilar 3: EcoAction -->
-          <article class="feature-card">
-            <div class="feature-card__badge-wrapper">
-              <span class="badge badge--sun">Pilar 03 • Aksi Nyata</span>
-              <span style="font-size: 0.8rem; color: var(--color-neutral-soil-muted);">Habit Tracker</span>
-            </div>
-            <div class="feature-card__icon-box">
-              <i class="fa-solid fa-list-check" aria-hidden="true"></i>
-            </div>
-            <h3 class="feature-card__title">EcoAction</h3>
-            <p class="feature-card__desc">
-              Pelacak kebiasaan hijau harian yang membantu Anda mempertahankan komitmen: membawa tas belanja sendiri, menghemat air, mematikan peralatan listrik siaga, dan menanam pohon.
-            </p>
-            <div class="feature-card__highlight-list">
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Checklist Kebiasaan Berkelanjutan Harian</span>
+              <!-- Tahap 2: Batang Kokoh & Percabangan (Pilar 02: Aksi Nyata) -->
+              <g id="tahap-batang" class="pohon-tahap pohon-tahap--batang">
+                <!-- Batang Utama Vertikal dan Ranting yang Mendorong ke Atas -->
+                <path d="M 200 380 C 198 330 202 270 200 200 M 200 310 C 175 290 148 275 125 255 M 155 280 C 140 265 128 245 115 235 M 200 290 C 225 272 252 260 275 245 M 235 268 C 250 252 262 235 285 228 M 200 240 C 180 218 162 198 145 178 M 200 225 C 220 205 238 188 255 170 M 200 200 C 199 175 201 155 200 130" />
+              </g>
+
+              <!-- Tahap 3: Tajuk & Daun Mekar Berputar (Pilar 03: Kolaborasi Komunitas) -->
+              <g id="tahap-tajuk" class="pohon-tahap pohon-tahap--tajuk">
+                <!-- Daun 0: Cabang Kiri Bawah -->
+                <g class="daun" data-daun-index="0">
+                  <path d="M 125 255 C 105 248 90 230 95 210 C 115 215 130 235 125 255 Z" />
+                  <path d="M 125 255 Q 112 238 100 216" stroke="var(--color-primary-leaf)" stroke-width="1.5" fill="none" />
+                </g>
+                <!-- Daun 1: Cabang Kanan Bawah -->
+                <g class="daun" data-daun-index="1">
+                  <path d="M 275 245 C 295 238 310 220 305 200 C 285 205 270 225 275 245 Z" />
+                  <path d="M 275 245 Q 288 228 300 206" stroke="var(--color-primary-leaf)" stroke-width="1.5" fill="none" />
+                </g>
+                <!-- Daun 2: Cabang Kiri Atas -->
+                <g class="daun" data-daun-index="2">
+                  <path d="M 145 178 C 125 168 112 145 120 125 C 140 132 152 155 145 178 Z" />
+                  <path d="M 145 178 Q 133 158 123 132" stroke="var(--color-primary-leaf)" stroke-width="1.5" fill="none" />
+                </g>
+                <!-- Daun 3: Cabang Kanan Atas -->
+                <g class="daun" data-daun-index="3">
+                  <path d="M 255 170 C 275 160 288 138 280 118 C 260 125 248 148 255 170 Z" />
+                  <path d="M 255 170 Q 267 150 277 125" stroke="var(--color-primary-leaf)" stroke-width="1.5" fill="none" />
+                </g>
+                <!-- Daun 4: Tajuk Pucuk Atas -->
+                <g class="daun" data-daun-index="4">
+                  <path d="M 200 130 C 185 110 185 85 200 65 C 215 85 215 110 200 130 Z" />
+                  <path d="M 200 130 L 200 75" stroke="var(--color-primary-leaf)" stroke-width="1.5" fill="none" />
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <!-- KANAN: 3 Kartu Pilar Interaktif -->
+          <div class="tiga-pilar__list">
+            
+            <!-- Kartu 01: Edukasi (Akar Pengetahuan) -->
+            <article class="pilar-card" id="pilarCard-1" data-pilar-index="0">
+              <div class="pilar-card__header">
+                <span class="pilar-card__nomor">01</span>
+                <span class="pilar-card__badge pilar-card__badge--edukasi">Akar Fondasi</span>
               </div>
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Pencatatan Riwayat via LocalStorage Browser</span>
+              <h3 class="pilar-card__judul">Edukasi</h3>
+              <p class="pilar-card__deskripsi">
+                Akar dari setiap perubahan besar adalah pengetahuan. EcoLoka menanamkan pemahaman isu lingkungan sejak akarnya melalui modul literasi interaktif, panduan zero waste, dan wawasan sains iklim yang mudah dipahami.
+              </p>
+              <div class="pilar-card__footer">
+                <a href="edukasi.html" class="pilar-card__link">
+                  <span>Pelajari Modul Lengkap</span>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <i class="fa-solid fa-seedling pilar-card__icon-watermark" aria-hidden="true"></i>
               </div>
-              <div class="feature-card__highlight-item">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                <span>Ringkasan Dampak Hijau Kumulatif Anda</span>
+            </article>
+
+            <!-- Kartu 02: Aksi Nyata (Batang Kebiasaan) -->
+            <article class="pilar-card" id="pilarCard-2" data-pilar-index="1">
+              <div class="pilar-card__header">
+                <span class="pilar-card__nomor">02</span>
+                <span class="pilar-card__badge pilar-card__badge--aksi">Batang Aksi</span>
               </div>
-            </div>
-            <div class="feature-card__footer">
-              <a href="#gabung-aksi" class="feature-card__link">
-                <span>Mulai Pelacak Kebiasaan</span>
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
+              <h3 class="pilar-card__judul">Aksi Nyata</h3>
+              <p class="pilar-card__deskripsi">
+                Pengetahuan tanpa tindakan hanyalah wacana. Batang yang kokoh lahir dari kebiasaan hijau yang konsisten dilakukan: kalkulator jejak karbon mandiri dan pelacak komitmen gaya hidup berkelanjutan harian.
+              </p>
+              <div class="pilar-card__footer">
+                <a href="aksi-hijau.html" class="pilar-card__link">
+                  <span>Mulai Aksi Hijau Harian</span>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <i class="fa-solid fa-tree pilar-card__icon-watermark" aria-hidden="true"></i>
+              </div>
+            </article>
+
+            <!-- Kartu 03: Kolaborasi Komunitas (Tajuk Saling Menopang) -->
+            <article class="pilar-card" id="pilarCard-3" data-pilar-index="2">
+              <div class="pilar-card__header">
+                <span class="pilar-card__nomor">03</span>
+                <span class="pilar-card__badge pilar-card__badge--komunitas">Tajuk Penaung</span>
+              </div>
+              <h3 class="pilar-card__judul">Kolaborasi Komunitas</h3>
+              <p class="pilar-card__deskripsi">
+                Satu pohon tak membentuk hutan. Dampak sejati tumbuh ketika aksi individu meluas menjadi gerakan bersama yang saling menaungi melalui jejaring relawan hijau, ruang berbagi praktik baik, dan aksi kolektif.
+              </p>
+              <div class="pilar-card__footer">
+                <a href="komunitas.html" class="pilar-card__link">
+                  <span>Jelajahi Ruang Komunitas</span>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <i class="fa-solid fa-users pilar-card__icon-watermark" aria-hidden="true"></i>
+              </div>
+            </article>
+
+          </div>
 
         </div>
 
@@ -666,7 +679,7 @@
             </p>
 
             <div class="cta-banner__actions">
-              <a href="#fitur-utama" class="btn btn--accent btn--lg">
+              <a href="#tigaPilar" class="btn btn--accent btn--lg">
                 <i class="fa-solid fa-leaf" aria-hidden="true"></i>
                 <span>Jelajahi Fitur EcoLoka</span>
               </a>
@@ -784,5 +797,7 @@
   <script src="assets/js/animasi-3r.js" defer></script>
   <!-- Animasi Kartu Statistik (Card Deal + Flip Reveal) -->
   <script src="assets/js/animasi-kartu-statistik.js" defer></script>
+  <!-- Animasi Pohon Tumbuh Berputar (3 Pilar Utama Ekosistem EcoLoka) -->
+  <script src="assets/js/animasi-tiga-pilar.js" defer></script>
 </body>
 </html>
