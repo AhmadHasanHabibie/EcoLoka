@@ -30,13 +30,15 @@
 - **Diterapkan pada:** `aksi-hijau.html` (seluruh kartu pilihan kalkulator: Transportasi, Energi Rumah, Konsumsi & Sampah).
 - **Mekanisme:** Mengkalkulasi durasi denyut ambient breathing berbanding lurus dengan bobot emisi kartu, memunculkan partikel asap halus atau tunas bergoyang, dan memancarkan ripple melingkar saat dipilih.
 
-### B. Modul Marquee Horizontal Infinite Sinkron Scroll (`assets/js/marquee-indikator.js`)
+### B. Modul Marquee Horizontal Infinite Sinkron Scroll & Drag Manual (`assets/js/marquee-indikator.js`)
 - **Diterapkan pada:** `pemantauan.html` (grid 4 kartu indikator keberlanjutan: Kualitas Udara, Sampah Plastik, Pohon Virtual, kWh Listrik).
 - **Mekanisme:**
   - Mentransformasikan grid kartu statis menjadi track horizontal dinamis.
   - Scroll ke bawah $\rightarrow$ kartu bergeser ke **kanan**.
   - Scroll ke atas $\rightarrow$ kartu bergeser ke **kiri**.
   - Scroll berhenti $\rightarrow$ kartu **langsung diam seketika** (zero autoplay / tanpa interval timer).
+  - **Interaksi Drag Manual (Mouse & Touch):** Saat scroll berhenti, pengguna dapat menggeser (drag/swipe) kartu secara manual menggunakan mouse (klik-tahan-geser) atau jari (touch).
+  - **Transisi Mulus (Seamless Handoff):** Logika scroll dan drag berbagi satu variabel `posisi` dan fungsi `terapkanWrapDanTransform()` yang sama; saat drag dilepas dan halaman di-scroll kembali, pergerakan melanjutkan secara mulus dari posisi terakhir tanpa lompatan/reset.
   - Infinite loop dicapai melalui 3 set kartu identik dengan pergeseran modul tepat satu lebar set (`lebarSatuSet`).
   - Duplikat diberi atribut `aria-hidden="true"` dan `tabindex="-1"` untuk integritas semantik dan pembaca layar (screen reader).
   - Fallback otomatis ke grid statis jika JavaScript nonaktif atau pengguna memilih `@media (prefers-reduced-motion: reduce)`.

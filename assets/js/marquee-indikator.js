@@ -1,12 +1,13 @@
 /**
  * marquee-indikator.js
  * Mengubah grid 4 kartu indikator menjadi track horizontal infinite yang
- * bergerak SESUAI ARAH SCROLL pengguna (bukan autoplay). Scroll ke bawah
- * -> kartu bergeser kanan; scroll ke atas -> kartu bergeser kiri; berhenti
- * scroll -> kartu berhenti seketika. Infinite dicapai dengan menduplikasi
- * satu baris kartu menjadi 3 salinan identik dan me-wrap posisi secara mulus.
+ * bergerak SESUAI ARAH SCROLL pengguna (bukan autoplay) + INTERAKSI DRAG MANUAL
+ * (mouse & touch). Scroll ke bawah -> kartu bergeser kanan; scroll ke atas ->
+ * kartu bergeser kiri; saat scroll berhenti, pengguna dapat menggeser (swipe/drag)
+ * kartu secara manual. Begitu scroll dilanjutkan, kontrol kembali otomatis
+ * mengikuti arah scroll dari posisi terakhir tanpa lompatan visual.
  * 
- * Kepatuhan: 100% Native Vanilla JS (IntersectionObserver + requestAnimationFrame)
+ * Kepatuhan: 100% Native Vanilla JS (Pointer Events + IntersectionObserver + requestAnimationFrame)
  * Zero External Dependencies, Accessible (aria-hidden pada klon), Reduced-Motion Compliant
  */
 
@@ -78,20 +79,69 @@
 
     const FAKTOR_KECEPATAN = 0.35; // < 1 supaya gerak lebih lambat dari scroll asli, tetap terbaca
 
-    function updateMarquee(deltaY) {
-      posisi += deltaY * FAKTOR_KECEPATAN;
-
-      // Wrap tak terbatas: jika sudah bergeser terlalu jauh ke kanan atau
-      // kiri, "lompat" mundur/maju tepat satu lebar set — karena kontennya
-      // identik, lompatan ini TIDAK TERLIHAT sama sekali oleh mata (mulus)
+    /**
+     * Menerapkan wrap infinite + transform — logika ini diekstrak ke fungsi
+     * terpisah agar dipakai bersama oleh mode scroll dan mode drag manual.
+     */
+    function terapkanWrapDanTransform() {
       if (posisi > 0) {
         posisi -= lebarSatuSet;
       } else if (posisi < -2 * lebarSatuSet) {
         posisi += lebarSatuSet;
       }
-
       track.style.transform = `translateX(${posisi}px)`;
     }
+
+    function updateMarquee(deltaY) {
+      if (sedangDiDrag) return; // sedang digeser manual, abaikan input dari scroll sementara
+      posisi += deltaY * FAKTOR_KECEPATAN;
+      terapkanWrapDanTransform();
+    }
+
+    // ==========================================================================
+    // TAMBAHAN: Interaksi drag manual (mouse & touch), menyatu dengan variabel
+    // `posisi` yang sama dipakai oleh mode scroll-driven di atas.
+    // ==========================================================================
+    let sedangDiDrag = false;
+    let posisiMouseAwal = 0;
+    let posisiSaatMulaiDrag = 0;
+
+    function mulaiDrag(e) {
+      sedangDiDrag = true;
+      posisiMouseAwal = e.clientX;
+      posisiSaatMulaiDrag = posisi;
+      viewport.classList.add('is-dragging');
+      // Pointer capture memastikan gerakan tetap terdeteksi meski kursor
+      // sempat keluar dari area viewport saat menggeser cepat
+      if (typeof viewport.setPointerCapture === 'function') {
+        try {
+          viewport.setPointerCapture(e.pointerId);
+        } catch (_) {}
+      }
+    }
+
+    function selamaDrag(e) {
+      if (!sedangDiDrag) return;
+      const jarakGeser = e.clientX - posisiMouseAwal;
+      posisi = posisiSaatMulaiDrag + jarakGeser;
+      terapkanWrapDanTransform();
+    }
+
+    function akhiriDrag(e) {
+      if (!sedangDiDrag) return;
+      sedangDiDrag = false;
+      viewport.classList.remove('is-dragging');
+      if (typeof viewport.releasePointerCapture === 'function' && e && e.pointerId) {
+        try {
+          viewport.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+      }
+    }
+
+    viewport.addEventListener('pointerdown', mulaiDrag);
+    viewport.addEventListener('pointermove', selamaDrag);
+    viewport.addEventListener('pointerup', akhiriDrag);
+    viewport.addEventListener('pointercancel', akhiriDrag);
 
     if (window.ScrollUtils && typeof window.ScrollUtils.bindScrollDelta === 'function') {
       ScrollUtils.bindScrollDelta(viewport, updateMarquee);
@@ -120,7 +170,7 @@
       resizeTimer = setTimeout(() => {
         hitungLebarSatuSet();
         posisi = -lebarSatuSet;
-        track.style.transform = `translateX(${posisi}px)`;
+        terapkanWrapDanTransform();
       }, 200);
     });
   }

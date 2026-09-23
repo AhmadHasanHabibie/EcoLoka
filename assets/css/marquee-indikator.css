@@ -9,6 +9,22 @@
   width: 100%;
   margin-bottom: var(--space-6);
   padding: 12px 4px; /* Memberikan ruang ekstra untuk elevasi bayangan kartu */
+  cursor: grab;
+  user-select: none; /* Mencegah teks ikut terseleksi saat menggeser */
+  -webkit-user-select: none;
+  /* Izinkan gestur scroll VERTIKAL halaman tetap berjalan normal via touch;
+     hanya gestur horizontal yang akan ditangkap sebagai drag oleh JS */
+  touch-action: pan-y;
+}
+
+.indikator-marquee-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+/* Saat sedang di-drag, matikan transisi CSS apapun (jika ada) agar
+   pergerakan terasa 1:1 mengikuti jari/mouse tanpa jeda/delay */
+.indikator-marquee-viewport.is-dragging .indikator-marquee-track {
+  transition: none;
 }
 
 .indikator-marquee-track {
