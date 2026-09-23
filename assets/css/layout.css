@@ -546,3 +546,59 @@
 .footer__legal-links a:hover {
   color: var(--color-accent-sprout);
 }
+
+/* ==========================================================================
+   HERO UNIQUE BACKGROUNDS & ACCESSIBILITY OVERLAY (TAHAP TAMBAHAN)
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  overflow: hidden;
+}
+
+/* Overlay wajib di setiap hero agar teks tetap terbaca sempurna di atas gambar apapun */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(247, 249, 247, 0.94) 0%,
+    rgba(247, 249, 247, 0.75) 45%,
+    rgba(247, 249, 247, 0.55) 100%
+  );
+  /* rgba di atas mengikuti --color-neutral-mist (#F7F9F7) dengan transparansi
+     bertingkat — lebih pekat di sisi kiri (tempat teks berada), lebih tipis
+     di sisi kanan (tempat gambar lebih terlihat jelas) */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hanya tampilkan overlay ::before jika hero memiliki modifier latar gambar khusus */
+.hero:not([class*="hero--"])::before {
+  display: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2; /* pastikan seluruh konten hero (badge, heading, dll) tampil DI ATAS overlay */
+}
+
+/* Background per halaman */
+.hero--tentang, .page-hero.hero--tentang         { background-image: url('../img/hero/hero-tentang.jpg'); }
+.hero--edukasi, .page-hero.hero--edukasi         { background-image: url('../img/hero/hero-edukasi.jpg'); }
+.hero--aksi-hijau, .page-hero.hero--aksi-hijau   { background-image: url('../img/hero/hero-aksi-hijau.jpg'); }
+.hero--pemantauan, .page-hero.hero--pemantauan   { background-image: url('../img/hero/hero-pemantauan.jpg'); }
+.hero--komunitas, .page-hero.hero--komunitas     { background-image: url('../img/hero/hero-komunitas.jpg'); }
+.hero--kontak, .page-hero.hero--kontak           { background-image: url('../img/hero/hero-kontak.jpg'); }
+
+@media (max-width: 640px) {
+  .hero {
+    background-position: center top;
+    min-height: 340px; /* sesuaikan agar hero tidak terlalu pendek/gepeng di mobile */
+  }
+}

@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/animasi-nafas-karbon.css">
 </head>
 <body>
 
@@ -109,7 +110,7 @@
   <main class="main-content" id="main-content">
 
     <!-- Page Hero Sub-Halaman & Breadcrumb -->
-    <section class="page-hero">
+    <section class="hero hero--aksi-hijau page-hero">
       <div class="container">
         <div class="page-hero__content">
           <div class="page-hero__badge">
@@ -164,7 +165,7 @@
 
               <div class="radio-card-group">
                 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="0">
                   <input type="radio" name="transport_choice" value="0" data-label="Jalan Kaki / Sepeda">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-person-walking"></i></div>
@@ -174,9 +175,10 @@
                       <span class="radio-card__badge">+0 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="350">
                   <input type="radio" name="transport_choice" value="350" data-label="Transportasi Umum (KRL/Bus)">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-bus"></i></div>
@@ -186,9 +188,10 @@
                       <span class="radio-card__badge">+350 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="750">
                   <input type="radio" name="transport_choice" value="750" data-label="Sepeda Motor Bensin">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-motorcycle"></i></div>
@@ -198,9 +201,10 @@
                       <span class="radio-card__badge">+750 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="1800">
                   <input type="radio" name="transport_choice" value="1800" data-label="Mobil Pribadi Bensin">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-car"></i></div>
@@ -210,6 +214,7 @@
                       <span class="radio-card__badge">+1.800 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
               </div>
@@ -233,7 +238,7 @@
 
               <div class="radio-card-group">
                 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="400">
                   <input type="radio" name="energy_choice" value="400" data-label="Hemat / Tanpa AC">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-wind"></i></div>
@@ -243,9 +248,10 @@
                       <span class="radio-card__badge">+400 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="850">
                   <input type="radio" name="energy_choice" value="850" data-label="Sedang (1 AC Terukur)">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-snowflake"></i></div>
@@ -255,9 +261,10 @@
                       <span class="radio-card__badge">+850 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="1600">
                   <input type="radio" name="energy_choice" value="1600" data-label="Intensif (Banyak AC & Siaga)">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-plug-circle-bolt"></i></div>
@@ -267,6 +274,7 @@
                       <span class="radio-card__badge">+1.600 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
               </div>
@@ -294,7 +302,7 @@
 
               <div class="radio-card-group">
                 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="300">
                   <input type="radio" name="food_choice" value="300" data-label="Ramah Lingkungan / Zero Waste">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-seedling"></i></div>
@@ -304,9 +312,10 @@
                       <span class="radio-card__badge">+300 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="650">
                   <input type="radio" name="food_choice" value="650" data-label="Campuran Rata-rata Indonesia">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-bowl-food"></i></div>
@@ -316,9 +325,10 @@
                       <span class="radio-card__badge">+650 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
-                <label class="radio-card">
+                <label class="radio-card opsi-kartu" data-emisi="1200">
                   <input type="radio" name="food_choice" value="1200" data-label="Tinggi Daging & Plastik Sekali Pakai">
                   <div class="radio-card__content">
                     <div class="radio-card__icon"><i class="fa-solid fa-burger"></i></div>
@@ -328,6 +338,7 @@
                       <span class="radio-card__badge">+1.200 kg CO₂e / thn</span>
                     </div>
                   </div>
+                  <span class="opsi-kartu__partikel" aria-hidden="true"></span>
                 </label>
 
               </div>
@@ -360,21 +371,47 @@
               <i class="fa-solid fa-square-poll-vertical"></i> Hasil Perhitungan Estimasi
             </span>
 
-            <!-- Gauge Meter SVG Murni (Tanpa Library Berat) -->
+            <!-- Gauge Meter SVG Murni (Tanpa Library Berat) — Arc Tunggal Mulus Bergradien Hard-Stop -->
             <div class="gauge-svg-wrapper">
               <svg class="gauge-svg" viewBox="0 0 200 120" role="img" aria-label="Meteran Visual Jejak Karbon">
-                <!-- Busur Hijau: Rendah (<1500) -->
-                <path d="M 20 100 A 80 80 0 0 1 65 35" fill="none" stroke="#74C69D" stroke-width="16" stroke-linecap="round" />
-                <!-- Busur Oranye: Sedang (1500-2800) -->
-                <path d="M 70 30 A 80 80 0 0 1 130 30" fill="none" stroke="#F4A259" stroke-width="16" />
-                <!-- Busur Merah: Tinggi (>2800) -->
-                <path d="M 135 35 A 80 80 0 0 1 180 100" fill="none" stroke="#E76F51" stroke-width="16" stroke-linecap="round" />
-                
+                <defs>
+                  <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <!-- Zona HIJAU (Rendah): 0% - 35% -->
+                    <stop offset="0%" style="stop-color: var(--color-accent-sprout, #74C69D);" />
+                    <stop offset="35%" style="stop-color: var(--color-accent-sprout, #74C69D);" />
+                    <!-- Transisi TEGAS ke ORANYE (Sedang) tepat di 35% — dua stop di offset sama -->
+                    <stop offset="35%" style="stop-color: var(--color-accent-sun, #F4A259);" />
+                    <stop offset="65%" style="stop-color: var(--color-accent-sun, #F4A259);" />
+                    <!-- Transisi TEGAS ke MERAH (Tinggi) tepat di 65% -->
+                    <stop offset="65%" style="stop-color: var(--color-alert-warning, #E76F51);" />
+                    <stop offset="100%" style="stop-color: var(--color-alert-warning, #E76F51);" />
+                  </linearGradient>
+                </defs>
+
+                <!-- SATU PATH TUNGGAL untuk seluruh arc, dari ujung kiri ke ujung kanan (tanpa celah/patah) -->
+                <path
+                  d="M 20 100 A 80 80 0 0 1 180 100"
+                  fill="none"
+                  stroke="url(#gaugeGradient)"
+                  stroke-width="16"
+                  stroke-linecap="round"
+                />
+
                 <!-- Titik Pivot Jarum -->
-                <circle cx="100" cy="100" r="8" fill="#1B4332" />
+                <circle cx="100" cy="100" r="8" fill="var(--color-primary-forest, #1B4332)" />
 
                 <!-- Jarum Meteran -->
-                <line id="res-gauge-needle" class="gauge-needle" x1="100" y1="100" x2="100" y2="30" stroke="#1B4332" stroke-width="4" stroke-linecap="round" />
+                <line
+                  id="res-gauge-needle"
+                  class="gauge-needle"
+                  x1="100"
+                  y1="100"
+                  x2="100"
+                  y2="30"
+                  stroke="var(--color-primary-forest, #1B4332)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
               </svg>
             </div>
 
@@ -574,7 +611,9 @@
     </div>
   </div>
 
+  <script src="assets/js/scroll-utils.js"></script>
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/kalkulator.js"></script>
+  <script src="assets/js/nafas-karbon.js"></script>
+  <script src="assets/js/kalkulator.js" defer></script>
 </body>
 </html>

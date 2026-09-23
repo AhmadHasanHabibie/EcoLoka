@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animasi-tetesan.css">
   <link rel="stylesheet" href="assets/css/utilities.css">
 </head>
 <body>
@@ -109,7 +110,7 @@
   <main class="main-content" id="main-content">
 
     <!-- Page Hero Sub-Halaman & Breadcrumb -->
-    <section class="page-hero">
+    <section class="hero hero--edukasi page-hero">
       <div class="container">
         <div class="page-hero__content">
           <div class="page-hero__badge">
@@ -151,12 +152,151 @@
           </div>
         </div>
 
-        <!-- Grid Artikel Dinamis (Dikelola via edukasi.js) -->
-        <div class="grid grid--3-col" id="articles-grid" aria-live="polite">
-          <!-- Fallback Server-Rendered / Loading Skeleton State -->
-          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 0;">
-            <p style="color: var(--color-neutral-soil-muted);"><i class="fa-solid fa-spinner fa-spin"></i> Memuat modul edukasi EcoLearn...</p>
-          </div>
+        <!-- Grid Artikel Interaktif (Water Droplet Morph Animation) -->
+        <div class="artikel-grid grid grid--3-col" id="artikelGrid" aria-live="polite">
+          <!-- Modul 1: Kompos -->
+          <article class="article-card artikel-card" id="card-sampah-organik-kompos">
+            <div class="artikel-card__isi">
+              <div class="article-card__meta">
+                <span class="badge badge--sprout">Sampah &amp; Daur Ulang</span>
+                <span class="article-card__read-time">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>4 menit</span>
+                </span>
+              </div>
+              <h3 class="article-card__title">Mengolah Sampah Organik Menjadi Kompos Rumahan Berkualitas</h3>
+              <p class="article-card__desc">Lebih dari 50% timbunan sampah rumah tangga di Indonesia adalah sampah organik. Pelajari metode komposting sederhana tanpa bau dengan wadah ember bertingkat.</p>
+              <div class="article-card__footer">
+                <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                  <i class="fa-regular fa-calendar-days"></i> 18 September 2026
+                </span>
+                <button class="btn btn--outline btn--sm btn-read-article" data-id="sampah-organik-kompos" aria-label="Baca selengkapnya artikel Mengolah Sampah Organik Menjadi Kompos Rumahan Berkualitas">
+                  <span>Baca Modul</span>
+                  <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Modul 2: Vampire Power -->
+          <article class="article-card artikel-card" id="card-audit-energi-elektronik">
+            <div class="artikel-card__isi">
+              <div class="article-card__meta">
+                <span class="badge badge--sun">Energi Terbarukan</span>
+                <span class="article-card__read-time">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>3 menit</span>
+                </span>
+              </div>
+              <h3 class="article-card__title">Vampire Power: Menghentikan Kebocoran Energi Listrik Tersembunyi</h3>
+              <p class="article-card__desc">Perangkat elektronik dalam posisi siaga (standby) tetap menyedot hingga 10% dari total tagihan listrik bulanan. Simak teknik audit mandiri peramban untuk menghemat pengeluaran.</p>
+              <div class="article-card__footer">
+                <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                  <i class="fa-regular fa-calendar-days"></i> 15 September 2026
+                </span>
+                <button class="btn btn--outline btn--sm btn-read-article" data-id="audit-energi-elektronik" aria-label="Baca selengkapnya artikel Vampire Power: Menghentikan Kebocoran Energi Listrik Tersembunyi">
+                  <span>Baca Modul</span>
+                  <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Modul 3: Pangan Lokal -->
+          <article class="article-card artikel-card" id="card-konsumsi-pangan-lokal">
+            <div class="artikel-card__isi">
+              <div class="article-card__meta">
+                <span class="badge badge--sprout">Konsumsi Bijak</span>
+                <span class="article-card__read-time">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>5 menit</span>
+                </span>
+              </div>
+              <h3 class="article-card__title">Food Miles: Mengapa Mengonsumsi Pangan Lokal Menyelamatkan Bumi</h3>
+              <p class="article-card__desc">Setiap kilometer perjalanan bahan makanan dari kebun impor ke piring Anda meninggalkan jejak bahan bakar penerbangan dan pendinginan. Saatnya beralih ke pasar tani lokal.</p>
+              <div class="article-card__footer">
+                <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                  <i class="fa-regular fa-calendar-days"></i> 12 September 2026
+                </span>
+                <button class="btn btn--outline btn--sm btn-read-article" data-id="konsumsi-pangan-lokal" aria-label="Baca selengkapnya artikel Food Miles: Mengapa Mengonsumsi Pangan Lokal Menyelamatkan Bumi">
+                  <span>Baca Modul</span>
+                  <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Modul 4: Pemanenan Air Hujan -->
+          <article class="article-card artikel-card" id="card-konservasi-air-hujan">
+            <div class="artikel-card__isi">
+              <div class="article-card__meta">
+                <span class="badge badge--sky">Air &amp; Ekosistem</span>
+                <span class="article-card__read-time">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>4 menit</span>
+                </span>
+              </div>
+              <h3 class="article-card__title">Pemanenan Air Hujan (Rainwater Harvesting) Skala Rumah Tangga</h3>
+              <p class="article-card__desc">Air hujan yang terbuang percuma ke saluran drainase dapat dipanen untuk menyiram kebun, mencuci kendaraan, dan mengurangi beban pompa air tanah berbasis listrik.</p>
+              <div class="article-card__footer">
+                <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                  <i class="fa-regular fa-calendar-days"></i> 10 September 2026
+                </span>
+                <button class="btn btn--outline btn--sm btn-read-article" data-id="konservasi-air-hujan" aria-label="Baca selengkapnya artikel Pemanenan Air Hujan (Rainwater Harvesting) Skala Rumah Tangga">
+                  <span>Baca Modul</span>
+                  <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Modul 5: Bebas Plastik -->
+          <article class="article-card artikel-card" id="card-bijak-plastik-sekali-pakai">
+            <div class="artikel-card__isi">
+              <div class="article-card__meta">
+                <span class="badge badge--sprout">Sampah &amp; Daur Ulang</span>
+                <span class="article-card__read-time">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>4 menit</span>
+                </span>
+              </div>
+              <h3 class="article-card__title">Panduan Praktis Transisi Hidup Bebas Plastik Sekali Pakai</h3>
+              <p class="article-card__desc">Mikroplastik kini telah ditemukan di air minum, garam laut, bahkan udara pernapasan. Berikut lima substitusi praktis perlengkapan harian ramah lingkungan yang tahan bertahun-tahun.</p>
+              <div class="article-card__footer">
+                <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                  <i class="fa-regular fa-calendar-days"></i> 07 September 2026
+                </span>
+                <button class="btn btn--outline btn--sm btn-read-article" data-id="bijak-plastik-sekali-pakai" aria-label="Baca selengkapnya artikel Panduan Praktis Transisi Hidup Bebas Plastik Sekali Pakai">
+                  <span>Baca Modul</span>
+                  <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Modul 6: Pembersihan Digital -->
+          <article class="article-card artikel-card" id="card-prinsip-ekologi-digital">
+            <div class="artikel-card__isi">
+              <div class="article-card__meta">
+                <span class="badge badge--sun">Energi Terbarukan</span>
+                <span class="article-card__read-time">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>3 menit</span>
+                </span>
+              </div>
+              <h3 class="article-card__title">Pembersihan Data Digital: Mengurangi Jejak Emisi Internet Anda</h3>
+              <p class="article-card__desc">Internet menyumbang sekitar 3,7% dari total emisi gas rumah kaca global. Ketahui bagaimana menghapus email sampah dan data cloud yang usang membantu menurunkan konsumsi listrik server data center.</p>
+              <div class="article-card__footer">
+                <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                  <i class="fa-regular fa-calendar-days"></i> 03 September 2026
+                </span>
+                <button class="btn btn--outline btn--sm btn-read-article" data-id="prinsip-ekologi-digital" aria-label="Baca selengkapnya artikel Pembersihan Data Digital: Mengurangi Jejak Emisi Internet Anda">
+                  <span>Baca Modul</span>
+                  <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                </button>
+              </div>
+            </div>
+          </article>
         </div>
 
       </div>
@@ -256,7 +396,9 @@
     </div>
   </footer>
 
+  <script src="assets/js/scroll-utils.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/edukasi.js"></script>
+  <script src="assets/js/animasi-tetesan-edukasi.js" defer></script>
 </body>
 </html>

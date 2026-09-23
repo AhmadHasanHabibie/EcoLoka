@@ -46,6 +46,12 @@ function initCarbonCalculator() {
     food: { val: 0, label: '' }
   };
 
+  // Inisialisasi awal fitur Nafas Karbon untuk Step 1
+  if (window.initNafasKarbon) {
+    const firstActive = document.querySelector('.multistep__panel.is-active, #panel-step-1');
+    if (firstActive) window.initNafasKarbon(firstActive);
+  }
+
   // Dataset Rekomendasi Fallback (CORS-Safe untuk file://)
   const fallbackRecommendations = {
     rendah: {
@@ -217,6 +223,11 @@ function initCarbonCalculator() {
     const targetPanel = document.getElementById(`panel-step-${step}`);
     if (targetPanel) targetPanel.classList.add('is-active');
 
+    // Inisialisasi Nafas Karbon untuk step yang baru ditampilkan
+    if (window.initNafasKarbon && targetPanel) {
+      window.initNafasKarbon(targetPanel);
+    }
+
     stepIndicators.forEach((ind, idx) => {
       const stepIndex = idx + 1;
       ind.classList.remove('is-active', 'is-completed');
@@ -233,6 +244,32 @@ function initCarbonCalculator() {
     });
   }
 
+  // Single Source of Truth untuk ambang batas kategori & skala visual gauge
+  const EMISSION_CONFIG = {
+    LOW_THRESHOLD: 1500,     // < 1500 kg: Rendah
+    MEDIUM_THRESHOLD: 2800,  // 1500 - 2800 kg: Sedang
+    GAUGE_MAX: 4300          // Batas representasi skala busur gauge
+  };
+
+  /**
+   * Menyesuaikan titik transisi warna gauge (hard-stop gradient) agar selalu
+   * akurat mengikuti ambang batas kategori Rendah/Sedang/Tinggi yang sudah
+   * didefinisikan di logika kalkulator — bukan angka tetap di HTML.
+   */
+  function sesuaikanGradientGauge(ambangSedang = EMISSION_CONFIG.LOW_THRESHOLD, ambangTinggi = EMISSION_CONFIG.MEDIUM_THRESHOLD, nilaiMaksimalGauge = EMISSION_CONFIG.GAUGE_MAX) {
+    const persenSedang = Math.round((ambangSedang / nilaiMaksimalGauge) * 100);
+    const persenTinggi = Math.round((ambangTinggi / nilaiMaksimalGauge) * 100);
+
+    const stops = document.querySelectorAll('#gaugeGradient stop');
+    // Urutan stop sesuai struktur HTML: [0%, batasSedang, batasSedang, batasTinggi, batasTinggi, 100%]
+    if (stops && stops.length >= 6) {
+      stops[1].setAttribute('offset', `${persenSedang}%`);
+      stops[2].setAttribute('offset', `${persenSedang}%`);
+      stops[3].setAttribute('offset', `${persenTinggi}%`);
+      stops[4].setAttribute('offset', `${persenTinggi}%`);
+    }
+  }
+
   // Kalkulasi dan Visualisasi Hasil
   function calculateAndDisplayResult() {
     const totalEmisi = userAnswers.transport.val + userAnswers.energy.val + userAnswers.food.val;
@@ -241,11 +278,11 @@ function initCarbonCalculator() {
     let badgeClass = 'badge--sun';
     let needleDeg = 0; // derajat jarum: -75deg (hijau/rendah), 0deg (sedang), +75deg (merah/tinggi)
 
-    if (totalEmisi < 1500) {
+    if (totalEmisi < EMISSION_CONFIG.LOW_THRESHOLD) {
       tierKey = 'rendah';
       badgeClass = 'badge--sprout';
       needleDeg = -75;
-    } else if (totalEmisi <= 2800) {
+    } else if (totalEmisi <= EMISSION_CONFIG.MEDIUM_THRESHOLD) {
       tierKey = 'sedang';
       badgeClass = 'badge--sun';
       needleDeg = 0;
@@ -282,11 +319,14 @@ function initCarbonCalculator() {
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    // Sinkronkan titik transisi warna gauge (hard-stop gradient) secara dinamis
+    sesuaikanGradientGauge();
+
     // Update elemen DOM hasil
     const numDisplay = document.getElementById('res-carbon-number');
     const tierBadge = document.getElementById('res-tier-badge');
     const tierDesc = document.getElementById('res-tier-desc');
-    const needle = document.getElementById('res-gauge-needle');
+    const needle = document.getElementById('res-gauge-needle') || document.getElementById('gaugeNeedle');
     const recContainer = document.getElementById('res-recommendations-list');
 
     // Animasi angka emisi

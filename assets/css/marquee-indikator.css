@@ -1,0 +1,35 @@
+/* ==========================================================================
+   ECOLOKA — MARQUEE INDIKATOR HORIZONTAL INFINITE (marquee-indikator.css)
+   Fitur: Kartu Indikator Bergeser Kanan/Kiri Mengikuti Arah Scroll Vertikal
+   Kepatuhan: 100% Native CSS Flexbox + GPU-accelerated Transform
+   ========================================================================== */
+
+.indikator-marquee-viewport {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: var(--space-6);
+  padding: 12px 4px; /* Memberikan ruang ekstra untuk elevasi bayangan kartu */
+}
+
+.indikator-marquee-track {
+  display: flex;
+  gap: var(--space-6, 24px);
+  will-change: transform;
+  /* Width otomatis mengikuti total lebar 3x set kartu */
+}
+
+/* Setiap kartu di dalam track diberi lebar tetap (fixed width)
+   agar perhitungan lebar total untuk wrap tak terbatas selalu presisi */
+.indikator-marquee-track .indikator-card,
+.indikator-marquee-track .stat-card {
+  flex: 0 0 320px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .indikator-marquee-track .indikator-card,
+  .indikator-marquee-track .stat-card {
+    flex-basis: 260px;
+  }
+}

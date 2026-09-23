@@ -1,46 +1,66 @@
-# Dokumentasi & Rencana Modul JavaScript — EcoLoka
+# Dokumentasi & Status Modul JavaScript — EcoLoka
 **Proyek Lomba Web Design INVENTION 2026**
 **Arsitektur:** 100% Client-Side Static Website (Vanilla JS & HTML5 Web APIs)
 
 ---
 
-## 1. Modul yang Telah Diimplementasikan (Tahap 1 — Fondasi)
+## 1. Modul Global & Utilitas Bersama
+
+### A. Skrip Global (`assets/js/main.js`)
 - **`initStickyHeader()`**: Mengelola elevasi shadow dan efek glassmorphism header saat scroll dengan throttled `requestAnimationFrame`.
-- **`initMobileNavigation()`**: Drawer navigasi mobile lengkap dengan dukungan aksesibilitas WCAG (atribut `aria-expanded`, tombol Escape, klik overlay, dan pencegahan scroll latar).
+- **`initMobileNavigation()`**: Drawer navigasi mobile lengkap dengan dukungan aksesibilitas WCAG (atribut `aria-expanded`, tombol Escape, klik overlay, dan penonaktifan scroll latar).
 - **`initSmoothScroll()`**: Navigasi anchor link internal yang mulus dengan perhitungan offset tinggi sticky header otomatis.
 - **`initDynamicYear()`**: Pembaruan otomatis tahun hak cipta pada footer.
 - **`initScrollspy()`**: Sinkronisasi penanda menu navigasi aktif (`.is-active`) berbasis `IntersectionObserver`.
+- **`initModalSertifikat()`**: Generator modal sertifikat komitmen hijau print-ready dengan nama dinamis dan stempel resmi.
+- **`initEarthCounterEasterEgg()`**: Easter egg interaktif di footer yang mensimulasikan akumulasi pejuang iklim via `localStorage`.
+
+### B. Utilitas Scroll-Linked (`assets/js/scroll-utils.js`)
+- **`ScrollUtils.calculateViewportProgress(element, targetFraction)`**: Perhitungan progress posisi vertikal elemen terhadap viewport (rentang 0.0 s.d. 1.0).
+- **`ScrollUtils.lerp(start, end, t)`**: Interpolasi linear matematika presisi.
+- **`ScrollUtils.easeOutCubic(t)`**: Easing kurva kubik untuk transisi alami dan responsif.
+- **`ScrollUtils.bindScrollProgress(element, callback)`**: Listener scroll berbasis `IntersectionObserver` (+ buffer 300px) dan throttled `requestAnimationFrame` untuk efisiensi CPU/baterai.
+- **`ScrollUtils.bindScrollDelta(element, callback)`**: Listener reaktif terhadap *delta* scroll vertikal (`deltaY`). Hanya aktif saat elemen berada di dalam viewport (+ buffer 200px), ideal untuk efek berbasis arah scroll tanpa pergerakan otomatis/autoplay.
 
 ---
 
-## 2. Rencana Modul JavaScript Tahap 2 & Tahap 3
+## 2. Modul Fitur Unggulan Halaman
 
-### A. Modul EcoCalc (`assets/js/calculator.js`) — [Tahap 2]
-- **Tujuan:** Kalkulator jejak karbon interaktif berbasis browser.
-- **Fitur Utama:**
-  - Input interaktif: konsumsi listrik bulanan (kWh), moda transportasi harian (motor/mobil/angkot), dan pola konsumsi harian.
-  - Rumus konversi standar emisi CO₂ lokal (Indonesia / ESDM / IPCC).
-  - Visualisasi grafik emisi interaktif menggunakan SVG / Canvas murni tanpa library pihak ketiga.
-  - Rekomendasi aksi pereduksian emisi personal.
+### A. Modul Animasi Data-Driven "Nafas Karbon" (`assets/js/nafas-karbon.js`)
+- **Diterapkan pada:** `aksi-hijau.html` (seluruh kartu pilihan kalkulator: Transportasi, Energi Rumah, Konsumsi & Sampah).
+- **Mekanisme:** Mengkalkulasi durasi denyut ambient breathing berbanding lurus dengan bobot emisi kartu, memunculkan partikel asap halus atau tunas bergoyang, dan memancarkan ripple melingkar saat dipilih.
 
-### B. Modul EcoLearn & Filter Edukasi (`assets/js/education.js`) — [Tahap 2]
-- **Tujuan:** Media pembelajaran interaktif gaya hidup hijau berkelanjutan.
-- **Fitur Utama:**
-  - Filter kategori edukasi dinamis (Zero Waste, Energi Bersih, Konservasi Air, Konsumsi Berkelanjutan).
-  - Sistem kartu bacaan cepat (Quick Eco Tips) dengan progress bacaan client-side.
-  - Kuis interaktif pengetahuan lingkungan berpenilaian instan (Quiz Engine murni Vanilla JS).
+### B. Modul Marquee Horizontal Infinite Sinkron Scroll (`assets/js/marquee-indikator.js`)
+- **Diterapkan pada:** `pemantauan.html` (grid 4 kartu indikator keberlanjutan: Kualitas Udara, Sampah Plastik, Pohon Virtual, kWh Listrik).
+- **Mekanisme:**
+  - Mentransformasikan grid kartu statis menjadi track horizontal dinamis.
+  - Scroll ke bawah $\rightarrow$ kartu bergeser ke **kanan**.
+  - Scroll ke atas $\rightarrow$ kartu bergeser ke **kiri**.
+  - Scroll berhenti $\rightarrow$ kartu **langsung diam seketika** (zero autoplay / tanpa interval timer).
+  - Infinite loop dicapai melalui 3 set kartu identik dengan pergeseran modul tepat satu lebar set (`lebarSatuSet`).
+  - Duplikat diberi atribut `aria-hidden="true"` dan `tabindex="-1"` untuk integritas semantik dan pembaca layar (screen reader).
+  - Fallback otomatis ke grid statis jika JavaScript nonaktif atau pengguna memilih `@media (prefers-reduced-motion: reduce)`.
 
-### C. Modul EcoAction & Tracker Kebiasaan (`assets/js/tracker.js`) — [Tahap 3]
-- **Tujuan:** Tracker kebiasaan ramah lingkungan dengan penyimpanan data lokal.
-- **Fitur Utama:**
-  - Checklist aksi hijau harian (membawa tumbler, mematikan lampu saat siang, memilah sampah).
-  - Penyimpanan data riwayat aksi menggunakan `localStorage` browser pengguna (tanpa server/database eksternal).
-  - Perhitungan akumulasi dampak: perkiraan kilogram sampah yang dicegah & estimasi gram CO₂ yang ditekan.
-  - Fitur ekspor/cetak kartu pencapaian hijau (Eco Impact Summary).
+### C. Modul Kalkulator Jejak Karbon (`assets/js/kalkulator.js`)
+- **Diterapkan pada:** `aksi-hijau.html`.
+- **Fitur:** Mesin penghitung multi-step berstandar ESDM/IPCC, visualisasi SVG single-arc gauge dengan gradient multi-stop tanpa sambungan patah, penyimpanan `localStorage`, dan pemicu cetak sertifikat.
+
+### D. Modul Dashboard Pemantauan (`assets/js/pemantauan.js`)
+- **Diterapkan pada:** `pemantauan.html`.
+- **Fitur:** Pembacaan data riwayat emisi pengguna dari `localStorage`, SVG bar comparison chart personal vs rata-rata nasional, dan penanganan status kosong (empty state) informatif.
+
+### E. Modul Edukasi Keberlanjutan (`assets/js/edukasi.js`)
+- **Diterapkan pada:** `edukasi.html`.
+- **Fitur:** Dynamic article fetching dari dataset JSON lokal dengan inline fallback, pencarian real-time, filter kategori dinamis, dan modal pembaca artikel ramah aksesibilitas.
+
+### F. Modul Kontak & FAQ (`assets/js/kontak.js`)
+- **Diterapkan pada:** `kontak.html`.
+- **Fitur:** Accordion FAQ interaktif berstandar aksesibilitas WCAG (keyboard navigation & ARIA state).
 
 ---
 
-## 3. Kepatuhan Aturan Lomba
-- Semua modul di atas dirancang **100% Client-Side**.
-- **Dilarang:** Memasukkan framework JS terlarang (React, Vue, Angular, Svelte) atau Node backend.
-- Kode ditulis secara modular, memiliki deklarasi `'use strict'`, serta dokumentasi komentar JSDoc yang jelas di setiap fungsi.
+## 3. Kepatuhan Ketat Aturan Lomba
+- Semua modul di atas dirancang **100% Client-Side** murni Vanilla JavaScript (ES6+).
+- **Bebas Framework:** Tanpa React, Vue, Angular, Svelte, atau runtime server (Node/PHP).
+- **Bebas Library Animasi Eksternal:** Tanpa GSAP, ScrollTrigger, AOS, dsb.
+- Kode ditulis modular, `'use strict'`, rapi, dan terdokumentasi penuh.

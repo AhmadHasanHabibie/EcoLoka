@@ -115,4 +115,47 @@ const ScrollUtils = {
 
     observer.observe(element);
   },
+
+  /**
+   * Memantau DELTA scroll (bukan progress 0-1) selama sebuah elemen berada
+   * dekat/di dalam viewport. Berguna untuk efek yang bereaksi terhadap ARAH
+   * dan JUMLAH scroll secara langsung, seperti marquee horizontal yang
+   * mengikuti arah scroll vertikal.
+   * @param {HTMLElement} element - elemen yang diobservasi untuk efisiensi (on/off listener)
+   * @param {Function} callback - dipanggil dengan (deltaY) setiap kali ada event scroll relevan
+   */
+  bindScrollDelta(element, callback) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const deltaY = currentScrollY - lastScrollY;
+          lastScrollY = currentScrollY;
+          callback(deltaY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            lastScrollY = window.scrollY; // reset referensi agar tidak "lompat" saat baru masuk viewport
+            window.addEventListener('scroll', onScroll, { passive: true });
+          } else {
+            window.removeEventListener('scroll', onScroll);
+          }
+        });
+      },
+      { rootMargin: '200px 0px 200px 0px' }
+    );
+
+    observer.observe(element);
+  }
 };
+

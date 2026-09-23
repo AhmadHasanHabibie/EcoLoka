@@ -29,7 +29,7 @@ Karya ini dibangun dengan menjunjung tinggi integritas teknis dan kepatuhan mutl
 | **Framework / Metodologi CSS** | Dibangun dari nol menggunakan **CSS Modular berstandar BEM** dengan cascading architecture (`variables` → `base` → `layout` → `components` → `utilities`). Font Awesome 6 & Google Fonts dimuat via CDN resmi. | ✅ Terpenuhi |
 | **Orisinalitas Desain & Bebas Template** | 100% dibuat dari nol (scratch), tanpa menggunakan template siap pakai (Bootstrap starter, HTML5UP, ThemeForest, Tailwind UI, dsb). | ✅ Terpenuhi |
 | **Batas Halaman** | Tepat 7 halaman konten inti + 1 halaman error (`404.html`) terstruktur rapi. | ✅ Terpenuhi |
-| **Bebas Pelanggaran Hak Cipta (Zero Copyright Infringement)** | Seluruh 4 aset visual foto/ilustrasi beresolusi tinggi diciptakan secara orisinal khusus untuk karya ini, tanpa watermark dan bebas royalti komersial pihak ketiga. | ✅ Terpenuhi |
+| **Bebas Pelanggaran Hak Cipta (Zero Copyright Infringement)** | Seluruh 10 aset visual (4 foto/ilustrasi konten beresolusi tinggi + 6 gambar background hero unik) diciptakan secara orisinal oleh tim pengembang/AI builder khusus untuk karya ini, tanpa watermark dan bebas royalti pihak ketiga. | ✅ Terpenuhi |
 | **Bahasa Pengantar** | Bahasa Indonesia formal, edukatif, dan komunikatif sebagai bahasa utama narasi. | ✅ Terpenuhi |
 | **Integritas Konten** | Bebas dari unsur SARA, pornografi, ujaran kebencian, dan promosi komersial pihak ketiga. | ✅ Terpenuhi |
 | **Aksesibilitas & Keterbacaan (WCAG AA)** | Kontras warna teks minimal 4.5:1, skip-to-content link, keyboard navigable (Tab & Escape trapping), semantic HTML5, serta kepatuhan `@media (prefers-reduced-motion: reduce)`. | ✅ Terpenuhi |
@@ -100,6 +100,18 @@ EcoLoka dirancang dengan arsitektur informasi terstruktur yang saling terhubung 
 - Tersemat di footer seluruh halaman sebagai elemen penghargaan interaktif bagi pengunjung.
 - Menyimpan benih kunjungan di `localStorage` peramban untuk mensimulasikan penghitungan komunitas pejuang bumi yang terakumulasi.
 
+### D. "Nafas Karbon" — Animasi Data-Driven pada Seluruh Kartu Pilihan (`aksi-hijau.html`)
+- **Filosofi "Form Follows Meaning":** Setiap kartu pilihan pada ketiga tahapan kalkulator (Transportasi, Energi Rumah, Konsumsi & Sampah) berdenyut dan bernapas dengan kecepatan yang berbanding lurus dengan bobot emisinya (dinormalisasi per step).
+- **Ambient Breathing & Partikel Simbolis:** Pilihan beremisi nol/rendah berdenyut lambat (5s) dengan tunas hijau bergoyang damai di sudutnya; pilihan beremisi tinggi berdenyut lebih cepat (2s) dengan kepulan partikel asap tipis proporsional.
+- **Riak Pilihan Adaptif:** Saat kartu dipilih, riak melingkar memancar dengan warna edukatif non-menghakimi (hijau menenangkan untuk emisi rendah, oranye hangat untuk emisi tinggi).
+- **Performa & Aksesibilitas:** Menggunakan `IntersectionObserver` untuk menjeda animasi saat di luar layar, membersihkan elemen DOM sementara, dan menghormati penuh `@media (prefers-reduced-motion: reduce)`.
+
+### E. Marquee Horizontal Infinite Mengikuti Arah Scroll (`pemantauan.html`)
+- **Perilaku Sinkron Scroll:** Grid 4 kartu indikator lingkungan ("Kualitas Udara", "Plastik Tertahan dari TPA", "Pohon Virtual Teradopsi", "kWh Listrik Ditekan") bertransformasi menjadi track horizontal dinamis. Scroll ke bawah $\rightarrow$ kartu bergeser ke kanan; scroll ke atas $\rightarrow$ kartu bergeser ke kiri.
+- **Berhenti Seketika (Zero Autoplay):** Pergerakan kartu murni bereaksi terhadap event delta scroll (`ScrollUtils.bindScrollDelta`) dengan throttling `requestAnimationFrame`. Saat pengguna berhenti menggulir layar, kartu langsung berhenti di posisi terakhir tanpa ada sisa timer atau pergerakan autoplay.
+- **Infinite Wrapping Mulus:** Track merender 3 salinan identik dari set kartu indikator dengan pergeseran modul satu set penuh (`lebarSatuSet`), menciptakan transisi tanpa batas (infinite) ke kanan maupun kiri tanpa patah atau lompatan visual. Kecepatan disesuaikan (`FAKTOR_KECEPATAN = 0.35`) agar teks dan angka statistik tetap nyaman dibaca saat bergerak.
+- **Graceful Degradation & Kepatuhan Aksesibilitas (WCAG):** Jika JavaScript tidak aktif atau preferensi sistem pengguna mengaktifkan `@media (prefers-reduced-motion: reduce)`, tampilan otomatis kembali menjadi 4-column responsive grid statis biasa. Dua salinan kartu dekoratif ditandai dengan `aria-hidden="true"` dan seluruh elemen fokus di dalamnya dinonaktifkan (`tabindex="-1"`), menjamin pembaca layar hanya membaca data indikator tepat satu kali.
+
 ---
 
 ## 6. Inventaris Aset Visual Orisinal (assets/img/)
@@ -131,12 +143,17 @@ Invention_TNH_2026/
     │   ├── base.css            # CSS reset modern, pengaturan aksesibilitas & WCAG AA
     │   ├── layout.css          # Kontainer, responsive grid, sticky navbar blur, mobile drawer, footer
     │   ├── components.css      # Tombol, badges, multi-step form, SVG gauge, modal sertifikat, print styles
-    │   └── utilities.css       # Helper class (spacing, text-align, display, screen-reader-only)
+    │   ├── utilities.css       # Helper class (spacing, text-align, display, screen-reader-only)
+    │   ├── animasi-nafas-karbon.css # Sistem animasi "Nafas Karbon" data-driven per kartu
+    │   └── marquee-indikator.css # Layout track & viewport marquee infinite sinkron scroll
     ├── data/
     │   ├── edukasi.json        # Dataset artikel edukasi keberlanjutan terstruktur
     │   ├── rekomendasi.json    # Dataset rekomendasi aksi personal (rendah, sedang, tinggi)
     │   └── komunitas.json      # Dataset inisiatif dan kampanye relawan hijau
     ├── js/
+    │   ├── scroll-utils.js     # Utilitas lerp, easing, kalkulasi viewport progress & bindScrollDelta
+    │   ├── nafas-karbon.js     # Engine animasi "Nafas Karbon" kartu pilihan kalkulator
+    │   ├── marquee-indikator.js # Engine marquee horizontal infinite sinkron scroll kartu indikator
     │   ├── main.js             # Skrip global: Sticky navbar, drawer, scroll reveal, sertifikat modal, easter egg
     │   ├── edukasi.js          # Modul edukasi: JSON fetch + fallback, filter, live search, accessible modal
     │   ├── kalkulator.js       # Modul kalkulator: Multi-step engine, scoring, SVG gauge, hook sertifikat
@@ -144,14 +161,27 @@ Invention_TNH_2026/
     │   ├── kontak.js           # Modul kontak: Accordion FAQ aksesibel WCAG (form palsu dihapus)
     │   └── README-js.md        # Catatan arsitektur JavaScript modular
     ├── img/
-    │   ├── hero_nature_tech.jpg       # Visual hero alam & teknologi
-    │   ├── mangrove_conservation.jpg # Visual aksi konservasi mangrove
-    │   ├── community_action.jpg      # Visual aksi komunitas pelajar
-    │   ├── lost_digital_forest.jpg   # Visual hutan digital 404
-    │   └── README-assets.md          # Dokumentasi lisensi & orisinalitas aset visual
+    │   ├── hero/
+    │   │   ├── hero-tentang.jpg      # Background hero Tentang (Jembatan digital lestari)
+    │   │   ├── hero-edukasi.jpg      # Background hero Edukasi (Buku bertunas & partikel)
+    │   │   ├── hero-aksi-hijau.jpg   # Background hero Aksi Hijau (Aksi tanam & telemetri)
+    │   │   ├── hero-pemantauan.jpg   # Background hero Pemantauan (Drone view & grid data)
+    │   │   ├── hero-komunitas.jpg    # Background hero Komunitas (Siluet aksi kolektif)
+    │   │   └── hero-kontak.jpg       # Background hero Kontak (Golden hour & dialog tenang)
+    │   ├── hero_nature_tech.jpg      # Visual hero beranda alam & teknologi
+    │   ├── mangrove_conservation.jpg# Visual aksi konservasi mangrove
+    │   ├── community_action.jpg     # Visual aksi komunitas pelajar
+    │   ├── lost_digital_forest.jpg  # Visual hutan digital 404
+    │   └── README-assets.md         # Dokumentasi lisensi & orisinalitas aset visual
     └── icons/
-        └── README-icons.md           # Panduan integrasi ikon inline SVG & Font Awesome CDN
+        └── README-icons.md          # Panduan integrasi ikon inline SVG & Font Awesome CDN
 ```
+
+---
+
+## Aset Visual: Background Hero
+Seluruh gambar background hero (Tentang, Edukasi, Aksi Hijau, Pemantauan, Komunitas, Kontak) di-generate menggunakan kemampuan AI image generation selama proses pengembangan (bukan diambil dari sumber eksternal manapun). Aset ini adalah karya orisinal tim, dibuat khusus untuk proyek ini, sesuai brief kreatif yang didokumentasikan pada proses pengembangan.
+
 
 ---
 

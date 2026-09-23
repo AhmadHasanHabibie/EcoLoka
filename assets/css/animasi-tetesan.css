@@ -1,0 +1,88 @@
+/* ==========================================================================
+   ECOLOKA — ANIMASI TETESAN AIR MEMBENTUK CARD (animasi-tetesan.css)
+   Fitur: Water Droplet Morph, 1 Tetes per Card, Natural Scroll Flow
+   Halaman: Pusat Edukasi Hijau (edukasi.html)
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Arsitektur: 100% Client-Side Vanilla CSS (Zero External Animation Library)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. STATE DEFAULT KARTU ARTIKEL (PROGRESSIVE ENHANCEMENT)
+ * Tanpa JS: Seluruh kartu tampil 100% normal penuh dengan styling standar.
+ * -------------------------------------------------------------------------- */
+.artikel-card,
+.article-card {
+  will-change: transform, border-radius, opacity;
+  transform: translateY(0) scale(1);
+  transform-origin: center center;
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* --------------------------------------------------------------------------
+ * 2. PEMBUNGKUS ISI KARTU (.artikel-card__isi)
+ * Memisahkan opacity konten dari bentuk morfologi kartu luar, sehingga teks
+ * tidak bertumpukan di dalam bentuk bulat pada fase tetesan awal.
+ * -------------------------------------------------------------------------- */
+.artikel-card__isi {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: none; /* Dikontrol manual per-frame via ScrollUtils rAF */
+}
+
+/* --------------------------------------------------------------------------
+ * 3. EFEK AIR / BASAH SEMENTARA SELAMA FASE BULAT (.is-droplet)
+ * Pendaran halus kebiruan-hijau khas embun/tetesan air segar di alam.
+ * -------------------------------------------------------------------------- */
+.artikel-card.is-droplet,
+.article-card.is-droplet {
+  box-shadow: 
+    0 12px 28px rgba(45, 106, 79, 0.16),
+    0 2px 10px rgba(116, 198, 157, 0.25),
+    inset 0 2px 6px rgba(255, 255, 255, 0.8);
+  border-color: rgba(116, 198, 157, 0.55);
+  background: radial-gradient(circle at 45% 35%, #ffffff 0%, #edf7f2 100%);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+ * 4. KARTU SELESAI TERBENTUK (.is-formed)
+ * Mengembalikan transisi CSS standar untuk elevasi hover yang mulus.
+ * -------------------------------------------------------------------------- */
+.artikel-card.is-formed,
+.article-card.is-formed {
+  transition: 
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+  background-color: var(--color-neutral-white);
+}
+
+.artikel-card.is-formed:hover,
+.article-card.is-formed:hover {
+  transform: translateY(-4px) scale(1);
+  border-color: var(--color-accent-sprout);
+  box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+ * 5. AKSESIBILITAS: PREFERS REDUCED MOTION
+ * Pengguna yang mematikan efek gerak langsung melihat bentuk akhir kartu.
+ * -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .artikel-card,
+  .article-card {
+    transform: none !important;
+    border-radius: var(--radius-lg, 20px) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .artikel-card__isi {
+    opacity: 1 !important;
+  }
+}

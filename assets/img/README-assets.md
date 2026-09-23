@@ -26,7 +26,22 @@ Berikut adalah daftar lengkap 4 aset visual utama beresolusi tinggi yang digunak
 
 ---
 
-## 3. Efisiensi Performa & Green Web Architecture
+## 3. Inventaris Background Hero Unik Per Halaman (Tahap Tambahan)
+
+Seluruh gambar latar belakang hero di bawah ini di-generate secara orisinal khusus untuk proyek EcoLoka menggunakan AI builder Antigravity tanpa mengambil materi hak cipta dari pihak ketiga manapun. Disimpan dalam direktori `assets/img/hero/` dan diterapkan HANYA pada section hero (bagian paling atas) halaman masing-masing melalui CSS `background-image` native dengan overlay gradasi keterbacaan WCAG AA:
+
+| Nama Berkas | Resolusi / Format | Deskripsi & Konsep Visual | Peruntukan Halaman | Status Lisensi & Legalitas |
+|---|---|---|---|---|
+| `hero-tentang.jpg` | 1920x1080 (16:9), JPEG (266 KB) | Jembatan digital modern-organik bercahaya hijau lembut melintasi perbukitan tropis Indonesia menuju cakrawala cerah, melambangkan jembatan digital menuju masa depan lestari. | **Tentang Kami (`tentang.html`)** — Background Hero | **Karya Orisinal Tim EcoLoka** (AI-Generated, Bebas Royalti Penuh) |
+| `hero-edukasi.jpg` | 1920x1080 (16:9), JPEG (127 KB) | Buku terbuka di mana lembaran halamannya bertransformasi menjadi tunas hijau dan dedaunan subur dengan spora cahaya pengetahuan melayang tenang. | **Pusat Edukasi (`edukasi.html`)** — Background Hero | **Karya Orisinal Tim EcoLoka** (AI-Generated, Bebas Royalti Penuh) |
+| `hero-aksi-hijau.jpg` | 1920x1080 (16:9), JPEG (144 KB) | Tangan merawat bibit pohon di tanah subur dengan pancaran visual data telemetri digital dan garis kurva holografis hijau mint (aksi nyata terukur). | **Aksi Hijau (`aksi-hijau.html`)** — Background Hero | **Karya Orisinal Tim EcoLoka** (AI-Generated, Bebas Royalti Penuh) |
+| `hero-pemantauan.jpg` | 1920x1080 (16:9), JPEG (200 KB) | Lanskap hutan hujan dan sungai berkelok dari sudut pandang udara (drone/bird's-eye) berpadu dengan grid telemetri pemantauan bumi real-time. | **Pemantauan Emisi (`pemantauan.html`)** — Background Hero | **Karya Orisinal Tim EcoLoka** (AI-Generated, Bebas Royalti Penuh) |
+| `hero-komunitas.jpg` | 1920x1080 (16:9), JPEG (293 KB) | Siluet kelompok pemuda dan relawan bergotong royong di taman hijau pesisir pada pagi hari cerah dengan cahaya keemasan (aksi kolektif komunitas). | **Komunitas (`komunitas.html`)** — Background Hero | **Karya Orisinal Tim EcoLoka** (AI-Generated, Bebas Royalti Penuh) |
+| `hero-kontak.jpg` | 1920x1080 (16:9), JPEG (171 KB) | Lanskap bukit hijau pesisir yang tenang saat golden hour fajar/senja dengan visual komunikasi halus, melambangkan keterbukaan dialog dan kolaborasi. | **Kontak & FAQ (`kontak.html`)** — Background Hero | **Karya Orisinal Tim EcoLoka** (AI-Generated, Bebas Royalti Penuh) |
+
+---
+
+## 4. Efisiensi Performa & Green Web Architecture
 1. **Lazy Loading Native:** Semua gambar foto disematkan dengan atribut `loading="lazy"` dan `width`/`height` eksplisit untuk meniadakan Cumulative Layout Shift (CLS = 0).
 2. **Media Framing Responsif:** Dibalut dengan container CSS `.media-frame` yang memiliki rasio aspek terukur, bayangan lembut, dan kapsi semi-transparan untuk keterbacaan kontras tinggi.
 3. **Optimasi Bandwidth:** Aset visual hanya dimuat pada viewport yang relevan, menjaga konsumsi bandwidth klien serendah mungkin demi prinsip *Sustainable Web Design*.

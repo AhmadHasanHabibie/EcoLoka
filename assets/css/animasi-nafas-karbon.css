@@ -1,0 +1,151 @@
+/* ==========================================================================
+   ECOLOKA — ANIMASI "NAFAS KARBON" (animasi-nafas-karbon.css)
+   Fitur: Animasi Data-Driven pada Seluruh Kartu Pilihan Kalkulator Jejak Karbon
+   Diterapkan pada: Ketiga Step (Transportasi, Energi Rumah, Konsumsi & Sampah)
+   Kepatuhan: 100% Native CSS @keyframes, Zero External Library, WCAG & Reduced Motion Compliant
+   ========================================================================== */
+
+.opsi-kartu {
+  position: relative;
+  overflow: visible !important; /* agar partikel yang sedikit keluar dari tepi kartu tetap terlihat */
+  will-change: box-shadow, transform;
+  border-radius: var(--radius-lg);
+}
+
+/* NAPAS AMBIENT — durasi animasi diatur PER KARTU via inline style dari JS
+   (berdasarkan intensitas emisi), sehingga setiap kartu punya "detak" sendiri */
+@keyframes nafasKarbon {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: scale(1.006);
+  }
+}
+
+.opsi-kartu {
+  animation-name: nafasKarbon;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  /* animation-duration diisi dinamis via nafas-karbon.js */
+}
+
+/* Jeda animasi saat kartu di luar viewport (dikontrol via class dari JS,
+   IntersectionObserver) — demi performa, tidak membebani CPU saat tidak terlihat */
+.opsi-kartu.nafas-dijeda {
+  animation-play-state: paused;
+}
+
+/* ELEMEN PARTIKEL: wadah untuk tunas ATAU asap, posisi sudut kanan atas kartu */
+.opsi-kartu__partikel {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 28px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Berikan ruang aman di teks agar judul kartu tidak bertabrakan dengan partikel di kanan atas */
+.opsi-kartu .radio-card__text {
+  padding-right: 28px;
+}
+
+/* TUNAS (untuk kartu beremisi rendah) */
+.opsi-kartu__partikel .tunas {
+  display: block;
+  transform-origin: bottom center;
+  animation: goyangTunas 4.5s ease-in-out infinite;
+}
+
+@keyframes goyangTunas {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* ASAP (untuk kartu beremisi tinggi) — beberapa partikel bulat kecil naik & memudar */
+.opsi-kartu__partikel .asap {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(120, 120, 120, 0.4);
+  filter: blur(1.5px);
+  animation: mengepulAsap 3s ease-in infinite;
+}
+
+@keyframes mengepulAsap {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(-32px) translateX(4px) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* RIAK PILIHAN (selection ripple) — muncul sesaat saat kartu dipilih */
+.opsi-kartu__riak {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.opsi-kartu__riak::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 50%;
+  background: var(--riak-warna, var(--color-primary-leaf));
+  opacity: 0.35;
+  animation: riakMelebar 0.6s ease-out forwards;
+}
+
+@keyframes riakMelebar {
+  from {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(18);
+    opacity: 0;
+  }
+}
+
+/* Hormati prefers-reduced-motion: matikan seluruh animasi loop & ripple,
+   kartu tetap tampil normal tanpa gerakan berulang */
+@media (prefers-reduced-motion: reduce) {
+  .opsi-kartu {
+    animation: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .opsi-kartu__partikel .tunas,
+  .opsi-kartu__partikel .asap {
+    animation: none !important;
+    display: none !important;
+  }
+  .opsi-kartu__riak::after {
+    animation: none !important;
+    display: none !important;
+  }
+}

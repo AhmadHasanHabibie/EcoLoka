@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initEducationHub() {
-  const articlesGrid = document.getElementById('articles-grid');
+  const articlesGrid = document.getElementById('artikelGrid') || document.getElementById('articles-grid');
   const searchInput = document.getElementById('article-search');
   const filterButtons = document.querySelectorAll('.filter-btn');
   const modalBackdrop = document.getElementById('article-modal');
@@ -160,26 +160,28 @@ function initEducationHub() {
       if (article.kategori_slug === 'air') badgeClass = 'badge--sky';
 
       return `
-        <article class="article-card" id="card-${article.id}">
-          <div class="article-card__meta">
-            <span class="badge ${badgeClass}">${escapeHtml(article.kategori)}</span>
-            <span class="article-card__read-time">
-              <i class="fa-regular fa-clock"></i>
-              <span>${escapeHtml(article.waktu_baca)}</span>
-            </span>
-          </div>
+        <article class="article-card artikel-card" id="card-${article.id}">
+          <div class="artikel-card__isi">
+            <div class="article-card__meta">
+              <span class="badge ${badgeClass}">${escapeHtml(article.kategori)}</span>
+              <span class="article-card__read-time">
+                <i class="fa-regular fa-clock"></i>
+                <span>${escapeHtml(article.waktu_baca)}</span>
+              </span>
+            </div>
 
-          <h3 class="article-card__title">${escapeHtml(article.judul)}</h3>
-          <p class="article-card__desc">${escapeHtml(article.ringkasan)}</p>
+            <h3 class="article-card__title">${escapeHtml(article.judul)}</h3>
+            <p class="article-card__desc">${escapeHtml(article.ringkasan)}</p>
 
-          <div class="article-card__footer">
-            <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
-              <i class="fa-regular fa-calendar-days"></i> ${escapeHtml(article.tanggal)}
-            </span>
-            <button class="btn btn--outline btn--sm btn-read-article" data-id="${article.id}" aria-label="Baca selengkapnya artikel ${escapeHtml(article.judul)}">
-              <span>Baca Modul</span>
-              <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-            </button>
+            <div class="article-card__footer">
+              <span style="font-size: 0.75rem; color: var(--color-neutral-soil-muted);">
+                <i class="fa-regular fa-calendar-days"></i> ${escapeHtml(article.tanggal)}
+              </span>
+              <button class="btn btn--outline btn--sm btn-read-article" data-id="${article.id}" aria-label="Baca selengkapnya artikel ${escapeHtml(article.judul)}">
+                <span>Baca Modul</span>
+                <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+              </button>
+            </div>
           </div>
         </article>
       `;
@@ -193,6 +195,9 @@ function initEducationHub() {
         openArticleModal(articleId);
       });
     });
+
+    // Beri tahu animasi tetesan bahwa kartu telah selesai di-render ulang
+    document.dispatchEvent(new CustomEvent('articles-rendered'));
   }
 
   // Buka Modal Artikel

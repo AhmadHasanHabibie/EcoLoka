@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/marquee-indikator.css">
 </head>
 <body>
 
@@ -109,7 +110,7 @@
   <main class="main-content" id="main-content">
 
     <!-- Page Hero Sub-Halaman & Breadcrumb -->
-    <section class="page-hero">
+    <section class="hero hero--pemantauan page-hero">
       <div class="container">
         <div class="page-hero__content">
           <div class="page-hero__badge">
@@ -279,7 +280,7 @@
           </p>
         </header>
 
-        <div class="grid grid--4-col" style="margin-bottom: var(--space-6);">
+        <div class="grid grid--4-col" id="indikatorGrid" style="margin-bottom: var(--space-6);">
           
           <div class="stat-card stat-card--smart">
             <div class="stat-card__top">
@@ -486,6 +487,8 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/scroll-utils.js"></script>
+  <script src="assets/js/marquee-indikator.js" defer></script>
   <script src="assets/js/pemantauan.js"></script>
 </body>
 </html>
