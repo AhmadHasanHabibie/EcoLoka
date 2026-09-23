@@ -1,0 +1,135 @@
+/* ==========================================================================
+   ECOLOKA — ANIMASI BUKU TERBUKA & KATA TERBANG (animasi-buku-filosofi.css)
+   Fitur: Book-Open 3D Transform + Flying Text Accent (Filosofi & Visi)
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Arsitektur: 100% Client-Side Vanilla CSS (Zero External Animation Library)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. SECTION & WRAPPER UTAMA BUKU 3D
+ * -------------------------------------------------------------------------- */
+.section-filosofi {
+  padding-block: var(--space-8, 64px);
+  overflow: visible;
+  position: relative;
+}
+
+.filosofi-book {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8, 64px);
+  perspective: 2200px; /* Jarak pandang 3D — semakin besar, efek lipat semakin halus/tidak ekstrem */
+  align-items: start; /* Kolom kanan sejajar atas, memberi ruang kosong alami di bawah kartu */
+}
+
+@media (max-width: 768px) {
+  .filosofi-book {
+    grid-template-columns: 1fr;
+    perspective: 1400px;
+    gap: var(--space-6, 32px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 2. DUA HALAMAN BUKU (KIRI & KANAN)
+ * -------------------------------------------------------------------------- */
+.filosofi-book__page {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+  /* STATE DEFAULT (tanpa JS): datar terbuka penuh, seperti section asli */
+  transform: rotateY(0deg);
+}
+
+.filosofi-book__page--left {
+  transform-origin: right center; /* Berputar dari sisi lipatan (kanan halaman kiri) */
+}
+
+.filosofi-book__page--right {
+  transform-origin: left center; /* Berputar dari sisi lipatan (kiri halaman kanan) */
+}
+
+/* --------------------------------------------------------------------------
+ * 3. LIPATAN TENGAH BUKU (SPINE)
+ * -------------------------------------------------------------------------- */
+.filosofi-book__spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-primary-forest, #1B4332),
+    transparent
+  );
+  opacity: 0; /* Default tidak terlihat kecuali saat animasi scroll berjalan */
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .filosofi-book__spine {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 4. LAPISAN KATA TERBANG DEKORATIF (FLYING WORDS LAYER)
+ * -------------------------------------------------------------------------- */
+.filosofi-book__flying-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Tidak boleh mengganggu interaksi/klik pengguna */
+  overflow: visible;
+  z-index: 10;
+}
+
+.flying-word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-heading, var(--font-family-display, 'Plus Jakarta Sans', sans-serif));
+  font-style: normal; /* DIHAPUS: sebelumnya italic */
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--color-primary-forest, #1B4332);
+  background: var(--color-neutral-mist, #F7F9F7);
+  border: 1px solid var(--color-neutral-stone, #DDE5DD);
+  padding: 6px 16px;
+  border-radius: 999px; /* bentuk pil, konsisten dengan badge "FILOSOFI & VISI" yang sudah ada */
+  opacity: 0;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  will-change: transform, opacity;
+  pointer-events: none;
+  user-select: none;
+  /* writing-mode DIHAPUS — kembali ke orientasi horizontal normal */
+}
+
+/* Nonaktifkan total lapisan kata terbang di layout satu-kolom (mobile) —
+   karena tidak ada gutter/spine yang tersisa untuk ditempati */
+@media (max-width: 768px) {
+  .filosofi-book__flying-layer {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 5. AKSESIBILITAS WCAG (PREFERS-REDUCED-MOTION)
+ * -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .filosofi-book__page {
+    transform: rotateY(0deg) !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  .filosofi-book__spine,
+  .filosofi-book__flying-layer {
+    display: none !important;
+  }
+}

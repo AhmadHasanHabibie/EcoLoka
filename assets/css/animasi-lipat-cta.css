@@ -1,0 +1,56 @@
+/* ==========================================================================
+   ECOLOKA — ANIMASI KARTU CTA Z-FOLD (animasi-lipat-cta.css)
+   Fitur: 3D Z-Fold Letter Unfold (Surat Komitmen Terbuka)
+   Section: Call To Action ("Siap Memulai Perjalanan Hidup Lebih Hijau")
+   Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
+   Arsitektur: 100% Client-Side Vanilla CSS (Zero External Animation Library)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. PERSPEKTIF 3D PADA KARTU CTA
+ * -------------------------------------------------------------------------- */
+.cta-card {
+  position: relative;
+  perspective: 1800px; /* Menghasilkan rotasi 3D yang elegan dan natural */
+}
+
+.cta-banner__content {
+  transform-style: preserve-3d;
+  perspective: 1800px;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. TIGA LIPATAN KONTEN KARTU (Z-FOLD)
+ * -------------------------------------------------------------------------- */
+.cta-fold {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  /* STATE DEFAULT (tanpa JS): terbuka penuh, identik dengan tampilan asli */
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
+/* Setiap lipatan berputar dari engsel tepi atasnya sendiri */
+.cta-fold--top {
+  transform-origin: top center;
+}
+
+.cta-fold--middle {
+  transform-origin: top center;
+}
+
+.cta-fold--bottom {
+  transform-origin: top center;
+}
+
+/* --------------------------------------------------------------------------
+ * 3. AKSESIBILITAS WCAG (PREFERS-REDUCED-MOTION)
+ * -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cta-fold {
+    transform: rotateX(0deg) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}

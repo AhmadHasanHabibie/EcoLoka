@@ -124,16 +124,29 @@ function initCarbonCalculator() {
     tier: ''
   };
 
-  if (openCertBtn) {
-    openCertBtn.addEventListener('click', () => {
-      if (typeof window.openEcoCertificate === 'function') {
-        window.openEcoCertificate({
-          score: currentCalculatedResult.total || 1240,
-          tier: currentCalculatedResult.tier || 'Pejuang Rendah Karbon'
-        });
+  // Expose hasil kalkulasi untuk diakses template cetak sertifikat
+  window.EcoLokaKalkulator = {
+    get hasilEmisiTerakhir() {
+      if (currentCalculatedResult && currentCalculatedResult.total) {
+        return currentCalculatedResult.total.toLocaleString('id-ID');
       }
-    });
-  }
+      try {
+        const stored = JSON.parse(localStorage.getItem('ecoloka_carbon_data'));
+        if (stored && stored.totalEmisi) return stored.totalEmisi.toLocaleString('id-ID');
+      } catch (e) {}
+      return '1.240';
+    },
+    get kategoriTerakhir() {
+      if (currentCalculatedResult && currentCalculatedResult.tier) {
+        return currentCalculatedResult.tier;
+      }
+      try {
+        const stored = JSON.parse(localStorage.getItem('ecoloka_carbon_data'));
+        if (stored && stored.tierName) return stored.tierName;
+      } catch (e) {}
+      return 'Prajurit Rendah Karbon';
+    }
+  };
 
   nextBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -353,3 +366,119 @@ function initCarbonCalculator() {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 }
+
+/**
+ * ==========================================================================
+ * MODUL SERTIFIKAT KOMITMEN: MODAL INPUT NAMA + CETAK VIA WINDOW.PRINT()
+ * (Native browser, tanpa library eksternal). Sertifikat lengkap TIDAK PERNAH
+ * tampil di alur halaman normal — hanya aktif secara visual saat mode print,
+ * dikontrol penuh oleh CSS `@media print`.
+ * ==========================================================================
+ */
+(function () {
+  function initSertifikatModal() {
+    const btnBukaModal = document.getElementById('btnCetakSertifikat') || document.getElementById('btn-open-cert');
+    const modal = document.getElementById('modalSertifikat');
+    const inputNama = document.getElementById('inputNamaSertifikat');
+    const errorNama = document.getElementById('errorNamaSertifikat');
+    const btnBatal = document.getElementById('btnBatalSertifikat');
+    const btnTutup = document.getElementById('btnTutupModal');
+    const btnKonfirmasi = document.getElementById('btnKonfirmasiSertifikat');
+
+    if (!btnBukaModal || !modal) return;
+
+    let elementSebelumModal = null; // untuk mengembalikan fokus setelah modal ditutup
+
+    function bukaModal() {
+      elementSebelumModal = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      if (inputNama) {
+        inputNama.value = '';
+        setTimeout(() => inputNama.focus(), 150);
+      }
+      if (errorNama) errorNama.hidden = true;
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    function tutupModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.removeEventListener('keydown', handleEscape);
+      if (elementSebelumModal) elementSebelumModal.focus();
+    }
+
+    function handleEscape(e) {
+      if (e.key === 'Escape') tutupModal();
+    }
+
+    function generateNomorVerifikasi() {
+      const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+      return `ECOLOKA-INV26-${random}`;
+    }
+
+    function formatTanggalHariIni() {
+      const opsi = { day: 'numeric', month: 'long', year: 'numeric' };
+      return new Date().toLocaleDateString('id-ID', opsi);
+    }
+
+    function isiTemplateSertifikat(nama) {
+      const hasilEmisi = window.EcoLokaKalkulator?.hasilEmisiTerakhir ?? '1.240';
+      const hasilKategori = window.EcoLokaKalkulator?.kategoriTerakhir ?? 'Prajurit Rendah Karbon';
+
+      const certNamaEl = document.getElementById('certNama');
+      const certEmisiEl = document.getElementById('certEmisi');
+      const certKategoriEl = document.getElementById('certKategori');
+      const certTanggalEl = document.getElementById('certTanggal');
+      const certNomorEl = document.getElementById('certNomor');
+
+      if (certNamaEl) certNamaEl.textContent = nama;
+      if (certEmisiEl) certEmisiEl.textContent = `${hasilEmisi} kg CO₂e/thn`;
+      if (certKategoriEl) certKategoriEl.textContent = hasilKategori;
+      if (certTanggalEl) certTanggalEl.textContent = formatTanggalHariIni();
+      if (certNomorEl) certNomorEl.textContent = generateNomorVerifikasi();
+    }
+
+    function konfirmasiDanCetak() {
+      const nama = inputNama ? inputNama.value.trim() : '';
+      if (nama === '') {
+        if (errorNama) errorNama.hidden = false;
+        if (inputNama) inputNama.focus();
+        return;
+      }
+
+      isiTemplateSertifikat(nama);
+      tutupModal();
+
+      // Beri jeda singkat agar modal benar-benar tertutup secara visual
+      // sebelum dialog print browser muncul — transisi terasa mulus, tidak tumpang tindih
+      setTimeout(() => {
+        window.print();
+      }, 250);
+    }
+
+    btnBukaModal.addEventListener('click', bukaModal);
+    if (btnBatal) btnBatal.addEventListener('click', tutupModal);
+    if (btnTutup) btnTutup.addEventListener('click', tutupModal);
+    if (btnKonfirmasi) btnKonfirmasi.addEventListener('click', konfirmasiDanCetak);
+
+    // Klik di luar modal box (di area overlay gelap) juga menutup modal
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) tutupModal();
+    });
+
+    // Enter di input nama langsung memicu konfirmasi (kenyamanan tambahan)
+    if (inputNama) {
+      inputNama.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') konfirmasiDanCetak();
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSertifikatModal);
+  } else {
+    initSertifikatModal();
+  }
+})();
+

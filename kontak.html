@@ -130,107 +130,60 @@
       </div>
     </section>
 
-    <!-- Section 1: Saluran Informasi & Formulir Kontak -->
-    <section class="section section--lg">
+    <!-- Section 1: Saluran Informasi & Kartu Kontak Langsung -->
+    <section class="section section-info-kontak" id="infoKontak">
       <div class="container">
-        <div class="grid grid--2-col" style="gap: var(--space-8); align-items: flex-start;">
-          
-          <!-- Kolom Informasi Platform -->
-          <div>
-            <span class="section__tagline"><i class="fa-solid fa-comments"></i> Mari Berdialog</span>
-            <h2 class="section__title">Sampaikan Suara Anda untuk Bumi yang Lebih Baik</h2>
-            <p>
-              EcoLoka terbuka untuk kemitraan dengan sekolah, perguruan tinggi, komunitas pecinta alam, dan organisasi non-pemerintah yang memiliki komitmen serupa dalam transformasi digital ramah lingkungan.
-            </p>
+        
+        <div class="info-kontak__header">
+          <span class="badge badge--soft">
+            <i class="fa-solid fa-comments"></i> Mari Terhubung
+          </span>
+          <h2 class="info-kontak__heading">Sampaikan Suara Anda untuk Bumi yang Lebih Baik</h2>
+          <p class="info-kontak__desc">
+            Punya ide kolaborasi, masukan, atau sekadar ingin menyapa? Hubungi kami langsung melalui salah satu kanal berikut.
+          </p>
+        </div>
 
-            <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-5);">
-              
-              <div style="display: flex; gap: 14px; align-items: center;">
-                <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-accent-sprout-soft); color: var(--color-primary-forest); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-envelope"></i>
-                </div>
-                <div>
-                  <h4 style="font-size: var(--font-size-sm); margin: 0; color: var(--color-primary-forest);">Surat Elektronik</h4>
-                  <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-light); margin: 0;">ecoloka.invention@example.com</p>
-                </div>
-              </div>
+        <div class="info-kontak__grid">
 
-              <div style="display: flex; gap: 14px; align-items: center;">
-                <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-accent-sky-soft); color: var(--color-accent-sky-dark); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-location-dot"></i>
-                </div>
-                <div>
-                  <h4 style="font-size: var(--font-size-sm); margin: 0; color: var(--color-primary-forest);">Sekretariat Karya</h4>
-                  <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-light); margin: 0;">Kampus Bukit Jimbaran, Universitas Udayana, Bali</p>
-                </div>
-              </div>
+          <article class="kontak-card">
+            <span class="kontak-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <h3 class="kontak-card__label">Email</h3>
+            <a href="mailto:halo@ecoloka.id" class="kontak-card__value">halo@ecoloka.id</a>
+            <p class="kontak-card__ket">Respon dalam 1–2 hari kerja</p>
+          </article>
 
-              <div style="display: flex; gap: 14px; align-items: center;">
-                <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-accent-sun-soft); color: var(--color-accent-sun); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
-                <div>
-                  <h4 style="font-size: var(--font-size-sm); margin: 0; color: var(--color-primary-forest);">Waktu Respons Simulasi</h4>
-                  <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-light); margin: 0;">1 × 24 Jam Kerja (Senin – Jumat)</p>
-                </div>
-              </div>
+          <article class="kontak-card">
+            <span class="kontak-card__icon" aria-hidden="true">
+              <i class="fa-brands fa-whatsapp"></i>
+            </span>
+            <h3 class="kontak-card__label">WhatsApp</h3>
+            <a href="https://wa.me/6281234567890" class="kontak-card__value" target="_blank" rel="noopener noreferrer">+62 812-3456-7890</a>
+            <p class="kontak-card__ket">Senin–Jumat, 09.00–17.00 WITA</p>
+          </article>
 
-            </div>
+          <article class="kontak-card">
+            <span class="kontak-card__icon" aria-hidden="true">
+              <i class="fa-brands fa-instagram"></i>
+            </span>
+            <h3 class="kontak-card__label">Instagram</h3>
+            <a href="https://instagram.com/ecoloka.id" class="kontak-card__value" target="_blank" rel="noopener noreferrer">@ecoloka.id</a>
+            <p class="kontak-card__ket">Update kegiatan &amp; konten edukasi harian</p>
+          </article>
 
-            <!-- Catatan Edukasi Keberlanjutan -->
-            <div style="margin-top: var(--space-6); background: var(--color-neutral-mist); border: 1px solid var(--color-neutral-stone); border-radius: var(--radius-md); padding: var(--space-4);">
-              <h4 style="font-size: var(--font-size-xs); text-transform: uppercase; color: var(--color-primary-leaf); margin-bottom: 4px;">Komitmen Nol Kertas</h4>
-              <p style="font-size: var(--font-size-xs); color: var(--color-neutral-soil-muted); margin: 0; line-height: 1.5;">
-                Seluruh komunikasi dan dokumentasi EcoLoka beroperasi secara digital (*paperless*) untuk mencegah pemborosan serat kayu dan emisi percetakan.
-              </p>
-            </div>
-          </div>
-
-          <!-- Formulir Kontak Client-Side -->
-          <div>
-            <div id="contact-success-alert" style="display: none; background-color: var(--color-accent-sprout-soft); border: 1.5px solid var(--color-accent-sprout); border-radius: var(--radius-lg); padding: var(--space-4); margin-bottom: var(--space-4); text-align: center;">
-              <i class="fa-solid fa-circle-check" style="font-size: 2rem; color: var(--color-primary-forest); margin-bottom: 6px;"></i>
-              <h4 style="color: var(--color-primary-forest); margin-bottom: 4px;">Pesan Anda Berhasil Terkirim!</h4>
-              <p style="font-size: var(--font-size-xs); color: var(--color-primary-leaf); margin: 0;">
-                Terima kasih atas pesan Anda. Ini adalah simulasi pengiriman formulir client-side untuk kompetisi INVENTION 2026.
-              </p>
-            </div>
-
-            <form id="contact-form" class="card" novalidate style="padding: var(--space-5);">
-              
-              <div class="form-group">
-                <label for="contact-name" class="form-label">Nama Lengkap <span class="required">*</span></label>
-                <input type="text" id="contact-name" class="form-control" placeholder="Nama Anda" required>
-                <div class="form-feedback form-feedback--error"></div>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-email" class="form-label">Alamat Email <span class="required">*</span></label>
-                <input type="email" id="contact-email" class="form-control" placeholder="nama@email.com" required>
-                <div class="form-feedback form-feedback--error"></div>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-subject" class="form-label">Subjek Pesan <span class="required">*</span></label>
-                <input type="text" id="contact-subject" class="form-control" placeholder="Pertanyaan seputar kalkulator / kerjasama" required>
-                <div class="form-feedback form-feedback--error"></div>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-message" class="form-label">Isi Pesan <span class="required">*</span></label>
-                <textarea id="contact-message" class="form-textarea" rows="4" placeholder="Tuliskan pesan atau pertanyaan lengkap Anda di sini..." required></textarea>
-                <div class="form-feedback form-feedback--error"></div>
-              </div>
-
-              <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center; margin-top: var(--space-2);">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Kirim Pesan</span>
-              </button>
-
-            </form>
-          </div>
+          <article class="kontak-card">
+            <span class="kontak-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+            <h3 class="kontak-card__label">Basis Operasional</h3>
+            <span class="kontak-card__value">Denpasar, Bali — Indonesia</span>
+            <p class="kontak-card__ket">Layanan digital, dapat diakses dari mana saja</p>
+          </article>
 
         </div>
+
       </div>
     </section>
 

@@ -36,6 +36,8 @@
   <link rel="stylesheet" href="assets/css/animasi-3r.css">
   <link rel="stylesheet" href="assets/css/animasi-kartu.css">
   <link rel="stylesheet" href="assets/css/animasi-tiga-pilar.css">
+  <link rel="stylesheet" href="assets/css/animasi-buku-filosofi.css">
+  <link rel="stylesheet" href="assets/css/animasi-lipat-cta.css">
 </head>
 <body id="beranda">
 
@@ -593,13 +595,16 @@
     </section>
 
     <!-- ----------------------------------------------------------------------
-         SECTION 4: TENTANG & FILOSOFI PROYEK (ABOUT SECTION)
+         SECTION 4: TENTANG & FILOSOFI PROYEK (ANIMASI BUKU TERBUKA 3D)
          ---------------------------------------------------------------------- -->
-    <section class="section" id="tentang" aria-labelledby="about-title">
-      <div class="container">
-        <div class="grid grid--2-col" style="align-items: center; gap: var(--space-8);">
-          
-          <div>
+    <section class="section section-filosofi" id="filosofiBuku" aria-labelledby="about-title">
+      <!-- Target anchor untuk navigasi internal -->
+      <span id="tentang" style="position: absolute; top: -80px; visibility: hidden;" aria-hidden="true"></span>
+      <div class="container" style="position: relative;">
+        <div class="filosofi-book">
+
+          <!-- HALAMAN KIRI: konten paragraf yang SUDAH ADA, dipindah apa adanya ke sini -->
+          <div class="filosofi-book__page filosofi-book__page--left" id="bukuHalamanKiri">
             <span class="section__tagline">
               <i class="fa-solid fa-leaf" aria-hidden="true"></i>
               Filosofi & Visi
@@ -624,69 +629,88 @@
             </div>
           </div>
 
-          <!-- Komposisi Estetika Visual Orisinal -->
-          <div style="position: relative;">
-            <div style="background: linear-gradient(135deg, var(--color-primary-forest), var(--color-primary-leaf)); border-radius: var(--radius-xl); padding: var(--space-6); color: var(--color-neutral-white); box-shadow: var(--shadow-xl); position: relative; overflow: hidden;">
-              <div style="position: absolute; top: -20px; right: -20px; width: 140px; height: 140px; background: rgba(116, 198, 157, 0.15); border-radius: var(--radius-full);"></div>
-              
-              <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); padding: 4px 12px; border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: 700; margin-bottom: var(--space-4);">
-                <i class="fa-solid fa-seedling"></i>
-                <span>Prinsip Keberlanjutan</span>
-              </div>
+          <!-- LIPATAN BUKU (spine) -->
+          <div class="filosofi-book__spine" aria-hidden="true"></div>
 
-              <blockquote style="font-family: var(--font-family-display); font-size: var(--font-size-lg); font-weight: 600; line-height: 1.5; margin-bottom: var(--space-4);">
-                "Bumi tidak membutuhkan segelintir orang yang mempraktikkan hidup hijau secara sempurna. Bumi membutuhkan miliaran orang yang memulainya dari langkah kecil yang konsisten."
-              </blockquote>
-
-              <div style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: var(--space-3);">
-                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-accent-sprout); display: flex; align-items: center; justify-content: center; color: var(--color-primary-forest); font-weight: 800;">
-                  EL
+          <!-- HALAMAN KANAN: kartu kutipan yang SUDAH ADA, dipindah apa adanya -->
+          <div class="filosofi-book__page filosofi-book__page--right" id="bukuHalamanKanan">
+            <div style="position: relative;">
+              <div style="background: linear-gradient(135deg, var(--color-primary-forest), var(--color-primary-leaf)); border-radius: var(--radius-xl); padding: var(--space-6); color: var(--color-neutral-white); box-shadow: var(--shadow-xl); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -20px; right: -20px; width: 140px; height: 140px; background: rgba(116, 198, 157, 0.15); border-radius: var(--radius-full);"></div>
+                
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); padding: 4px 12px; border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: 700; margin-bottom: var(--space-4);">
+                  <i class="fa-solid fa-seedling"></i>
+                  <span>Prinsip Keberlanjutan</span>
                 </div>
-                <div>
-                  <h5 style="color: var(--color-neutral-white); font-size: var(--font-size-sm); margin: 0;">Manifesto EcoLoka</h5>
-                  <p style="color: rgba(221, 229, 221, 0.8); font-size: 0.75rem; margin: 0;">INVENTION 2026 — Universitas Udayana</p>
+
+                <blockquote style="font-family: var(--font-family-display); font-size: var(--font-size-lg); font-weight: 600; line-height: 1.5; margin-bottom: var(--space-4);">
+                  "Bumi tidak membutuhkan segelintir orang yang mempraktikkan hidup hijau secara sempurna. Bumi membutuhkan miliaran orang yang memulainya dari langkah kecil yang konsisten."
+                </blockquote>
+
+                <div style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: var(--space-3);">
+                  <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-accent-sprout); display: flex; align-items: center; justify-content: center; color: var(--color-primary-forest); font-weight: 800;">
+                    EL
+                  </div>
+                  <div>
+                    <h5 style="color: var(--color-neutral-white); font-size: var(--font-size-sm); margin: 0;">Manifesto EcoLoka</h5>
+                    <p style="color: rgba(221, 229, 221, 0.8); font-size: 0.75rem; margin: 0;">INVENTION 2026 — Universitas Udayana</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
         </div>
+
+        <!-- LAPISAN KATA TERBANG: elemen dekoratif, DI-GENERATE oleh JS, bukan ditulis manual di sini -->
+        <div class="filosofi-book__flying-layer" id="flyingLayer" aria-hidden="true"></div>
       </div>
     </section>
 
     <!-- ----------------------------------------------------------------------
-         SECTION 5: CALL TO ACTION (CTA BANNER)
+         SECTION 5: CALL TO ACTION (CTA BANNER Z-FOLD)
          ---------------------------------------------------------------------- -->
-    <section class="section section--lg" id="gabung-aksi" aria-labelledby="cta-title">
+    <section class="section section--lg section-cta" id="ctaSection" aria-labelledby="cta-title">
+      <!-- Target anchor untuk kompatibilitas navigasi internal -->
+      <span id="gabung-aksi" style="position: absolute; top: -80px; visibility: hidden;" aria-hidden="true"></span>
       <div class="container">
         
-        <div class="cta-banner">
+        <div class="cta-banner cta-card" id="ctaCard">
           <div class="cta-banner__decorative-circle cta-banner__decorative-circle--1" aria-hidden="true"></div>
           <div class="cta-banner__decorative-circle cta-banner__decorative-circle--2" aria-hidden="true"></div>
 
           <div class="cta-banner__content">
-            <span class="badge cta-banner__badge">
-              <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
-              Mulai Langkah Nyata Hari Ini
-            </span>
+            <!-- LIPATAN 1: Badge + Heading -->
+            <div class="cta-fold cta-fold--top" id="ctaFold1">
+              <span class="badge cta-banner__badge cta-card__badge">
+                <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+                Mulai Langkah Nyata Hari Ini
+              </span>
 
-            <h2 class="cta-banner__title" id="cta-title">
-              Siap Memulai Perjalanan Hidup Lebih Hijau & Berkelanjutan?
-            </h2>
+              <h2 class="cta-banner__title cta-card__heading" id="cta-title">
+                Siap Memulai Perjalanan Hidup Lebih Hijau &amp; Berkelanjutan?
+              </h2>
+            </div>
 
-            <p class="cta-banner__desc">
-              Bergabunglah dengan gerakan kesadaran ekologis generasi muda Indonesia. Akses panduan edukasi interaktif, ukur emisi harian Anda, dan rasakan dampak nyata perubahan positif Anda bagi lingkungan sekitar.
-            </p>
+            <!-- LIPATAN 2: Deskripsi -->
+            <div class="cta-fold cta-fold--middle" id="ctaFold2">
+              <p class="cta-banner__desc cta-card__desc">
+                Bergabunglah dengan gerakan kesadaran ekologis generasi muda Indonesia. Akses panduan edukasi interaktif, ukur emisi harian Anda, dan rasakan dampak nyata perubahan positif Anda bagi lingkungan sekitar.
+              </p>
+            </div>
 
-            <div class="cta-banner__actions">
-              <a href="#tigaPilar" class="btn btn--accent btn--lg">
-                <i class="fa-solid fa-leaf" aria-hidden="true"></i>
-                <span>Jelajahi Fitur EcoLoka</span>
-              </a>
-              <a href="#tentang" class="btn btn--secondary btn--lg">
-                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                <span>Tentang Proyek Ini</span>
-              </a>
+            <!-- LIPATAN 3: Tombol Aksi -->
+            <div class="cta-fold cta-fold--bottom" id="ctaFold3">
+              <div class="cta-banner__actions cta-card__actions">
+                <a href="#tigaPilar" class="btn btn--accent btn--lg">
+                  <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                  <span>Jelajahi Fitur EcoLoka</span>
+                </a>
+                <a href="#tentang" class="btn btn--secondary btn--lg">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <span>Tentang Proyek Ini</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -799,5 +823,9 @@
   <script src="assets/js/animasi-kartu-statistik.js" defer></script>
   <!-- Animasi Pohon Tumbuh Berputar (3 Pilar Utama Ekosistem EcoLoka) -->
   <script src="assets/js/animasi-tiga-pilar.js" defer></script>
+  <!-- Animasi Buku Terbuka 3D & Kata Terbang (Filosofi & Visi) -->
+  <script src="assets/js/animasi-buku-filosofi.js" defer></script>
+  <!-- Animasi Kartu CTA Z-Fold -->
+  <script src="assets/js/animasi-lipat-cta.js" defer></script>
 </body>
 </html>

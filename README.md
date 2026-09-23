@@ -78,8 +78,8 @@ EcoLoka dirancang dengan arsitektur informasi terstruktur yang saling terhubung 
 | 3 | **Edukasi** | `edukasi.html` | Pusat literasi modul keberlanjutan dinamis (JSON fetch + fallback), filter 4 kategori, pencarian real-time, dan modal bacaan artikel aksesibel. |
 | 4 | **Aksi Hijau** | `aksi-hijau.html` | **Fitur Unggulan:** Kalkulator jejak karbon multi-step, SVG gauge meter interaktif, rekomendasi personal, penyimpanan LocalStorage, dan akses langsung ke **Sertifikat Komitmen Hijau**. |
 | 5 | **Pemantauan** | `pemantauan.html` | Dashboard riwayat emisi pengguna (sinkronisasi LocalStorage), visualisasi grafik batang komparasi SVG vs standar nasional, empty state interaktif, indikator lingkungan simulatif, dan opsi cetak sertifikat. |
-| 6 | **Komunitas** | `komunitas.html` | Visualisasi gotong royong pemuda orisinal, galeri kampanye aksi hijau lokal & nasional, target progress bar bulanan, dan formulir pendaftaran relawan client-side. |
-| 7 | **Kontak** | `kontak.html` | Formulir pesan dengan validasi inline ramah WCAG, informasi sekretariat, dan FAQ accordion interaktif. |
+| 6 | **Komunitas** | `komunitas.html` | Visualisasi gotong royong pemuda orisinal, galeri 4 kampanye aksi hijau (dengan progress bar capaian relawan), dan kanal terhubung resmi Instagram EcoLoka. |
+| 7 | **Kontak** | `kontak.html` | Kartu kanal komunikasi langsung (Email, WhatsApp, Instagram, Sekretariat) dan FAQ accordion interaktif edukatif. |
 | 8 | **Halaman 404** | `404.html` | **Sentuhan Artistik:** "Tersesat di Hutan Digital" dengan ilustrasi hutan kunang-kunang orisinal, tombol pemandu jalan pulang, dan tautan langsung ke halaman utama. |
 
 ---
@@ -141,8 +141,7 @@ Invention_TNH_2026/
     │   ├── edukasi.js          # Modul edukasi: JSON fetch + fallback, filter, live search, accessible modal
     │   ├── kalkulator.js       # Modul kalkulator: Multi-step engine, scoring, SVG gauge, hook sertifikat
     │   ├── pemantauan.js       # Modul dashboard: LocalStorage reader, SVG bar chart, empty state, hook sertifikat
-    │   ├── komunitas.js        # Modul komunitas: Render kampanye, progress bar, form validation client-side
-    │   ├── kontak.js           # Modul kontak: Form validation inline, accordion FAQ aksesibel WCAG
+    │   ├── kontak.js           # Modul kontak: Accordion FAQ aksesibel WCAG (form palsu dihapus)
     │   └── README-js.md        # Catatan arsitektur JavaScript modular
     ├── img/
     │   ├── hero_nature_tech.jpg       # Visual hero alam & teknologi
@@ -181,7 +180,17 @@ Perhitungan jejak emisi karbon pada modul `kalkulator.js` mengacu pada faktor em
 
 ---
 
-## 9. Cara Menjalankan Website Secara Lokal
+## 9. Catatan Desain: Tanpa Form Interaktif (100% Kejujuran Fungsional)
+
+Website ini murni statis tanpa backend/database. Untuk menjaga kejujuran fungsional, seluruh form yang sebelumnya memberi kesan "mengirim data" (pendaftaran komunitas, form kontak) telah dihapus dan digantikan dengan:
+- **Kartu info kontak langsung** (Email, WhatsApp, Instagram) di halaman Kontak (`kontak.html`).
+- **Tautan langsung ke Instagram resmi EcoLoka** di halaman Komunitas (`komunitas.html`).
+
+Fitur yang tetap interaktif (**Kalkulator Jejak Karbon** & **Dashboard Pemantauan**) sepenuhnya berjalan di sisi klien (browser) menggunakan Web APIs (`localStorage`), tidak mengirim data kemanapun.
+
+---
+
+## 10. Cara Menjalankan Website Secara Lokal
 
 Karena EcoLoka adalah **static website murni tanpa server backend**, website ini dapat dijalankan dengan sangat mudah tanpa memerlukan instalasi database, PHP, maupun Node server:
 
@@ -198,5 +207,5 @@ Jika menggunakan VS Code:
 
 ---
 
-## 10. Hak Cipta, Orisinalitas & Dedikasi
+## 11. Hak Cipta, Orisinalitas & Dedikasi
 Karya ini dikembangkan secara orisinal dari nol untuk diikutsertakan dalam kompetisi **INVENTION 2026** Universitas Udayana. Seluruh komponen kode, skema warna, ilustrasi visual, dan tata letak dirancang khusus untuk memajukan agenda digitalisasi ramah lingkungan di Indonesia.

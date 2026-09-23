@@ -1932,4 +1932,412 @@
   margin-top: var(--space-2);
 }
 
+/* --------------------------------------------------------------------------
+   22. KARTU INFORMASI KONTAK (HALAMAN KONTAK)
+   -------------------------------------------------------------------------- */
+.section-info-kontak {
+  padding-block: var(--space-8, 64px);
+}
+
+.info-kontak__header {
+  max-width: 640px;
+  margin-bottom: var(--space-6, 48px);
+}
+
+.info-kontak__heading {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl, 2rem);
+  font-weight: 700;
+  color: var(--color-primary-forest);
+  margin-top: var(--space-2, 16px);
+  margin-bottom: var(--space-2, 16px);
+  line-height: 1.25;
+}
+
+.info-kontak__desc {
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-neutral-soil-light);
+  line-height: 1.6;
+}
+
+.info-kontak__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3, 24px);
+}
+
+.kontak-card {
+  background: var(--color-neutral-white, #fff);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-lg, 16px);
+  padding: var(--space-4, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 8px);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base, 300ms) ease, box-shadow var(--transition-base, 300ms) ease, border-color var(--transition-base, 300ms) ease;
+}
+
+.kontak-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(27, 67, 50, 0.08);
+  border-color: var(--color-accent-sprout);
+}
+
+.kontak-card__icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-sprout-soft, #D8F3DC);
+  border-radius: var(--radius-full, 50%);
+  color: var(--color-primary-forest, #1B4332);
+  font-size: 1.15rem;
+  margin-bottom: var(--space-1, 8px);
+}
+
+.kontak-card__label {
+  font-size: var(--font-size-xs, 0.75rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--color-neutral-soil-muted);
+}
+
+.kontak-card__value {
+  font-size: var(--font-size-lg, 1.15rem);
+  font-weight: 700;
+  color: var(--color-primary-forest);
+  text-decoration: none;
+  word-break: break-word;
+  transition: color var(--transition-fast, 150ms) ease;
+}
+
+.kontak-card__value:hover {
+  color: var(--color-primary-leaf);
+  text-decoration: underline;
+}
+
+.kontak-card__ket {
+  font-size: var(--font-size-xs, 0.85rem);
+  color: var(--color-neutral-soil-light);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   21. CTA INSTAGRAM KOMUNITAS (KANAL RESMI TRANSPARAN)
+   -------------------------------------------------------------------------- */
+.section-cta-instagram {
+  padding-block: var(--space-6, 48px);
+}
+
+.cta-instagram-box {
+  max-width: 580px;
+  margin-inline: auto;
+  text-align: center;
+  background: var(--color-neutral-mist);
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-xl, 20px);
+  padding: var(--space-6, 48px) var(--space-5, 32px);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.cta-instagram-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.cta-instagram-box__icon {
+  display: inline-flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent-sprout-soft), #C7F9CC);
+  border-radius: var(--radius-full, 50%);
+  margin-bottom: var(--space-3, 16px);
+  color: var(--color-primary-forest);
+  font-size: 1.5rem;
+}
+
+.cta-instagram-box__heading {
+  margin-bottom: var(--space-2, 8px);
+  color: var(--color-primary-forest);
+  font-size: var(--font-size-xl, 1.35rem);
+}
+
+.cta-instagram-box__desc {
+  margin-bottom: var(--space-4, 24px);
+  color: var(--color-neutral-soil-light);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm, 0.95rem);
+}
+
+/* --------------------------------------------------------------------------
+   22. MODAL SERTIFIKAT RINGKAS & PRINT-ONLY TEMPLATE (AKSI HIJAU)
+   -------------------------------------------------------------------------- */
+/* Pelindung agar elemen modal lama/baru tidak pernah muncul inline */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 67, 50, 0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+/* Modal Overlay Ringkas */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 67, 50, 0.45); /* var(--color-primary-forest) dengan transparansi */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base, 300ms) ease;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: var(--radius-lg, 16px);
+  padding: var(--space-6, 32px);
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  transform: scale(0.92) translateY(12px);
+  transition: transform var(--transition-base, 300ms) ease;
+  box-shadow: 0 20px 48px rgba(17, 43, 32, 0.25);
+}
+
+.modal-overlay.is-open .modal-box {
+  transform: scale(1) translateY(0);
+}
+
+.modal-box__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-neutral-soil);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm, 4px);
+  transition: color var(--transition-fast, 150ms) ease, background-color var(--transition-fast, 150ms) ease;
+}
+
+.modal-box__close:hover {
+  color: var(--color-primary-forest);
+  background-color: var(--color-neutral-stone-light, #EDF2ED);
+}
+
+.modal-box__title {
+  margin-bottom: var(--space-2, 8px);
+  color: var(--color-primary-forest);
+  font-size: var(--font-size-lg, 1.25rem);
+}
+
+.modal-box__desc {
+  color: var(--color-neutral-soil);
+  margin-bottom: var(--space-4, 16px);
+  font-size: 0.9rem;
+}
+
+.modal-box__label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: var(--space-2, 8px);
+  color: var(--color-primary-forest);
+}
+
+.modal-box__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--color-neutral-stone);
+  border-radius: var(--radius-md, 8px);
+  font-size: 1rem;
+  margin-bottom: var(--space-2, 8px);
+  box-sizing: border-box;
+  background-color: var(--color-neutral-white);
+  color: var(--color-neutral-soil);
+  font-family: inherit;
+}
+
+.modal-box__input:focus {
+  outline: 2px solid var(--color-primary-leaf);
+  outline-offset: 2px;
+}
+
+.modal-box__error {
+  display: block;
+  color: var(--color-alert-warning, #E76F51);
+  font-size: 0.8rem;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.modal-box__actions {
+  display: flex;
+  gap: var(--space-3, 16px);
+  margin-top: var(--space-4, 16px);
+}
+
+.modal-box__actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Hormati preferensi pengguna sensitif gerakan */
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal-box {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   TEMPLATE SERTIFIKAT PRINT (HANYA AKTIF SAAT CETAK / SAVE AS PDF)
+   ========================================================================== */
+/* SEMBUNYIKAN TOTAL dari tampilan layar normal */
+.certificate-print-only {
+  display: none;
+}
+
+/* HANYA tampil & diformat rapi saat mode print (termasuk "Save as PDF") */
+@media print {
+  /* Sembunyikan SELURUH elemen halaman lain saat mode print diaktifkan */
+  body > *:not(.certificate-print-only) {
+    display: none !important;
+  }
+
+  .certificate-print-only {
+    display: block !important;
+    position: static !important;
+  }
+
+  .certificate {
+    width: 100%;
+    padding: 48px;
+    text-align: center;
+    font-family: var(--font-heading, var(--font-family-display, 'Plus Jakarta Sans', sans-serif));
+    border: 6px double var(--color-primary-forest, #1B4332);
+    box-sizing: border-box;
+    background: #FFF !important;
+  }
+
+  .certificate__header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+    color: var(--color-primary-forest, #1B4332);
+  }
+
+  .certificate__brand {
+    font-weight: 800;
+    font-size: 1.15rem;
+  }
+
+  .certificate__event {
+    font-weight: 600;
+  }
+
+  .certificate__title {
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--color-primary-forest, #1B4332);
+    margin-bottom: 16px;
+    font-weight: 800;
+  }
+
+  .certificate__intro {
+    font-size: 0.9rem;
+    color: var(--color-neutral-soil-light, #555);
+    margin-bottom: 8px;
+  }
+
+  .certificate__nama {
+    font-size: 1.75rem;
+    margin: 24px 0;
+    color: var(--color-primary-leaf, #2D6A4F);
+    border-bottom: 2px solid var(--color-accent-sun, #F4A259);
+    display: inline-block;
+    padding-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .certificate__deskripsi {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    font-family: var(--font-body, var(--font-family-base, 'Inter', sans-serif));
+    line-height: 1.6;
+    color: var(--color-neutral-soil, #2B2D2F);
+  }
+
+  .certificate__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+
+  .certificate__stat {
+    background: #F7F9F7;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-neutral-stone, #DDE5DD);
+  }
+
+  .certificate__stat-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    color: var(--color-neutral-soil-muted, #6C7278);
+  }
+
+  .certificate__stat-value {
+    display: block;
+    font-weight: 700;
+    color: var(--color-primary-forest, #1B4332);
+    font-size: 1rem;
+  }
+
+  .certificate__footer {
+    margin-top: 32px;
+    font-size: 0.85rem;
+    color: var(--color-neutral-soil, #2B2D2F);
+  }
+
+  .certificate__footer p {
+    margin: 4px 0;
+  }
+
+  /* Pastikan warna tetap tercetak (beberapa browser default mematikan warna background saat print) */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
 
