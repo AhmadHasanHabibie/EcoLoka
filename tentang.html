@@ -22,7 +22,7 @@
   <!-- Google Fonts & Font Awesome 6 CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Cascading Style Sheets -->
@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/animasi-sirkuit-tentang.css">
 </head>
 <body>
 
@@ -225,42 +226,81 @@
           <span class="section__tagline">
             <i class="fa-solid fa-microchip"></i> Relevansi Tema Besar
           </span>
-          <h2 class="section__title">Mengapa Solusi Digital untuk Kelestarian Lingkungan?</h2>
+          <h2 class="section__title heading-gelombang" id="headingTentang">Mengapa Solusi Digital untuk Kelestarian Lingkungan?</h2>
           <p class="section__subtitle">
             Tema besar INVENTION 2026 adalah <em>"Innovative Web Solutions for a Smarter Digital Society"</em>. Kami menolak anggapan bahwa website ramah lingkungan harus lambat dan monoton.
           </p>
         </header>
 
         <div class="grid grid--3-col">
-          <div class="card">
-            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-accent-sprout-soft); color: var(--color-primary-forest); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: var(--space-3);">
-              <i class="fa-solid fa-feather"></i>
+          <article class="card prinsip-card" id="prinsipCard1">
+            <svg class="prinsip-card__jejak" aria-hidden="true">
+              <rect
+                x="1.5" y="1.5"
+                width="calc(100% - 3px)" height="calc(100% - 3px)"
+                rx="16" ry="16"
+                fill="none"
+                stroke="var(--color-accent-sprout)"
+                stroke-width="2"
+              />
+            </svg>
+            <span class="prinsip-card__node" id="prinsipNode1" aria-hidden="true"></span>
+            <div class="prinsip-card__isi">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-accent-sprout-soft); color: var(--color-primary-forest); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: var(--space-3);">
+                <i class="fa-solid fa-feather"></i>
+              </div>
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Rendah Emisi Data (Green Web)</h3>
+              <p style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-light);">
+                Dengan arsitektur static murni dan CSS kustom tanpa framework berat, transfer data per kunjungan halaman ditekan di bawah 200 KB, memangkas konsumsi listrik data center secara nyata.
+              </p>
             </div>
-            <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Rendah Emisi Data (Green Web)</h3>
-            <p style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-light);">
-              Dengan arsitektur static murni dan CSS kustom tanpa framework berat, transfer data per kunjungan halaman ditekan di bawah 200 KB, memangkas konsumsi listrik data center secara nyata.
-            </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-accent-sky-soft); color: var(--color-accent-sky-dark); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: var(--space-3);">
-              <i class="fa-solid fa-user-shield"></i>
+          <article class="card prinsip-card" id="prinsipCard2">
+            <svg class="prinsip-card__jejak" aria-hidden="true">
+              <rect
+                x="1.5" y="1.5"
+                width="calc(100% - 3px)" height="calc(100% - 3px)"
+                rx="16" ry="16"
+                fill="none"
+                stroke="var(--color-accent-sprout)"
+                stroke-width="2"
+              />
+            </svg>
+            <span class="prinsip-card__node" id="prinsipNode2" aria-hidden="true"></span>
+            <div class="prinsip-card__isi">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-accent-sky-soft); color: var(--color-accent-sky-dark); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: var(--space-3);">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Kedaulatan Privasi Pengguna</h3>
+              <p style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-light);">
+                Seluruh komputasi kalkulator jejak karbon dan jurnal kebiasaan hijau diproses secara lokal di peramban pengguna menggunakan Web APIs (LocalStorage), tanpa mengunggah data pribadi ke server manapun.
+              </p>
             </div>
-            <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Kedaulatan Privasi Pengguna</h3>
-            <p style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-light);">
-              Seluruh komputasi kalkulator jejak karbon dan jurnal kebiasaan hijau diproses secara lokal di peramban pengguna menggunakan Web APIs (LocalStorage), tanpa mengunggah data pribadi ke server manapun.
-            </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-accent-sun-soft); color: var(--color-accent-sun); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: var(--space-3);">
-              <i class="fa-solid fa-universal-access"></i>
+          <article class="card prinsip-card" id="prinsipCard3">
+            <svg class="prinsip-card__jejak" aria-hidden="true">
+              <rect
+                x="1.5" y="1.5"
+                width="calc(100% - 3px)" height="calc(100% - 3px)"
+                rx="16" ry="16"
+                fill="none"
+                stroke="var(--color-accent-sprout)"
+                stroke-width="2"
+              />
+            </svg>
+            <span class="prinsip-card__node" id="prinsipNode3" aria-hidden="true"></span>
+            <div class="prinsip-card__isi">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-accent-sun-soft); color: var(--color-accent-sun); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: var(--space-3);">
+                <i class="fa-solid fa-universal-access"></i>
+              </div>
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Aksesibilitas Universal</h3>
+              <p style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-light);">
+                Situs dirancang ramah bagi pembaca layar (screen reader), navigasi keyboard penuh, dan rasio kontras WCAG AA, memastikan informasi lingkungan terbuka bagi semua kalangan tanpa diskriminasi.
+              </p>
             </div>
-            <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Aksesibilitas Universal</h3>
-            <p style="font-size: var(--font-size-sm); color: var(--color-neutral-soil-light);">
-              Situs dirancang ramah bagi pembaca layar (screen reader), navigasi keyboard penuh, dan rasio kontras WCAG AA, memastikan informasi lingkungan terbuka bagi semua kalangan tanpa diskriminasi.
-            </p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -407,6 +447,9 @@
     </div>
   </footer>
 
+  <script src="assets/js/scroll-utils.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/gelombang-font.js" defer></script>
+  <script src="assets/js/jejak-sirkuit-kartu.js" defer></script>
 </body>
 </html>

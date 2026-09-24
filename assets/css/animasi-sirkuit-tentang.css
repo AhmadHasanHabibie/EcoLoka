@@ -1,0 +1,97 @@
+/**
+ * ==========================================================================
+ * ECOLOKA — GELOMBANG FONT & JEJAK SIRKUIT CAHAYA (TENTANG)
+ * File: assets/css/animasi-sirkuit-tentang.css
+ * ==========================================================================
+ * 1. Bagian A: Gelombang Font Variable (Sora wght 100..800)
+ * 2. Bagian B: Jejak Sirkuit Cahaya pada 3 Kartu Prinsip
+ * ==========================================================================
+ */
+
+/* --------------------------------------------------------------------------
+   1. GELOMBANG FONT (HEADING DENGAN KETEBALAN DINAMIS)
+   -------------------------------------------------------------------------- */
+.heading-gelombang {
+  font-family: 'Sora', var(--font-family-display), system-ui, sans-serif;
+  font-variation-settings: 'wght' 700;
+  display: inline-block;
+  will-change: font-variation-settings;
+}
+
+.huruf-gelombang {
+  display: inline-block;
+  font-variation-settings: 'wght' 700;
+  transition: none; /* Dikontrol per frame secara presisi via JavaScript */
+  will-change: font-variation-settings;
+}
+
+/* --------------------------------------------------------------------------
+   2. JEJAK SIRKUIT CAHAYA (KARTU PRINSIP SOLUSI DIGITAL)
+   -------------------------------------------------------------------------- */
+.prinsip-card {
+  position: relative;
+  overflow: visible;
+  border-color: var(--color-neutral-stone);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.prinsip-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.prinsip-card__jejak {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.prinsip-card__jejak rect {
+  transition: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.prinsip-card__node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-sun);
+  box-shadow: 0 0 10px 3px var(--color-accent-sun), 0 0 4px 1px #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform, opacity;
+}
+
+.prinsip-card__isi {
+  position: relative;
+  z-index: 3;
+  opacity: 1; /* STATE DEFAULT (tanpa JS): isi kartu langsung terlihat penuh */
+  transition: opacity 0.2s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   3. AKSESIBILITAS WCAG: PREFERS REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .heading-gelombang,
+  .huruf-gelombang {
+    font-variation-settings: 'wght' 700 !important;
+  }
+  .prinsip-card__jejak rect {
+    stroke-dashoffset: 0 !important;
+  }
+  .prinsip-card__node {
+    display: none !important;
+  }
+  .prinsip-card__isi {
+    opacity: 1 !important;
+  }
+}

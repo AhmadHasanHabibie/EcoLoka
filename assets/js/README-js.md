@@ -75,6 +75,21 @@
   - Progress dihitung secara mandiri per-kartu dengan `ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5)` sehingga mendarat sejajar sempurna tepat saat kartu di tengah viewport.
   - Graceful degradation: tanpa JS atau pada `@media (prefers-reduced-motion: reduce)`, keempat kartu tampil statis, rapi, dan fungsional penuh di posisi grid normalnya.
 
+### I. Modul Animasi Gelombang Font Variable (`assets/js/gelombang-font.js`)
+- **Diterapkan pada:** `tentang.html` (heading "Mengapa Solusi Digital untuk Kelestarian Lingkungan?").
+- **Fitur:**
+  - Memanfaatkan variable font Google Fonts **Sora** (`wght@100..800`) untuk menghasilkan "gelombang ketebalan" yang menyapu melintasi teks saat scroll.
+  - Pemecahan karakter dinamis via JavaScript dengan struktur aksesibilitas ketat (`role="text"` + `aria-label` kalimat utuh, `aria-hidden="true"` pada setiap span karakter) sehingga pembaca layar membaca teks secara utuh dan sempurna.
+  - Penguncian lebar karakter berbasis `document.fonts.ready` guna mencegah layout shift / getaran teks.
+
+### J. Modul Animasi Jejak Sirkuit Cahaya Kartu (`assets/js/jejak-sirkuit-kartu.js`)
+- **Diterapkan pada:** `tentang.html` (3 kartu prinsip solusi digital).
+- **Fitur:**
+  - Animasi menggambar border kartu secara presisi melalui SVG `rect` stroke-dashoffset geometry (`getTotalLength()`).
+  - Titik node cahaya amber (`.prinsip-card__node`) melintas mengelilingi border teraktivasi menggunakan koordinat `getPointAtLength()` dengan opacity sinusoidal halus.
+  - Isi kartu memudar masuk secara terkoordinasi (tumpang tindih natural dengan penarikan border).
+  - Progress independen per-kartu via `ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5)`.
+
 ---
 
 ## 3. Kepatuhan Ketat Aturan Lomba
