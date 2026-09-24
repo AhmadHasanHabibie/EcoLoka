@@ -45,16 +45,17 @@
    1. GELOMBANG FONT (HEADING DENGAN KETEBALAN DINAMIS & FLUID TYPOGRAPHY)
    -------------------------------------------------------------------------- */
 .heading-gelombang {
-  font-family: 'Sora', var(--font-family-display), system-ui, sans-serif;
+  font-family: var(--font-heading, 'Fraunces', Georgia, serif);
+  font-optical-sizing: auto;
   font-size: clamp(1.75rem, 4vw + 0.5rem, 3rem);
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' 600;
   display: inline-block;
   line-height: 1.25;
 }
 
 .huruf-gelombang {
   display: inline-block;
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' 600;
   transition: none; /* Dikontrol per frame secara presisi via JavaScript */
 }
 

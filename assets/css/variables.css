@@ -30,61 +30,74 @@
 
 :root {
   /* ------------------------------------------------------------------------
-   * 1. PALET WARNA UTAMA (PRIMARY COLORS)
+   * 1. PALET WARNA UTAMA (PRIMARY COLORS) — Deep Earthy Moss & Forest
    * ------------------------------------------------------------------------ */
-  /* Hijau hutan tua — melambangkan akar, keteguhan, bumi yang dijaga */
-  --color-primary-forest: #1B4332;
-  --color-primary-forest-dark: #112B20;
-  --color-primary-dark: #112B20;
-  --color-primary-forest-light: #245842;
+  /* Hijau lumut hutan dalam — matang, berakar, jauh dari kesan template AI */
+  --color-primary-dark: #14261F;          /* Nyaris hitam-hijau, ultra premium */
+  --color-primary: #1F3D30;               /* Hijau hutan matang berkarakter */
+  --color-primary-light: #2E5643;
+  --color-primary-forest: #1F3D30;
+  --color-primary-forest-dark: #14261F;
+  --color-primary-forest-light: #2E5643;
 
-  /* Hijau daun — melambangkan pertumbuhan, keberlanjutan, aksi nyata */
-  --color-primary-leaf: #2D6A4F;
-  --color-primary-leaf-light: #408A68;
+  /* Hijau daun bersahaja — tenang dan editorial */
+  --color-primary-leaf: #2B5743;
+  --color-primary-leaf-light: #3D755C;
 
   /* ------------------------------------------------------------------------
-   * 2. WARNA AKSEN (ACCENT COLORS)
+   * 2. WARNA AKSEN (ACCENT COLORS) — Sage Earthy & Terracotta Clay
    * ------------------------------------------------------------------------ */
-  /* Hijau tunas muda — melambangkan harapan, generasi baru, inovasi digital */
-  --color-accent-sprout: #74C69D;
-  --color-accent-sprout-light: #95D5B2;
-  --color-accent-sprout-soft: #D8F3DC;
+  /* Hijau sage/tunas bersahaja — desaturasi halus, bukan neon mint UI kit */
+  --color-accent-sprout: #6FA687;
+  --color-accent-sprout-light: #8EBF9F;
+  --color-accent-sprout-soft: #E5EFE7;
 
-  /* Kuning-oranye matahari terbenam — melambangkan energi surya, kehangatan manusia */
-  --color-accent-sun: #F4A259;
-  --color-accent-sun-light: #F7BA82;
-  --color-accent-sun-soft: #FEF3E8;
+  /* Terracotta hangat (Clay) — aksen kedua pengganti gradient oranye-pink fintech,
+     selaras narasi tanah, bumi, dan keberlanjutan. Dipakai selektif pada CTA utama. */
+  --color-accent-clay: #C17A4E;
+  --color-accent-clay-deep: #A05F38;
+  --color-accent-clay-soft: #F5ECE5;
+  --color-accent-sun: #C17A4E;            /* Mapping aksen surya ke terracotta alami */
+  --color-accent-sun-light: #D49065;
+  --color-accent-sun-soft: #F5ECE5;
 
-  /* Biru langit pucat — melambangkan udara bersih, kejernihan, teknologi yang tenang */
-  --color-accent-sky: #A8DADC;
-  --color-accent-sky-dark: #457B9D;
-  --color-accent-sky-soft: #EDF6F7;
+  /* Biru kabut/mineral pucat — tenang dan berimbang */
+  --color-accent-sky: #8EA89D;
+  --color-accent-sky-dark: #4A6B5D;
+  --color-accent-sky-soft: #EDF3F0;
 
-  /* Oranye kemerahan — melambangkan peringatan/urgensi isu lingkungan */
-  --color-alert-warning: #E76F51;
-  --color-alert-warning-soft: #FDECE8;
+  /* Terracotta tegas untuk urgensi/peringatan lingkungan */
+  --color-alert-warning: #B85338;
+  --color-alert-warning-soft: #F9EBE7;
 
   /* ------------------------------------------------------------------------
-   * 3. WARNA NETRAL & KANVAS (NEUTRAL COLORS)
+   * 3. WARNA NETRAL & KANVAS (WARM CREAM & LINEN EDITORIAL)
    * ------------------------------------------------------------------------ */
-  /* Abu gelap kecoklatan — tanah, kestabilan, teks utama kontras tinggi */
-  --color-neutral-soil: #2B2D2F;
-  --color-neutral-soil-light: #4A4D50;
-  --color-neutral-soil-muted: #6C7278;
+  /* Teks utama & sekunder berkarakter */
+  --color-text-utama: #1A2620;
+  --color-text-sekunder: #55625A;
+  --color-neutral-soil: #1A2620;
+  --color-neutral-soil-light: #55625A;
+  --color-neutral-soil-muted: #7E8C83;
 
-  /* Putih kehijauan pucat — kabut pagi, ruang kosong yang tenang (background) */
-  --color-neutral-mist: #F7F9F7;
-  --color-neutral-white: #FFFFFF;
+  /* Kanvas hangat (Cream & Linen) — menggantikan putih steril dan abu template AI */
+  --color-bg-cream: #F6F3EC;
+  --color-bg-cream-deep: #EDE8DC;
+  --color-neutral-mist: #F6F3EC;
+  --color-neutral-white: #FCFAF7;
 
-  /* Abu-hijau muda — elemen sekunder, kartu, border, divider */
-  --color-neutral-stone: #DDE5DD;
-  --color-neutral-stone-light: #EDF2ED;
+  /* Border & pembatas bersahaja */
+  --color-neutral-stone: #E2DDD2;
+  --color-neutral-stone-light: #EFEBE2;
 
   /* ------------------------------------------------------------------------
-   * 4. TIPOGRAFI MODULAR (MODULAR TYPOGRAPHY - RATIO 1.25 MAJOR THIRD)
+   * 4. TIPOGRAFI EDITORIAL & MODULAR (FRAUNCES SERIF + INTER SANS)
    * ------------------------------------------------------------------------ */
-  --font-family-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-family-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-family-display: 'Fraunces', Georgia, serif;
+  --font-family-serif: 'Fraunces', Georgia, serif;
+  --font-family-body: 'Inter', -apple-system, system-ui, sans-serif;
+  --font-family-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-family-mono: 'JetBrains Mono', Consolas, monospace;
 
   /* Skala Font Hierarkis */
@@ -128,14 +141,19 @@
   --space-16: 8rem;     /* 128px */
 
   /* ------------------------------------------------------------------------
-   * 6. KELENGKUNGAN & SHADOW (ORGANIC RADII & SHADOWS)
+   * 6. KELENGKUNGAN BERTINGKAT & SHADOW (HIERARCHICAL RADII & SHADOWS)
    * ------------------------------------------------------------------------ */
-  /* Sudut membulat organik merepresentasikan bentuk alami */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-full: 9999px;
+  /* Radius bervariasi terstruktur: container besar tajam, card sedang, tombol pill */
+  --radius-tajam: 4px;     /* Container besar, hero banner, callout section */
+  --radius-sedang: 12px;   /* Card statistik, kartu tim, prinsip card, form input */
+  --radius-penuh: 999px;   /* HANYA untuk tombol aksi & badge pil kecil */
+
+  /* Kompatibilitas token turunan */
+  --radius-sm: var(--radius-tajam);
+  --radius-md: 8px;
+  --radius-lg: var(--radius-sedang);
+  --radius-xl: 14px;
+  --radius-full: var(--radius-penuh);
 
   /* Bayangan berlapis halus (soft organic elevation) */
   --shadow-sm: 0 2px 6px rgba(27, 67, 50, 0.05);

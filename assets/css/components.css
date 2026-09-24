@@ -40,60 +40,67 @@
   transform: translateY(1px);
 }
 
-/* Tombol Utama (Primary) - Hijau Daun Terarah */
+/* Tombol Utama (Primary) - Hijau Hutan Solid & Elegan */
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-primary-leaf), var(--color-primary-forest));
-  color: var(--color-neutral-white);
-  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.28);
+  background-color: var(--color-primary);
+  color: var(--color-bg-cream, #FFF);
+  border: 1.5px solid var(--color-primary);
+  box-shadow: 0 2px 8px rgba(20, 38, 31, 0.15);
 }
 
 .btn--primary:hover {
-  background: linear-gradient(135deg, var(--color-primary-leaf-light), var(--color-primary-leaf));
-  color: var(--color-neutral-white);
-  box-shadow: 0 6px 20px rgba(45, 106, 79, 0.38);
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  color: var(--color-bg-cream, #FFF);
+  box-shadow: 0 4px 14px rgba(20, 38, 31, 0.22);
   transform: translateY(-2px);
 }
 
 /* Tombol Sekunder (Secondary) - Bersih dan Berkontur */
 .btn--secondary {
-  background-color: var(--color-neutral-white);
-  color: var(--color-primary-forest);
-  border-color: var(--color-neutral-stone);
-  box-shadow: var(--shadow-sm);
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  box-shadow: none;
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-neutral-stone-light);
-  border-color: var(--color-primary-leaf);
-  color: var(--color-primary-forest);
+  background-color: rgba(31, 61, 48, 0.06);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
   transform: translateY(-2px);
 }
 
 /* Tombol Outline (Batas Tipis) */
 .btn--outline {
   background-color: transparent;
-  color: var(--color-primary-forest);
-  border-color: var(--color-primary-leaf);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-accent-sprout);
 }
 
 .btn--outline:hover {
   background-color: var(--color-accent-sprout-soft);
-  color: var(--color-primary-forest);
-  border-color: var(--color-primary-leaf);
+  color: var(--color-primary);
+  border-color: var(--color-accent-sprout);
 }
 
-/* Tombol Aksen Surya (Sun Accent) */
-.btn--accent {
-  background: linear-gradient(135deg, var(--color-accent-sun), #E76F51);
-  color: var(--color-neutral-white);
-  box-shadow: 0 4px 14px rgba(244, 162, 89, 0.35);
+/* Tombol Aksen Terracotta (Clay) — FLAT, bukan gradient oranye-pink */
+.btn--accent,
+.btn-utama {
+  background-color: var(--color-accent-clay);
+  color: var(--color-bg-cream, #FFF);
+  border: 1.5px solid var(--color-accent-clay);
+  box-shadow: 0 3px 10px rgba(160, 95, 56, 0.22);
 }
 
-.btn--accent:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 6px 20px rgba(244, 162, 89, 0.45);
+.btn--accent:hover,
+.btn-utama:hover {
+  background-color: var(--color-accent-clay-deep);
+  border-color: var(--color-accent-clay-deep);
+  box-shadow: 0 5px 16px rgba(160, 95, 56, 0.32);
   transform: translateY(-2px);
-  color: var(--color-neutral-white);
+  color: var(--color-bg-cream, #FFF);
+  filter: none;
 }
 
 /* Variasi Ukuran */
@@ -232,9 +239,11 @@
 }
 
 .hero__title-gradient {
-  background: linear-gradient(135deg, var(--color-primary-leaf), var(--color-accent-sprout));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-clay);
+  font-style: italic;
+  font-weight: 400;
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 .hero__desc {
@@ -254,25 +263,34 @@
 
 .hero__proof {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px dashed var(--color-neutral-stone);
+  gap: 0.85rem;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-neutral-stone);
   width: 100%;
 }
 
 .hero__proof-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-soil-light);
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-sekunder);
+  letter-spacing: 0.01em;
+}
+
+.hero__proof-item:not(:last-child)::after {
+  content: '·';
+  margin-left: 0.85rem;
+  color: var(--color-accent-clay);
+  font-weight: 700;
 }
 
 .hero__proof-item i {
-  color: var(--color-primary-leaf);
-  font-size: 14px;
+  color: var(--color-accent-sprout);
+  font-size: 13px;
 }
 
 /* Komposisi Visual Hero: Eco Digital Dashboard Card */
@@ -285,18 +303,16 @@
 
 .hero__visual-blob {
   position: absolute;
-  width: 120%;
-  height: 120%;
-  background: linear-gradient(135deg, rgba(116, 198, 157, 0.35), rgba(168, 218, 220, 0.4));
-  filter: blur(40px);
-  border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(circle, var(--color-accent-sprout) 0%, transparent 70%);
+  opacity: 0.08;
+  filter: blur(60px);
+  border-radius: 50%;
+  top: -5%;
+  right: -5%;
   z-index: 0;
-  animation: blob-float 10s ease-in-out infinite alternate;
-}
-
-@keyframes blob-float {
-  0% { transform: scale(0.95) rotate(0deg); }
-  100% { transform: scale(1.05) rotate(12deg); }
+  pointer-events: none;
 }
 
 .eco-card-preview {
@@ -304,12 +320,10 @@
   z-index: 1;
   width: 100%;
   max-width: 440px;
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 20px 40px rgba(27, 67, 50, 0.12);
-  border-radius: var(--radius-xl);
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-stone);
+  box-shadow: 0 16px 36px rgba(20, 38, 31, 0.07);
+  border-radius: var(--radius-sedang, 12px);
   padding: var(--space-4);
   overflow: hidden;
 }
@@ -471,19 +485,19 @@
 }
 
 .stat-card--urgency::before {
-  background: linear-gradient(90deg, var(--color-alert-warning), #F47255);
+  background: var(--color-alert-warning);
 }
 
 .stat-card--growth::before {
-  background: linear-gradient(90deg, var(--color-primary-leaf), var(--color-accent-sprout));
+  background: var(--color-primary-leaf);
 }
 
 .stat-card--clean::before {
-  background: linear-gradient(90deg, var(--color-accent-sky-dark), var(--color-accent-sky));
+  background: var(--color-accent-sky-dark);
 }
 
 .stat-card--smart::before {
-  background: linear-gradient(90deg, var(--color-accent-sun), var(--color-accent-sun-light));
+  background: var(--color-accent-clay);
 }
 
 .stat-card__top {
@@ -667,18 +681,24 @@
  * 7. CALL TO ACTION (CTA BANNER)
  * -------------------------------------------------------------------------- */
 .cta-banner {
-  background: linear-gradient(135deg, var(--color-primary-forest-dark) 0%, var(--color-primary-forest) 55%, var(--color-primary-leaf) 100%);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8) var(--space-5);
-  color: var(--color-neutral-white);
+  background-color: var(--color-primary-dark);
+  border-radius: var(--radius-tajam, 4px);
+  padding: var(--space-8) var(--space-6);
+  color: var(--color-bg-cream);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 48px rgba(27, 67, 50, 0.22);
+  border: 1px solid rgba(111, 166, 135, 0.15);
+  box-shadow: 0 16px 36px rgba(20, 38, 31, 0.2);
 }
 
 @media (min-width: 768px) {
   .cta-banner {
     padding: var(--space-10) var(--space-8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: left;
   }
 }
 
@@ -689,47 +709,59 @@
 }
 
 .cta-banner__decorative-circle--1 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(116, 198, 157, 0.25) 0%, transparent 70%);
-  top: -150px;
-  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, var(--color-accent-sprout) 0%, transparent 70%);
+  opacity: 0.05;
+  top: -20%;
+  right: -10%;
+  filter: blur(60px);
 }
 
 .cta-banner__decorative-circle--2 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(244, 162, 89, 0.18) 0%, transparent 70%);
-  bottom: -100px;
-  left: -50px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--color-accent-clay) 0%, transparent 70%);
+  opacity: 0.04;
+  bottom: -20%;
+  left: 20%;
+  filter: blur(60px);
 }
 
 .cta-banner__content {
   position: relative;
   z-index: 1;
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
+  max-width: 640px;
+  margin: 0;
+  text-align: left;
 }
 
 .cta-banner__badge {
+  display: inline-block;
   margin-bottom: var(--space-3);
-  background-color: rgba(255, 255, 255, 0.12);
-  color: var(--color-accent-sprout);
-  border: 1px solid rgba(116, 198, 157, 0.4);
+  background-color: transparent;
+  color: var(--color-accent-clay);
+  border: none;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0;
 }
 
 .cta-banner__title {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--color-neutral-white);
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  font-weight: 550;
+  color: var(--color-bg-cream);
   line-height: 1.2;
   margin-bottom: var(--space-3);
+  letter-spacing: -0.015em;
 }
 
 .cta-banner__desc {
   font-size: var(--font-size-md);
-  color: rgba(221, 229, 221, 0.9);
+  color: rgba(237, 232, 220, 0.85);
   margin-bottom: var(--space-6);
   line-height: var(--line-height-relaxed);
 }
@@ -737,14 +769,21 @@
 .cta-banner__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-3);
 }
 
 .cta-banner .btn--secondary {
   background-color: transparent;
-  color: var(--color-neutral-white);
-  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-bg-cream);
+  border-color: rgba(246, 243, 236, 0.35);
+}
+
+.cta-banner .btn--secondary:hover {
+  background-color: rgba(246, 243, 236, 0.1);
+  border-color: var(--color-bg-cream);
+  color: var(--color-bg-cream);
+}
 }
 
 .cta-banner .btn--secondary:hover {
@@ -1460,15 +1499,15 @@
 }
 
 .chart-bar-fill--user {
-  background: linear-gradient(90deg, var(--color-primary-leaf), var(--color-accent-sprout));
+  background-color: var(--color-primary-leaf);
 }
 
 .chart-bar-fill--national {
-  background: linear-gradient(90deg, var(--color-accent-sun), #E76F51);
+  background-color: var(--color-accent-clay);
 }
 
 .chart-bar-fill--target {
-  background: linear-gradient(90deg, var(--color-accent-sky-dark), var(--color-accent-sky));
+  background-color: var(--color-accent-sky-dark);
 }
 
 /* Recommendation Cards */
@@ -2627,16 +2666,16 @@
 }
 
 .eco-modal-btn-confirm.btn--danger {
-  background: linear-gradient(135deg, var(--color-alert-warning, #E76F51), #D9534F);
+  background: var(--color-alert-warning, #B85338);
   color: #FFFFFF;
   border: none;
-  box-shadow: 0 4px 14px rgba(231, 111, 81, 0.35);
+  box-shadow: 0 2px 8px rgba(184, 83, 56, 0.25);
 }
 
 .eco-modal-btn-confirm.btn--danger:hover {
-  background: linear-gradient(135deg, #DF5E3F, #C9302C);
+  background: #9E3E26;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(231, 111, 81, 0.45);
+  box-shadow: 0 4px 12px rgba(184, 83, 56, 0.35);
 }
 
 @media (max-width: 480px) {

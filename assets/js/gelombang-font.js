@@ -76,8 +76,8 @@
     { passive: true }
   );
 
-  const BOBOT_ISTIRAHAT = 700; // sama dengan ketebalan heading normal di situs
-  const BOBOT_PUNCAK = 800;    // ketebalan maksimal saat gelombang melintas (batas atas axis Sora)
+  const BOBOT_ISTIRAHAT = 500; // ketebalan istirahat elegan medium Fraunces
+  const BOBOT_PUNCAK = 700;    // ketebalan maksimal saat gelombang melintas (batas axis Fraunces)
   const LEBAR_GELOMBANG = 6;   // berapa huruf yang terpengaruh gelombang sekaligus
 
   if (prefersReducedMotion) {
