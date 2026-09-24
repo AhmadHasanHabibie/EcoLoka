@@ -26,8 +26,12 @@
 @media (max-width: 768px) {
   .filosofi-book {
     grid-template-columns: 1fr;
-    perspective: 1400px;
+    perspective: none;
     gap: var(--space-6, 32px);
+  }
+
+  .filosofi-book__page {
+    transform-origin: center center;
   }
 }
 

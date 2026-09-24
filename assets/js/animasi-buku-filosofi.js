@@ -108,17 +108,35 @@
     return;
   }
 
-  function updateBook(progress) {
-    const eased = ScrollUtils.easeOutCubic(progress);
-
+  function updateBook(rawProgress) {
     if (isSingleColumnLayout()) {
-      pageKiri.style.transform = `rotateY(${ScrollUtils.lerp(40, 0, eased).toFixed(2)}deg)`;
-      pageKanan.style.transform = `rotateY(${ScrollUtils.lerp(-40, 0, eased).toFixed(2)}deg)`;
+      // Pada mobile (1 kolom vertikal):
+      // Ukur posisi aktual pageKiri dan pageKanan secara mandiri.
+      // Begitu halaman mulai masuk ke layar (arrived ~120px), animasi selesai tuntas 100% (rotateY: 0deg).
+      // Sehingga saat pengguna sampai dan membaca heading atau paragraf, animasinya SUDAH SELESAI.
+      const vh = ScrollUtils.getTinggiViewportAktual();
+      const rectKiri = pageKiri.getBoundingClientRect();
+      const progKiriRaw = (vh - rectKiri.top) / 120;
+      const progKiri = Math.max(0, Math.min(1, progKiriRaw));
+      const rotKiri = ScrollUtils.lerp(12, 0, ScrollUtils.easeOutCubic(progKiri));
+      pageKiri.style.transform = `rotateY(${rotKiri.toFixed(2)}deg)`;
+
+      const rectKanan = pageKanan.getBoundingClientRect();
+      const progKananRaw = (vh - rectKanan.top) / 120;
+      const progKanan = Math.max(0, Math.min(1, progKananRaw));
+      const rotKanan = ScrollUtils.lerp(-12, 0, ScrollUtils.easeOutCubic(progKanan));
+      pageKanan.style.transform = `rotateY(${rotKanan.toFixed(2)}deg)`;
+
       if (spine) {
-        spine.style.opacity = ScrollUtils.lerp(1, 0, Math.min(progress / 0.4, 1)).toFixed(2);
+        spine.style.opacity = '0';
       }
       return;
     }
+
+    const progress = (rawProgress !== undefined && rawProgress !== null)
+      ? rawProgress
+      : ScrollUtils.calculateViewportProgress(section, 0.5);
+    const eased = ScrollUtils.easeOutCubic(progress);
 
     const rotateKiri = ScrollUtils.lerp(65, 0, eased);
     const rotateKanan = ScrollUtils.lerp(-65, 0, eased);
@@ -166,7 +184,12 @@
   }
 
   ScrollUtils.bindScrollProgress(section, updateBook, 0.5);
-  updateBook(ScrollUtils.calculateViewportProgress(section, 0.5));
+  updateBook();
+
+  // Dengarkan event resize visualViewport khusus Android Chrome
+  document.addEventListener('viewportBerubah', () => {
+    updateBook();
+  }, { passive: true });
 
   let resizeTimer;
   window.addEventListener('resize', () => {
@@ -178,6 +201,7 @@
       } else if (flyingElements.length === 0) {
         buildFlyingWords();
       }
+      updateBook();
     }, 200);
   });
 })();
