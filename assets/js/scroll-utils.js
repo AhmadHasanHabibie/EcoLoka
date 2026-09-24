@@ -12,9 +12,19 @@
 const ScrollUtils = {
   /**
    * Menghitung progress (0..1) berdasarkan jarak titik tengah elemen
-   * terhadap titik target viewport. progress = 1 saat titik tengah elemen
-   * tepat berada di titik target layar. Nilai di-clamp agar stabil setelah
-   * elemen melewati titik target (hasil akhir animasi tetap terkunci rapi).
+  /**
+   * Mengambil tinggi viewport yang benar-benar aktual secara real-time.
+   * visualViewport.height selalu memperhitungkan address bar mobile yang collapse/expand.
+   */
+  getTinggiViewportAktual() {
+    return (typeof window !== 'undefined' && window.visualViewport && window.visualViewport.height)
+      ? window.visualViewport.height
+      : (typeof window !== 'undefined' ? window.innerHeight : 800);
+  },
+
+  /**
+   * Menghitung progress (0..1) berdasarkan jarak titik tengah elemen
+   * terhadap titik target viewport secara real-time & anti-NaN.
    * 
    * @param {HTMLElement} element - Elemen DOM yang dihitung posisinya
    * @param {number} targetViewportFraction - Fraksi tinggi viewport (default 0.5 = tengah layar)
@@ -23,8 +33,10 @@ const ScrollUtils = {
   calculateViewportProgress(element, targetViewportFraction = 0.5) {
     if (!element) return 0;
     const rect = element.getBoundingClientRect();
+    if (rect.height === 0) return 0; // Guard elemen belum ter-render
+
+    const viewportHeight = ScrollUtils.getTinggiViewportAktual();
     const elementCenterY = rect.top + rect.height / 2;
-    const viewportHeight = window.innerHeight;
     const targetY = viewportHeight * targetViewportFraction;
 
     const totalTravel = viewportHeight - targetY;
@@ -33,7 +45,8 @@ const ScrollUtils = {
     const traveled = viewportHeight - elementCenterY;
     const progress = traveled / totalTravel;
 
-    return Math.max(0, Math.min(1, progress));
+    const clamped = Math.max(0, Math.min(1, progress));
+    return Number.isFinite(clamped) ? clamped : 0;
   },
 
   /**
@@ -129,7 +142,7 @@ const ScrollUtils = {
    * Gerbang visibilitas: animasi HANYA berjalan ketika elemen berada
    * di dalam viewport (+ margin buffer), dan berhenti total saat di luar layar.
    */
-  pasangGerbangVisibilitas(elemen, mulaiFn, hentikanFn, margin = '20% 0px 20% 0px') {
+  pasangGerbangVisibilitas(elemen, mulaiFn, hentikanFn, margin = '35% 0px 35% 0px') {
     if (!('IntersectionObserver' in window)) {
       mulaiFn();
       return null;
@@ -144,7 +157,7 @@ const ScrollUtils = {
           }
         });
       },
-      { rootMargin: margin }
+      { rootMargin: margin, threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
     );
     observer.observe(elemen);
     return observer;
@@ -197,20 +210,27 @@ const ScrollUtils = {
       }
     }
 
+    function onViewportChange() {
+      onScroll();
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             window.addEventListener('scroll', onScroll, { passive: true });
             window.addEventListener('resize', onScroll, { passive: true });
+            document.addEventListener('viewportBerubah', onViewportChange, { passive: true });
             onScroll(); // Panggil segera saat masuk viewport
           } else {
             window.removeEventListener('scroll', onScroll);
             window.removeEventListener('resize', onScroll);
+            document.removeEventListener('viewportBerubah', onViewportChange);
 
             // Clamping batas jika pengguna menggulir cepat (flick scroll)
             const rect = element.getBoundingClientRect();
-            if (rect.top > window.innerHeight) {
+            const vh = ScrollUtils.getTinggiViewportAktual();
+            if (rect.top > vh) {
               callback(0); // Berada di bawah layar -> state awal
             } else if (rect.bottom < 0) {
               callback(1); // Berada di atas layar -> state akhir
@@ -218,7 +238,7 @@ const ScrollUtils = {
           }
         });
       },
-      { rootMargin: '20% 0px 20% 0px' }
+      { rootMargin: '35% 0px 35% 0px', threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
     );
 
     observer.observe(element);
@@ -266,5 +286,21 @@ const ScrollUtils = {
     observer.observe(element);
   }
 };
+
+/**
+ * Address bar collapse/expand di Chrome Android memicu event resize
+ * pada visualViewport. Listener ini memancarkan event kustom 'viewportBerubah'
+ * agar seluruh animasi langsung menyesuaikan secara real-time tanpa jeda.
+ */
+if (typeof window !== 'undefined' && window.visualViewport) {
+  window.visualViewport.addEventListener(
+    'resize',
+    ScrollUtils.debounce(() => {
+      document.dispatchEvent(new CustomEvent('viewportBerubah'));
+    }, 100),
+    { passive: true }
+  );
+}
+
 
 

@@ -1,22 +1,18 @@
 /**
  * ==========================================================================
- * ECOLOKA — ANIMASI KARTU STATISTIK ("MEMBAGIKAN KARTU REMI")
- * Fitur: Card Deal + 3D Flip Reveal, Natural Scroll Flow
+ * ECOLOKA — ANIMASI KARTU STATISTIK (animasi-kartu-statistik.js)
+ * Fitur: Card Deal + 3D Flip Reveal (Desktop) & Per-Card Fade/Slide (Mobile)
  * Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
  * Subtema: "Going Green Through Smart Digital Solutions"
  * Arsitektur: 100% Client-Side Vanilla JavaScript (Zero External Library)
  * ==========================================================================
  * 
- * MEKANISME TEKNIS:
- * 1. State Awal: Keempat kartu berada dalam satu "tumpukan kartu remi"
- *    menghadap belakang (rotateY 180deg) di posisi kartu pertama dengan
- *    sedikit rotasi acak organik (-6deg, -2deg, 3deg, 7deg).
- * 2. Card Deal + Flip: Begitu section memasuki viewport, kartu meluncur
- *    satu per satu (staggered 0.12) ke posisi grid aslinya sambil membalik
- *    ke sisi depan (rotateY 0deg) dan meluruskan rotasi Z.
- * 3. 100% Natural Scroll: Mengalir normal tanpa penahanan/pinning.
- * 4. Fallback Mobile: Transisi disederhanakan menjadi fade + slide-up demi
- *    kelancaran 60fps di perangkat layar kecil.
+ * PERBAIKAN BUG MOBILE:
+ * 1. Di mobile (< 768px), kalkulasi progress DIUBAH MENJADI PER-KARTU (independen),
+ *    bukan per-grid. Ini mencegah kartu "19,4 Juta" dsb. macet di opacity 0.1/pudar
+ *    karena grid 1 kolom yang sangat tinggi di mobile.
+ * 2. Menggunakan ScrollUtils.getTinggiViewportAktual() & pivot adaptif (0.42).
+ * 3. Mendengarkan event 'viewportBerubah' saat address bar Chrome Android collapse/expand.
  */
 
 (function () {
@@ -30,14 +26,12 @@
     const cards = Array.from(section.querySelectorAll('.stat-card-flip'));
     if (cards.length === 0) return;
 
-    // Rotasi acak-organik per kartu untuk kesan tumpukan kartu remi manusiawi
     const STACK_ROTATIONS = [-6, -2, 3, 7];
     const STAGGER_PER_CARD = 0.12;
     const isMobile = () => window.innerWidth < 768;
 
     /**
      * Menghitung offset jarak kartu terhadap tumpukan (posisi kartu pertama)
-     * Menggunakan .stat-card-wrap agar stabil bebas dari transform feedback loop.
      */
     function getStackOffset(index) {
       if (wraps.length === 0) return { x: 0, y: 0 };
@@ -50,26 +44,14 @@
       };
     }
 
-    function updateCards(overallProgress) {
-      const mobile = isMobile();
-
+    // DESKTOP / TABLET (>= 768px): Card Deal + 3D Flip Reveal berbasis grid
+    function updateCardsDesktop(overallProgress) {
       cards.forEach((card, index) => {
         const startDelay = index * STAGGER_PER_CARD;
-        // Progress khusus per kartu, dijamin mencapai 1 saat overallProgress = 1
         let cardProgress = (overallProgress - startDelay) / (1 - startDelay || 1);
         cardProgress = Math.max(0, Math.min(1, cardProgress));
         const easedProgress = ScrollUtils.easeOutCubic(cardProgress);
 
-        if (mobile) {
-          // Fallback Mobile: Fade + slide-up performan
-          const translateY = ScrollUtils.lerp(24, 0, easedProgress);
-          card.style.transform = `translateY(${translateY}px)`;
-          card.style.opacity = easedProgress;
-          card.style.zIndex = 1;
-          return;
-        }
-
-        // Desktop / Tablet: Card Deal + 3D Flip Reveal
         card.style.opacity = 1;
         const offset = getStackOffset(index);
         const rotateStack = STACK_ROTATIONS[index % STACK_ROTATIONS.length];
@@ -77,28 +59,59 @@
         const x = ScrollUtils.lerp(offset.x, 0, easedProgress);
         const y = ScrollUtils.lerp(offset.y, 0, easedProgress);
         const rotateZ = ScrollUtils.lerp(rotateStack, 0, easedProgress);
-        const rotateY = ScrollUtils.lerp(180, 0, easedProgress); // 180 (belakang) -> 0 (depan)
+        const rotateY = ScrollUtils.lerp(180, 0, easedProgress);
         const scale = ScrollUtils.lerp(0.92, 1, easedProgress);
 
         card.style.transform = `translate(${x}px, ${y}px) rotateZ(${rotateZ}deg) rotateY(${rotateY}deg) scale(${scale})`;
-
-        // z-index dinamis: kartu di atas tumpukan tampil di depan selama proses deal
         card.style.zIndex = cardProgress < 1 ? cards.length - index : 1;
       });
     }
 
-    // Registrasi listener scroll via shared utility (target tengah layar = 0.5)
-    ScrollUtils.bindScrollProgress(section, updateCards, 0.5);
+    // MOBILE (< 768px): Independen per kartu — SETIAP kartu memantau posisinya sendiri!
+    // Dijamin 100% opacity = 1 saat kartu mencapai pivot adaptif
+    wraps.forEach((wrap, index) => {
+      const card = cards[index];
+      if (!card) return;
 
-    // Recalculate saat resize (debounced) agar posisi offset tumpukan selalu presisi
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const progress = ScrollUtils.calculateViewportProgress(section, 0.5);
-        updateCards(progress);
-      }, 150);
+      function updateSingleCard(progress) {
+        if (!isMobile()) return; // Abaikan jika mode desktop sedang aktif
+        const eased = ScrollUtils.easeOutCubic(progress);
+        const translateY = ScrollUtils.lerp(20, 0, eased);
+        card.style.transform = `translateY(${translateY}px)`;
+        // Pastikan solid penuh (opacity 1) saat mendekati pivot
+        card.style.opacity = progress >= 0.85 ? 1 : Math.max(0.2, eased);
+        card.style.zIndex = 1;
+      }
+
+      ScrollUtils.bindScrollProgress(wrap, updateSingleCard, ScrollUtils.dapatkanPivotAdaptif());
     });
+
+    // Desktop grid listener
+    ScrollUtils.bindScrollProgress(section, (progress) => {
+      if (!isMobile()) {
+        updateCardsDesktop(progress);
+      }
+    }, 0.5);
+
+    // Recalculate saat resize (debounced)
+    window.addEventListener(
+      'resize',
+      ScrollUtils.debounce(() => {
+        if (!isMobile()) {
+          const progress = ScrollUtils.calculateViewportProgress(section, 0.5);
+          updateCardsDesktop(progress);
+        }
+      }, 150),
+      { passive: true }
+    );
+
+    // Dengarkan event resize visualViewport khusus Android Chrome
+    document.addEventListener('viewportBerubah', () => {
+      if (!isMobile()) {
+        const progress = ScrollUtils.calculateViewportProgress(section, 0.5);
+        updateCardsDesktop(progress);
+      }
+    }, { passive: true });
   }
 
   if (document.readyState === 'loading') {

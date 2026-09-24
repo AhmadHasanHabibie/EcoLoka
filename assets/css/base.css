@@ -49,6 +49,7 @@ html, body {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-family-body);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);

@@ -275,6 +275,7 @@
     width: 82%;
     max-width: 360px;
     height: 100vh;
+    height: 100dvh;
     background-color: var(--color-neutral-white);
     box-shadow: -10px 0 30px rgba(27, 67, 50, 0.12);
     padding: calc(var(--header-height) + var(--space-3)) var(--space-4) var(--space-6);
@@ -334,6 +335,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background-color: rgba(27, 67, 50, 0.35);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -354,6 +356,7 @@
 .main-content {
   padding-top: var(--header-height);
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .section {

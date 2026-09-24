@@ -144,10 +144,16 @@
     });
 
     // --- SINKRONISASI KARTU PILAR (SINKRON 1:1 DENGAN TAHAP POHON) ---
+    const isMobile = window.innerWidth < 768;
     const segmentProgress = [progressAkar, progressBatang, progressTajuk];
     pilarCards.forEach((card, index) => {
       if (!card) return;
-      const p = ScrollUtils.easeOutCubic(segmentProgress[index]);
+      let p = ScrollUtils.easeOutCubic(segmentProgress[index]);
+      if (isMobile) {
+        // Pada mobile, perhitungkan juga posisi card aktual agar solid saat berada di tengah layar
+        const cardProg = ScrollUtils.hitungProgress(card);
+        p = Math.max(p, cardProg);
+      }
       card.style.opacity = p;
       card.style.transform = `translateX(${ScrollUtils.lerp(24, 0, p)}px)`;
 

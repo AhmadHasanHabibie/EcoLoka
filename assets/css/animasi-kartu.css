@@ -1,6 +1,11 @@
 /* ==========================================================================
+   BREAKPOINT ACUAN (jangan menyimpang):
+   360px | 480px | 768px | 1024px | 1280px | 1440px
+   ========================================================================== */
+
+/* ==========================================================================
    ECOLOKA — ANIMASI KARTU STATISTIK (animasi-kartu.css)
-   Fitur: Card Deal + 3D Flip Reveal ("Membagikan Kartu Remi")
+   Fitur: Card Deal + 3D Flip Reveal (Desktop) & Layout Fleksibel Anti-Potong (Mobile)
    Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
    Arsitektur: 100% Client-Side Vanilla CSS (Zero External Animation Library)
    ========================================================================== */
@@ -40,7 +45,7 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow: visible; /* Diubah dari hidden agar teks tidak terpotong */
 }
 
 /* SISI DEPAN (Muka Data Asli) */
@@ -49,7 +54,7 @@
   z-index: 2;
 }
 
-/* Memastikan kartu asli mengisi penuh muka depan tanpa celah */
+/* Memastikan kartu asli mengisi penuh muka depan */
 .stat-card-face--front.stat-card {
   position: absolute;
   inset: 0;
@@ -73,6 +78,7 @@
   box-shadow: var(--shadow-md);
   z-index: 1;
   user-select: none;
+  overflow: hidden; /* Watermark dekoratif belakang boleh overflow hidden */
 }
 
 /* Bingkai dekoratif klasik ala punggung kartu remi */
@@ -102,7 +108,44 @@
 }
 
 /* --------------------------------------------------------------------------
- * 4. KEPATUHAN AKSESIBILITAS: PREFERS-REDUCED-MOTION
+ * 4. OPTIMASI RESPONSIVITAS MOBILE (< 768px)
+ * --------------------------------------------------------------------------
+ * Pada mobile, sisi belakang dihilangkan, kartu depan kembali ke normal flow
+ * (position: relative), dan tinggi container fleksibel (height: auto)
+ * sehingga SELURUH teks (angka, judul, deskripsi, sumber) tampil utuh 100%.
+ */
+@media (max-width: 767px) {
+  .stat-card-wrap {
+    height: auto;
+  }
+
+  .stat-card-flip {
+    height: auto;
+    min-height: auto;
+    transform: none;
+  }
+
+  .stat-card-face {
+    position: relative;
+    inset: auto;
+    overflow: visible;
+  }
+
+  .stat-card-face--front.stat-card {
+    position: relative;
+    inset: auto;
+    height: auto;
+    min-height: clamp(240px, 32vw, 300px);
+    overflow: visible;
+  }
+
+  .stat-card-face--back {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 5. KEPATUHAN AKSESIBILITAS: PREFERS-REDUCED-MOTION
  * -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .stat-card-flip {
