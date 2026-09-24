@@ -39,7 +39,7 @@ function initEducationHub() {
       waktu_baca: '4 menit',
       ikon: 'fa-solid fa-recycle',
       tanggal: '18 September 2026',
-      konten_lengkap: 'Sampah organik seperti sisa sayur, kulit buah, dan dedaunan sering kali berakhir di Tempat Pembuangan Akhir (TPA) dalam kondisi anaerobik (tanpa oksigen), sehingga melepaskan gas metana (CH₄) yang memiliki potensi pemanasan global 28 kali lebih kuat daripada karbon dioksida.\n\n### Langkah Pembuatan Kompos Ember:\n1. **Sediakan Wadah Berpori:** Gunakan ember bekas cat 20 liter yang dilubangi kecil di bagian dasar dan samping untuk aerasi.\n2. **Keseimbangan Karbon dan Nitrogen:** Campurkan bahan hijau kaya nitrogen (sisa sayuran) dan bahan cokelat kaya karbon (sekam padi, serbuk kayu, atau daun kering) dengan perbandingan 1:2.\n3. **Aktivator Alami:** Tambahkan sedikit tanah subur atau bioaktivator EM4 yang dilarutkan air gula merah.\n4. **Pengadukan Rutin:** Aduk seminggu sekali untuk menjaga pasokan oksigen.\n\nDalam waktu 4–6 minggu, kompos matang berwarna cokelat gelap kehitaman beraroma tanah hutan siap menyuburkan tanaman tanpa pupuk kimia sintetis.'
+      konten_lengkap: 'Sampah organik seperti sisa sayur, kulit buah, dan dedaunan sering kali berakhir di Tempat Pembuangan Akhir (TPA) dalam kondisi anaerobik (tanpa oksigen), sehingga melepaskan gas metana (CH₄) yang memiliki potensi pemanasan global 28 kali lebih kuat daripada karbon dioksida.\n\n### Langkah Pembuatan Kompos Ember:\n\n1. Sediakan Wadah Berpori: Gunakan ember bekas cat 20 liter yang dilubangi kecil di bagian dasar dan samping untuk aerasi.\n2. Keseimbangan Karbon dan Nitrogen: Campurkan bahan hijau kaya nitrogen (sisa sayuran) dan bahan cokelat kaya karbon (sekam padi, serbuk kayu, atau daun kering) dengan perbandingan 1:2.\n3. Aktivator Alami: Tambahkan sedikit tanah subur atau bioaktivator EM4 yang dilarutkan air gula merah.\n4. Pengadukan Rutin: Aduk seminggu sekali untuk menjaga pasokan oksigen.\n\nDalam waktu 4–6 minggu, kompos matang berwarna cokelat gelap kehitaman beraroma tanah hutan siap menyuburkan tanaman tanpa pupuk kimia sintetis.'
     },
     {
       id: 'audit-energi-elektronik',
@@ -50,7 +50,7 @@ function initEducationHub() {
       waktu_baca: '3 menit',
       ikon: 'fa-solid fa-bolt',
       tanggal: '15 September 2026',
-      konten_lengkap: 'Banyak dari kita mengira bahwa mematikan televisi, komputer, atau charger smartphone melalui remote atau sakelar perangkat sudah cukup. Namun pada kenyataannya, fenomena *vampire draw* atau *phantom load* tetap menyedot listrik selama steker terhubung ke stopkontak dinding.\n\n### Strategi Memotong Emisi Siaga:\n- **Gunakan Stopkontak Bersakelar:** Kelompokkan peralatan hiburan (TV, konsol, decoder) dalam satu colokan bersakelar master agar bisa dimatikan serentak dalam satu klik.\n- **Cabut Pengisi Daya:** Charger laptop dan HP yang dibiarkan menancap tetap mengonsumsi daya rata-rata 0,26 hingga 1,5 Watt terus-menerus.\n- **Atur Mode Hemat Daya:** Aktifkan pengaturan otomatis tidur (*sleep mode*) pada monitor setelah 5 menit tidak digunakan.\n\nDengan memutus daya siaga, sebuah rumah tangga dapat memangkas sekitar 80–120 kg emisi CO₂ setiap tahunnya tanpa mengurangi kenyamanan hidup.'
+      konten_lengkap: 'Banyak dari kita mengira bahwa mematikan televisi, komputer, atau charger smartphone melalui remote atau sakelar perangkat sudah cukup. Namun pada kenyataannya, fenomena vampire draw atau phantom load tetap menyedot listrik selama steker terhubung ke stopkontak dinding.\n\n### Strategi Memotong Emisi Siaga:\n\n- Gunakan Stopkontak Bersakelar: Kelompokkan peralatan hiburan (TV, konsol, decoder) dalam satu colokan bersakelar master agar bisa dimatikan serentak dalam satu klik.\n- Cabut Pengisi Daya: Charger laptop dan HP yang dibiarkan menancap tetap mengonsumsi daya rata-rata 0,26 hingga 1,5 Watt terus-menerus.\n- Atur Mode Hemat Daya: Aktifkan pengaturan otomatis tidur (sleep mode) pada monitor setelah 5 menit tidak digunakan.\n\nDengan memutus daya siaga, sebuah rumah tangga dapat memangkas sekitar 80–120 kg emisi CO₂ setiap tahunnya tanpa mengurangi kenyamanan hidup.'
     },
     {
       id: 'konsumsi-pangan-lokal',
@@ -61,7 +61,7 @@ function initEducationHub() {
       waktu_baca: '5 menit',
       ikon: 'fa-solid fa-apple-whole',
       tanggal: '12 September 2026',
-      konten_lengkap: 'Konsep *food miles* mengukur jarak yang ditempuh bahan makanan sebelum sampai ke tangan konsumen. Buah-buahan impor sering kali diterbangkan melintasi benua dan disimpan dalam ruang pendingin intensif energi selama berminggu-minggu.\n\n### Manfaat Pangan Lokal Nusantara:\n1. **Pereduksian Jejak Logistik:** Sayur mayur dari petani lokal di daerah sendiri hanya menempuh jarak puluhan kilometer, menghemat bahan bakar solar distribusi secara drastis.\n2. **Kandungan Nutrisi Lebih Segar:** Pangan yang dipanen saat matang alami di pohon tidak membutuhkan zat lilin pengawet dan perlakuan kimiawi paska-panen.\n3. **Mendukung Ekonomi Petani Domestik:** Perputaran uang tetap berada di komunitas lokal, memperkuat ketahanan pangan nasional.\n\nMulailah dengan gerakan \'Satu Hari Pangan Lokal\' setiap minggu dan prioritaskan sayuran musim setempat di pasar tradisional.'
+      konten_lengkap: 'Konsep food miles mengukur jarak yang ditempuh bahan makanan sebelum sampai ke tangan konsumen. Buah-buahan impor sering kali diterbangkan melintasi benua dan disimpan dalam ruang pendingin intensif energi selama berminggu-minggu.\n\n### Manfaat Pangan Lokal Nusantara:\n\n1. Pereduksian Jejak Logistik: Sayur mayur dari petani lokal di daerah sendiri hanya menempuh jarak puluhan kilometer, menghemat bahan bakar solar distribusi secara drastis.\n2. Kandungan Nutrisi Lebih Segar: Pangan yang dipanen saat matang alami di pohon tidak membutuhkan zat lilin pengawet dan perlakuan kimiawi paska-panen.\n3. Mendukung Ekonomi Petani Domestik: Perputaran uang tetap berada di komunitas lokal, memperkuat ketahanan pangan nasional.\n\nMulailah dengan gerakan \'Satu Hari Pangan Lokal\' setiap minggu dan prioritaskan sayuran musim setempat di pasar tradisional.'
     },
     {
       id: 'konservasi-air-hujan',
@@ -72,7 +72,7 @@ function initEducationHub() {
       waktu_baca: '4 menit',
       ikon: 'fa-solid fa-droplet',
       tanggal: '10 September 2026',
-      konten_lengkap: 'Krisis air bersih dan penurunan muka air tanah di kota-kota besar di Indonesia dapat diredam jika setiap rumah tangga menerapkan penampungan air hujan mandiri.\n\n### Komponen Instalasi Sederhana:\n- **Talang Atap Bersih:** Pastikan talang air atap rutin dibersihkan dari daun gugur dan debu.\n- **Filter Saringan Pertama (First Flush Diverter):** Buang aliran air hujan pada 10 menit pertama yang mengandung debu permukaan atap.\n- **Toren Tertutup & Saringan Kasa:** Tampung air pada tangki tertutup berpenyaring jaring halus guna mencegah jentik nyamuk.\n\nAir hujan memiliki pH netral dan bebas klorin, menjadikannya sangat ideal untuk kesehatan tanaman pekarangan dan menghemat pemakaian listrik pompa air hingga 30%.'
+      konten_lengkap: 'Krisis air bersih dan penurunan muka air tanah di kota-kota besar di Indonesia dapat diredam jika setiap rumah tangga menerapkan penampungan air hujan mandiri.\n\n### Komponen Instalasi Sederhana:\n\n- Talang Atap Bersih: Pastikan talang air atap rutin dibersihkan dari daun gugur dan debu.\n- Filter Saringan Pertama (First Flush Diverter): Buang aliran air hujan pada 10 menit pertama yang mengandung debu permukaan atap.\n- Toren Tertutup & Saringan Kasa: Tampung air pada tangki tertutup berpenyaring jaring halus guna mencegah jentik nyamuk.\n\nAir hujan memiliki pH netral dan bebas klorin, menjadikannya sangat ideal untuk kesehatan tanaman pekarangan dan menghemat pemakaian listrik pompa air hingga 30%.'
     },
     {
       id: 'bijak-plastik-sekali-pakai',
@@ -83,7 +83,7 @@ function initEducationHub() {
       waktu_baca: '4 menit',
       ikon: 'fa-solid fa-bag-shopping',
       tanggal: '07 September 2026',
-      konten_lengkap: 'Indonesia menghasilkan sekitar 7,2 juta ton sampah plastik per tahun. Plastik konvensional membutuhkan 450 tahun untuk terurai, dan selama proses itu terpecah menjadi partikel mikroplastik berbahaya yang masuk ke rantai makanan manusia.\n\n### 5 Perlengkapan Starter Pack Zero-Waste:\n1. **Tumbler Stainless Steel:** Menggantikan rata-rata 160 botol plastik sekali pakai per orang setiap tahunnya.\n2. **Tas Kain Lipat (Tote Bag):** Selalu simpan di dalam tas sekolah atau kerja untuk belanja dadakan.\n3. **Alat Makan Bambu / Logam:** Tolak sendok dan garpu plastik saat memesan makanan bawa pulang (*takeaway*).\n4. **Sedotan Silikon / Stainless:** Hindari sedotan plastik yang sering kali berakhir melukai satwa laut.\n5. **Wadah Makanan Kaca / Kotak Bekal:** Bawa wadah sendiri saat membeli jajanan pasar atau makanan berkuah.'
+      konten_lengkap: 'Indonesia menghasilkan sekitar 7,2 juta ton sampah plastik per tahun. Plastik konvensional membutuhkan 450 tahun untuk terurai, dan selama proses itu terpecah menjadi partikel mikroplastik berbahaya yang masuk ke rantai makanan manusia.\n\n### 5 Perlengkapan Starter Pack Zero-Waste:\n\n1. Tumbler Stainless Steel: Menggantikan rata-rata 160 botol plastik sekali pakai per orang setiap tahunnya.\n2. Tas Kain Lipat (Tote Bag): Selalu simpan di dalam tas sekolah atau kerja untuk belanja dadakan.\n3. Alat Makan Bambu / Logam: Tolak sendok dan garpu plastik saat memesan makanan bawa pulang (takeaway).\n4. Sedotan Silikon / Stainless: Hindari sedotan plastik yang sering kali berakhir melukai satwa laut.\n5. Wadah Makanan Kaca / Kotak Bekal: Bawa wadah sendiri saat membeli jajanan pasar atau makanan berkuah.'
     },
     {
       id: 'prinsip-ekologi-digital',
@@ -94,7 +94,7 @@ function initEducationHub() {
       waktu_baca: '3 menit',
       ikon: 'fa-solid fa-cloud',
       tanggal: '03 September 2026',
-      konten_lengkap: 'Setiap email yang tersimpan di cloud membutuhkan daya listrik 24/7 di server raksasa data center untuk pendinginan dan penyimpanan cadangan. Mengirim satu email dengan lampiran berat menghasilkan sekitar 50 gram emisi CO₂ setara berkendara mobil sejauh 200 meter.\n\n### Aksi Kebersihan Digital (Digital Clean-up):\n- **Hapus Newsletter yang Tidak Terbaca:** Berhenti berlangganan (*unsubscribe*) email promosi yang menumpuk di kotak masuk.\n- **Bersihkan Cloud Storage:** Hapus video dan foto buram berkualitas ganda dari Google Drive atau iCloud.\n- **Turunkan Kualitas Streaming Musik/Video:** Saat hanya mendengarkan podcast, turunkan resolusi video ke 480p atau pilih audio mode hemat kuota.\n\nDigital cleaning adalah contoh nyata dari *Smart Digital Solutions*: menggunakan kesadaran digital untuk melindungi kelestarian fisik bumi.'
+      konten_lengkap: 'Setiap email yang tersimpan di cloud membutuhkan daya listrik 24/7 di server raksasa data center untuk pendinginan dan penyimpanan cadangan. Mengirim satu email dengan lampiran berat menghasilkan sekitar 50 gram emisi CO₂ setara berkendara mobil sejauh 200 meter.\n\n### Aksi Kebersihan Digital (Digital Clean-up):\n\n- Hapus Newsletter yang Tidak Terbaca: Berhenti berlangganan (unsubscribe) email promosi yang menumpuk di kotak masuk.\n- Bersihkan Cloud Storage: Hapus video dan foto buram berkualitas ganda dari Google Drive atau iCloud.\n- Turunkan Kualitas Streaming Musik/Video: Saat hanya mendengarkan podcast, turunkan resolusi video ke 480p atau pilih audio mode hemat kuota.\n\nDigital cleaning adalah contoh nyata dari Smart Digital Solutions: menggunakan kesadaran digital untuk melindungi kelestarian fisik bumi.'
     }
   ];
 
@@ -264,30 +264,103 @@ function initEducationHub() {
     }
   });
 
-  // Parser konten sederhana
+  // Helper: Format teks inline, hilangkan semua asteris markdown **, ubah sub-judul jadi strong
+  function formatInlineText(str) {
+    if (!str) return '';
+    let safe = escapeHtml(str);
+    // Ubah markdown bold **text** menjadi <strong>text</strong>
+    safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    safe = safe.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    // Hilangkan semua tanda bintang liar/sisa (ai formatting residue)
+    safe = safe.replace(/\*\*/g, '').replace(/\*/g, '');
+
+    // Jika belum memiliki <strong> dan memiliki pola "Judul: Deskripsi", beri penekanan pada label
+    if (!safe.includes('<strong>') && safe.includes(': ')) {
+      const colonIdx = safe.indexOf(': ');
+      if (colonIdx > 0 && colonIdx < 45) {
+        const label = safe.slice(0, colonIdx);
+        const desc = safe.slice(colonIdx + 2);
+        safe = `<strong>${label}:</strong> ${desc}`;
+      }
+    }
+    return safe;
+  }
+
+  // Parser konten modul edukasi yang bersih, terstruktur, dan bebas markdown kasar
   function formatArticleContent(text) {
     if (!text) return '';
-    const paragraphs = text.split('\n\n');
-    return paragraphs.map(p => {
-      let trimmed = p.trim();
+
+    let lines = text.replace(/\r\n/g, '\n').split('\n');
+    let html = '';
+    let currentList = null;
+    let currentParagraph = [];
+
+    function flushParagraph() {
+      if (currentParagraph.length > 0) {
+        let paraText = currentParagraph.join(' ').trim();
+        if (paraText) {
+          html += `<p style="margin-bottom: 16px; line-height: 1.7; color: var(--color-neutral-soil-light);">${formatInlineText(paraText)}</p>`;
+        }
+        currentParagraph = [];
+      }
+    }
+
+    function flushList() {
+      if (currentList) {
+        html += `</${currentList}>`;
+        currentList = null;
+      }
+    }
+
+    lines.forEach(line => {
+      let trimmed = line.trim();
+
+      if (!trimmed) {
+        flushParagraph();
+        flushList();
+        return;
+      }
+
       if (trimmed.startsWith('### ')) {
-        return `<h3 style="color: var(--color-primary-forest); font-size: 1.15rem; font-weight: 700; margin: 20px 0 10px;">${escapeHtml(trimmed.replace('### ', ''))}</h3>`;
+        flushParagraph();
+        flushList();
+        const headingText = trimmed.replace(/^###\s+/, '').replace(/\*\*/g, '').trim();
+        html += `<h3 style="color: var(--color-primary-forest); font-size: 1.15rem; font-weight: 700; margin: 24px 0 12px; line-height: 1.4;">${escapeHtml(headingText)}</h3>`;
+        return;
       }
-      if (trimmed.startsWith('- ') || trimmed.startsWith('1. ')) {
-        const items = trimmed.split('\n');
-        const listHtml = items.map(it => {
-          let cleanItem = it.replace(/^[-*]|\d+\.\s*/, '').trim();
-          cleanItem = cleanItem.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-          cleanItem = cleanItem.replace(/\*(.*?)\*/g, '<em>$1</em>');
-          return `<li style="margin-bottom: 8px;">${cleanItem}</li>`;
-        }).join('');
-        return `<ul style="padding-left: 20px; margin-bottom: 16px; list-style: disc;">${listHtml}</ul>`;
+
+      if (/^\d+\.\s/.test(trimmed)) {
+        flushParagraph();
+        if (currentList !== 'ol') {
+          flushList();
+          html += `<ol style="padding-left: 20px; margin-bottom: 16px; list-style: decimal; color: var(--color-neutral-soil-light);">`;
+          currentList = 'ol';
+        }
+        let cleanItem = trimmed.replace(/^\d+\.\s*/, '').trim();
+        html += `<li style="margin-bottom: 10px; line-height: 1.65;">${formatInlineText(cleanItem)}</li>`;
+        return;
       }
-      let formattedPara = escapeHtml(trimmed);
-      formattedPara = formattedPara.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      formattedPara = formattedPara.replace(/\*(.*?)\*/g, '<em>$1</em>');
-      return `<p style="margin-bottom: 16px; line-height: 1.7; color: var(--color-neutral-soil-light);">${formattedPara}</p>`;
-    }).join('');
+
+      if (/^[-*]\s/.test(trimmed)) {
+        flushParagraph();
+        if (currentList !== 'ul') {
+          flushList();
+          html += `<ul style="padding-left: 20px; margin-bottom: 16px; list-style: disc; color: var(--color-neutral-soil-light);">`;
+          currentList = 'ul';
+        }
+        let cleanItem = trimmed.replace(/^[-*]\s*/, '').trim();
+        html += `<li style="margin-bottom: 10px; line-height: 1.65;">${formatInlineText(cleanItem)}</li>`;
+        return;
+      }
+
+      flushList();
+      currentParagraph.push(trimmed);
+    });
+
+    flushParagraph();
+    flushList();
+
+    return html;
   }
 
   function escapeHtml(str) {
