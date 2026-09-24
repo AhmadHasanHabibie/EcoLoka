@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initVisitorCounter();
   initCertificateModal();
+  initEcoNotif();
   logArchitectureInfo();
 });
 
@@ -82,6 +83,7 @@ function initStickyHeader() {
  * - Penguncian scroll latar belakang saat drawer aktif
  */
 function initMobileNavigation() {
+  const header = document.querySelector('.header');
   const navToggle = document.querySelector('.navbar__toggle, .navbar__tombol-hamburger');
   const navMenu = document.querySelector('.navbar__nav, .navbar__menu');
   const navOverlay = document.querySelector('.navbar__overlay');
@@ -96,12 +98,17 @@ function initMobileNavigation() {
     navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
     navMenu.classList.toggle('is-open', shouldOpen);
 
+    if (header) {
+      header.classList.toggle('is-menu-open', shouldOpen);
+    }
+
     if (navOverlay) {
       navOverlay.classList.toggle('is-visible', shouldOpen);
     }
 
     // Kunci scroll halaman pada mode mobile agar pengguna fokus pada menu
     document.body.style.overflow = shouldOpen ? 'hidden' : '';
+    document.documentElement.style.overflow = shouldOpen ? 'hidden' : '';
 
     if (shouldOpen) {
       // Fokuskan link pertama pada menu untuk navigasi keyboard
@@ -391,4 +398,186 @@ function initCertificateModal() {
     if (recipientInput) recipientInput.focus();
   };
 }
+
+/**
+ * --------------------------------------------------------------------------
+ * 10. SISTEM NOTIFIKASI TOAST & DIALOG KONFIRMASI KUSTOM (ECO-NOTIF)
+ * --------------------------------------------------------------------------
+ * Menggantikan dialog bawaan browser (confirm/alert) yang kaku dengan antarmuka
+ * kustom EcoLoka yang elegan, responsif, dan ramah aksesibilitas WCAG.
+ */
+function initEcoNotif() {
+  function getToastContainer() {
+    let container = document.getElementById('eco-toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'eco-toast-container';
+      container.className = 'eco-toast-container';
+      container.setAttribute('aria-live', 'polite');
+      document.body.appendChild(container);
+    }
+    return container;
+  }
+
+  function getConfirmDialog() {
+    let dialog = document.getElementById('eco-confirm-dialog');
+    if (!dialog) {
+      dialog = document.createElement('div');
+      dialog.id = 'eco-confirm-dialog';
+      dialog.className = 'eco-modal-overlay';
+      dialog.setAttribute('aria-hidden', 'true');
+      dialog.setAttribute('role', 'alertdialog');
+      dialog.setAttribute('aria-modal', 'true');
+      dialog.setAttribute('aria-labelledby', 'eco-confirm-title');
+      dialog.setAttribute('aria-describedby', 'eco-confirm-desc');
+
+      dialog.innerHTML = `
+        <div class="eco-modal-box">
+          <button type="button" class="eco-modal-close" id="eco-confirm-close-btn" aria-label="Tutup dialog">&times;</button>
+          <div class="eco-modal-icon-wrap" id="eco-confirm-icon-wrap">
+            <i id="eco-confirm-icon" class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h3 id="eco-confirm-title" class="eco-modal-title">Konfirmasi Tindakan</h3>
+          <p id="eco-confirm-desc" class="eco-modal-desc">Apakah Anda yakin ingin melanjutkan tindakan ini?</p>
+          <div class="eco-modal-actions">
+            <button type="button" class="btn btn--outline" id="eco-confirm-btn-cancel">Batal</button>
+            <button type="button" class="btn btn--danger eco-modal-btn-confirm" id="eco-confirm-btn-ok">Konfirmasi</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(dialog);
+    }
+    return dialog;
+  }
+
+  window.EcoNotif = {
+    /**
+     * Menampilkan dialog konfirmasi kustom.
+     * Mengembalikan Promise<boolean> atau menjalankan callback onConfirm / onCancel.
+     */
+    confirm: function(options = {}) {
+      return new Promise((resolve) => {
+        const dialog = getConfirmDialog();
+        const titleEl = document.getElementById('eco-confirm-title');
+        const descEl = document.getElementById('eco-confirm-desc');
+        const iconWrap = document.getElementById('eco-confirm-icon-wrap');
+        const iconEl = document.getElementById('eco-confirm-icon');
+        const btnCancel = document.getElementById('eco-confirm-btn-cancel');
+        const btnOk = document.getElementById('eco-confirm-btn-ok');
+        const btnClose = document.getElementById('eco-confirm-close-btn');
+
+        if (titleEl) titleEl.textContent = options.title || 'Konfirmasi Tindakan';
+        if (descEl) descEl.textContent = options.message || 'Apakah Anda yakin ingin melanjutkan?';
+        if (btnCancel) btnCancel.textContent = options.cancelText || 'Batal';
+        if (btnOk) {
+          btnOk.textContent = options.confirmText || 'Konfirmasi';
+          if (options.isDanger !== false) {
+            btnOk.className = 'btn btn--danger eco-modal-btn-confirm';
+          } else {
+            btnOk.className = 'btn btn--primary eco-modal-btn-confirm';
+          }
+        }
+
+        // Tipe icon
+        if (iconWrap && iconEl) {
+          iconWrap.className = 'eco-modal-icon-wrap ' + (options.isDanger !== false ? 'eco-modal-icon--warning' : 'eco-modal-icon--info');
+          iconEl.className = options.icon || (options.isDanger !== false ? 'fa-solid fa-trash-can' : 'fa-solid fa-circle-question');
+        }
+
+        const prevFocusedElement = document.activeElement;
+
+        const cleanup = (confirmed) => {
+          dialog.classList.remove('is-open');
+          dialog.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          document.removeEventListener('keydown', handleKeydown);
+          btnCancel.onclick = null;
+          btnOk.onclick = null;
+          btnClose.onclick = null;
+          dialog.onclick = null;
+          if (prevFocusedElement && typeof prevFocusedElement.focus === 'function') {
+            prevFocusedElement.focus();
+          }
+          if (confirmed) {
+            if (typeof options.onConfirm === 'function') options.onConfirm();
+            resolve(true);
+          } else {
+            if (typeof options.onCancel === 'function') options.onCancel();
+            resolve(false);
+          }
+        };
+
+        const handleKeydown = (e) => {
+          if (e.key === 'Escape') {
+            cleanup(false);
+          }
+        };
+
+        btnCancel.onclick = () => cleanup(false);
+        btnClose.onclick = () => cleanup(false);
+        btnOk.onclick = () => cleanup(true);
+
+        dialog.onclick = (e) => {
+          if (e.target === dialog) cleanup(false);
+        };
+
+        document.addEventListener('keydown', handleKeydown);
+
+        dialog.classList.add('is-open');
+        dialog.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        btnCancel.focus();
+      });
+    },
+
+    /**
+     * Menampilkan toast notification floating yang elegan.
+     */
+    toast: function(options = {}) {
+      const container = getToastContainer();
+      const toast = document.createElement('div');
+      const type = options.type || 'success';
+      toast.className = `eco-toast eco-toast--${type}`;
+
+      let iconClass = 'fa-solid fa-circle-check';
+      if (type === 'warning') iconClass = 'fa-solid fa-triangle-exclamation';
+      if (type === 'error') iconClass = 'fa-solid fa-circle-xmark';
+      if (type === 'info') iconClass = 'fa-solid fa-circle-info';
+      if (options.icon) iconClass = options.icon;
+
+      toast.innerHTML = `
+        <div class="eco-toast__icon">
+          <i class="${iconClass}"></i>
+        </div>
+        <div class="eco-toast__content">
+          ${options.title ? `<strong class="eco-toast__title">${options.title}</strong>` : ''}
+          <span class="eco-toast__message">${options.message || ''}</span>
+        </div>
+        <button type="button" class="eco-toast__close" aria-label="Tutup notifikasi">&times;</button>
+      `;
+
+      const removeToast = () => {
+        if (toast.classList.contains('is-hiding')) return;
+        toast.classList.add('is-hiding');
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 260);
+      };
+
+      const closeBtn = toast.querySelector('.eco-toast__close');
+      if (closeBtn) closeBtn.addEventListener('click', removeToast);
+
+      container.appendChild(toast);
+
+      const duration = options.duration || 3800;
+      setTimeout(removeToast, duration);
+    }
+  };
+}
+
+// Inisialisasi awal objek EcoNotif agar siap diakses kapan saja
+if (typeof window !== 'undefined' && !window.EcoNotif) {
+  initEcoNotif();
+}
+
 

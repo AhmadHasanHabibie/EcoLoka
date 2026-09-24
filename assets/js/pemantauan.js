@@ -45,14 +45,37 @@ function initMonitoringDashboard() {
     });
   }
 
-  // Tombol Hapus Riwayat
+  // Tombol Hapus Riwayat dengan Dialog Konfirmasi Kustom & Toast
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      if (confirm('Apakah Anda yakin ingin mereset riwayat perhitungan jejak karbon Anda?')) {
+      const executeReset = () => {
         try {
           localStorage.removeItem('ecoloka_carbon_data');
         } catch (e) {}
         showEmptyState();
+        if (window.EcoNotif && typeof window.EcoNotif.toast === 'function') {
+          window.EcoNotif.toast({
+            title: 'Riwayat Berhasil Dihapus',
+            message: 'Data perhitungan emisi karbon Anda telah dibersihkan dari penyimpanan lokal.',
+            type: 'success',
+            duration: 4000
+          });
+        }
+      };
+
+      if (window.EcoNotif && typeof window.EcoNotif.confirm === 'function') {
+        window.EcoNotif.confirm({
+          title: 'Hapus Riwayat Perhitungan?',
+          message: 'Apakah Anda yakin ingin mereset riwayat perhitungan jejak karbon Anda? Data kalkulasi yang tersimpan di perangkat ini akan dibersihkan.',
+          icon: 'fa-solid fa-trash-can',
+          confirmText: 'Ya, Hapus Data',
+          cancelText: 'Batal',
+          isDanger: true,
+          onConfirm: executeReset
+        });
+      } else {
+        // Fallback jika dialog kustom belum terload
+        executeReset();
       }
     });
   }
