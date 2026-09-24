@@ -1,4 +1,9 @@
 /* ==========================================================================
+   BREAKPOINT ACUAN (jangan menyimpang):
+   360px | 480px | 768px | 1024px | 1280px | 1440px
+   ========================================================================== */
+
+/* ==========================================================================
    ECOLOKA — LAYOUT STYLES (layout.css)
    Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
    Fungsi: Sistem Kontainer, Grid Responsif, Sticky Header, Navigasi, Footer
@@ -209,9 +214,12 @@
   gap: var(--space-2);
 }
 
-/* Hamburger Toggle Button (Mobile) */
-.navbar__toggle {
+/* Hamburger Toggle Button (Mobile) & Target Sentuh WCAG */
+.navbar__toggle,
+.navbar__tombol-hamburger {
   display: none;
+  min-width: 44px;
+  min-height: 44px;
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
@@ -227,7 +235,8 @@
   transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.navbar__toggle:hover {
+.navbar__toggle:hover,
+.navbar__tombol-hamburger:hover {
   background-color: var(--color-neutral-stone-light);
   border-color: var(--color-accent-sprout);
 }
@@ -398,153 +407,294 @@
 }
 
 /* --------------------------------------------------------------------------
- * 5. FOOTER
+ * 5. FOOTER (SISTEM GRID 8PX & STANDAR AKSESIBILITAS WCAG AA)
  * -------------------------------------------------------------------------- */
 .footer {
-  background-color: var(--color-primary-forest-dark);
-  color: var(--color-neutral-stone);
-  padding-top: var(--space-10);
-  padding-bottom: var(--space-6);
-  border-top: 4px solid var(--color-accent-sprout);
+  background-color: var(--color-primary-forest-dark, #112B20);
+  color: var(--color-neutral-stone, #DDE5DD);
+  padding: 4rem 0 0; /* 64px, kelipatan skala 8px */
+  border-top: 4px solid var(--color-accent-sprout, #74C69D);
   position: relative;
 }
 
+/* Base (mobile, < 768px): 1 kolom, brand tetap paling atas */
 .footer__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
-  margin-bottom: var(--space-8);
+  gap: var(--space-4, 2rem);
+  align-items: start;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
+/* Tablet ke atas (>= 768px): 2 kolom */
 @media (min-width: 768px) {
   .footer__grid {
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.5rem;
   }
 }
 
+/* Laptop ke atas (>= 1024px): 4 kolom */
 @media (min-width: 1024px) {
   .footer__grid {
-    grid-template-columns: 2.2fr 1fr 1fr 1.4fr;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 2rem 2.5rem;
   }
 }
 
+/* Kolom 1: Brand */
 .footer__brand {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-3, 1.5rem);
 }
 
-.footer__brand-title {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--color-neutral-white);
+.footer__logo {
+  font-family: var(--font-family-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: var(--font-size-2xl, 1.953rem);
+  font-weight: var(--font-weight-extrabold, 800);
+  color: var(--color-neutral-white, #FFFFFF);
   letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.footer__brand-title span {
-  color: var(--color-accent-sprout);
+.footer__logo span {
+  color: var(--color-accent-sprout, #74C69D);
 }
 
-.footer__desc {
-  color: rgba(221, 229, 221, 0.8);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-relaxed);
-  max-width: 360px;
+.footer__tagline {
+  color: rgba(221, 229, 221, 0.85);
+  font-size: clamp(0.85rem, 0.4vw + 0.75rem, 1rem);
+  line-height: var(--line-height-relaxed, 1.75);
+  margin: 0;
 }
 
-.footer__col-title {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-neutral-white);
-  margin-bottom: var(--space-3);
+.footer__sosial {
+  display: flex;
+  gap: var(--space-2, 1rem);
+  align-items: center;
+}
+
+/* Standar Aksesibilitas WCAG: Target Sentuh Minimum 44x44px */
+.footer__ikon-sosial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(116, 198, 157, 0.3);
+  color: var(--color-accent-sprout, #74C69D);
+  font-size: 1.1rem;
+  transition: all var(--transition-fast, 0.15s ease);
+  text-decoration: none;
+}
+
+.footer__ikon-sosial svg {
+  aspect-ratio: 1 / 1;
+}
+
+.footer__ikon-sosial:hover {
+  background: var(--color-accent-sprout, #74C69D);
+  color: var(--color-primary-forest-dark, #112B20);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(116, 198, 157, 0.25);
+}
+
+/* Kolom Navigasi & Fitur */
+.footer__kolom {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__judul-kolom {
+  font-family: var(--font-family-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: var(--font-size-base, 1rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-neutral-white, #FFFFFF);
+  margin: 0 0 var(--space-3, 1.5rem) 0;
   position: relative;
   display: inline-block;
+  line-height: 1.4;
 }
 
-.footer__col-title::after {
+.footer__judul-kolom::after {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 0;
   width: 24px;
   height: 2px;
-  background-color: var(--color-accent-sprout);
-  border-radius: var(--radius-full);
+  background-color: var(--color-accent-sprout, #74C69D);
+  border-radius: var(--radius-full, 9999px);
 }
 
-.footer__links {
+.footer__daftar-tautan {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-2, 1rem);
 }
 
-.footer__link {
-  font-size: var(--font-size-sm);
-  color: rgba(221, 229, 221, 0.75);
-  transition: color var(--transition-fast), transform var(--transition-fast);
+.footer__daftar-tautan li {
+  margin: 0;
+  padding: 0;
+}
+
+.footer__daftar-tautan a {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: rgba(221, 229, 221, 0.85);
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.15s ease), transform var(--transition-fast, 0.15s ease);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.footer__link:hover {
-  color: var(--color-accent-sprout);
+.footer__daftar-tautan a::before {
+  content: '\f054'; /* Font Awesome fa-chevron-right */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 9px;
+  color: var(--color-accent-sprout, #74C69D);
+  opacity: 0.7;
+  transition: transform var(--transition-fast, 0.15s ease), opacity var(--transition-fast, 0.15s ease);
+}
+
+.footer__daftar-tautan a:hover {
+  color: var(--color-accent-sprout, #74C69D);
   transform: translateX(4px);
 }
 
-.footer__competition-badge {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(116, 198, 157, 0.2);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-  margin-top: var(--space-1);
+.footer__daftar-tautan a:hover::before {
+  opacity: 1;
+  transform: translateX(2px);
 }
 
-.footer__competition-badge h5 {
-  color: var(--color-accent-sprout);
-  font-size: var(--font-size-sm);
-  margin-bottom: 4px;
+/* Kolom 4: Kartu Kompetisi (Perbaikan Kontras WCAG AA) */
+.footer__kartu-kompetisi {
+  background: color-mix(in srgb, var(--color-primary-dark, #112B20) 40%, black);
+  border: 1px solid color-mix(in srgb, var(--color-accent-sprout, #74C69D) 30%, transparent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem; /* 20px / 24px */
 }
 
-.footer__competition-badge p {
-  font-size: var(--font-size-xs);
-  color: rgba(221, 229, 221, 0.7);
-  margin: 0;
-  line-height: 1.4;
+.footer__kompetisi-judul {
+  color: var(--color-accent-sprout, #74C69D);
+  font-weight: 700;
+  font-size: var(--font-size-base, 1rem);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
 }
 
-.footer__bottom {
-  border-top: 1px solid rgba(221, 229, 221, 0.12);
-  padding-top: var(--space-4);
+.footer__kompetisi-detail {
+  color: rgba(255, 255, 255, 0.88); /* Kontras tinggi >= 4.5:1 terhadap background gelap (WCAG AA) */
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0 0 0.35rem 0;
+}
+
+.footer__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-2, 1rem);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(116, 198, 157, 0.12);
+  border: 1px solid rgba(116, 198, 157, 0.35);
+  color: var(--color-accent-sprout, #74C69D);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Bar Status (Pejuang Bumi & Mode Emisi) */
+.footer__bar-status {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  flex-wrap: wrap; /* Mencegah teks meleber keluar di layar sempit */
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-size-xs);
-  color: rgba(221, 229, 221, 0.6);
+  gap: var(--space-2, 1rem);
+  margin-top: var(--space-6, 3rem);
+  padding: var(--space-3, 1.5rem) 1.5rem;
+  background: color-mix(in srgb, var(--color-primary-dark, #112B20) 60%, black);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 1200px;
+  margin-inline: auto;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: calc(100% - 3rem);
 }
 
-@media (min-width: 768px) {
-  .footer__bottom {
-    flex-direction: row;
-  }
-}
-
-.footer__legal-links {
+.footer__pesan-pejuang {
+  margin: 0;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
-  gap: var(--space-3);
+  align-items: center;
+  gap: 8px;
 }
 
-.footer__legal-links a {
-  color: rgba(221, 229, 221, 0.6);
-  font-size: var(--font-size-xs);
+.footer__ikon-daun {
+  color: var(--color-accent-sprout, #74C69D);
+  font-size: 0.875rem;
 }
 
-.footer__legal-links a:hover {
-  color: var(--color-accent-sprout);
+.footer__pesan-pejuang #counterPejuang {
+  color: var(--color-accent-sprout, #74C69D);
+  font-weight: 700;
+}
+
+.footer__mode-emisi {
+  margin: 0;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+}
+
+.footer__mode-emisi strong {
+  color: var(--color-accent-sprout, #74C69D);
+  margin-left: 4px;
+}
+
+/* Bottom Bar (Hak Cipta & Kepatuhan) */
+.footer__bawah {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 1rem);
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: var(--space-4, 2rem) 1.5rem;
+  margin-top: var(--space-4, 2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  box-sizing: border-box;
+  width: calc(100% - 3rem);
+}
+
+.footer__bawah p {
+  margin: 0;
+}
+
+.footer__label-kepatuhan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1, 0.5rem);
+  align-items: center;
 }
 
 /* ==========================================================================

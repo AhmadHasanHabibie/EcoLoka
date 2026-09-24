@@ -5,10 +5,13 @@
  * ==========================================================================
  * Heading dipecah per-huruf (murni visual, aksesibilitas dijaga via
  * aria-label + role="text"), lalu sebuah "gelombang ketebalan font"
- * menyapu dari kiri ke kanan mengikuti progress scroll (viewport-center,
- * tanpa pinning — pola yang sama dengan seluruh animasi lain di situs).
- * Teknik ini sangat jarang dipakai karena butuh variable font, namun
- * sangat ringan secara performa (hanya mengubah satu CSS property per huruf).
+ * menyapu dari kiri ke kanan mengikuti progress scroll (pivot adaptif per
+ * perangkat, tanpa pinning).
+ *
+ * Optimasi Responsivitas & Performa:
+ * - Pivot adaptif (0.42 di mobile, 0.46 di tablet, 0.5 di desktop)
+ * - Penguncian lebar huruf anti-CLS dengan debounce pada resize / pergantian orientasi
+ * - will-change dinamis (hanya aktif saat huruf terlewati gelombang)
  * ==========================================================================
  */
 
@@ -51,17 +54,27 @@
   const hurufList = Array.from(heading.querySelectorAll('.huruf-gelombang'));
 
   // Kunci lebar tiap huruf setelah font benar-benar dimuat (cegah layout shift)
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => {
-      hurufList.forEach((span) => {
-        const lebar = span.getBoundingClientRect().width;
-        if (lebar > 0) {
-          span.style.width = `${lebar}px`;
-          span.style.textAlign = 'center';
-        }
-      });
+  function kunciLebarHuruf() {
+    hurufList.forEach((span) => {
+      span.style.width = 'auto'; // reset sementara untuk ukur ulang natural
+      const lebar = span.getBoundingClientRect().width;
+      if (lebar > 0) {
+        span.style.width = `${lebar}px`;
+        span.style.textAlign = 'center';
+      }
     });
   }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(kunciLebarHuruf);
+  }
+
+  // Recalibrate saat resize/rotasi orientasi HP dengan debounce
+  window.addEventListener(
+    'resize',
+    ScrollUtils.debounce(kunciLebarHuruf, 200),
+    { passive: true }
+  );
 
   const BOBOT_ISTIRAHAT = 700; // sama dengan ketebalan heading normal di situs
   const BOBOT_PUNCAK = 800;    // ketebalan maksimal saat gelombang melintas (batas atas axis Sora)
@@ -74,8 +87,7 @@
     return;
   }
 
-  // Sebelum scroll, tampilkan heading dalam ketebalan istirahat penuh
-  // (graceful default), gelombang baru "menyapu" saat mulai discroll
+  // Sebelum scroll, tampilkan heading dalam ketebalan istirahat penuh (graceful default)
   hurufList.forEach((span) => {
     span.style.fontVariationSettings = `'wght' ${BOBOT_ISTIRAHAT}`;
   });
@@ -93,12 +105,16 @@
       let bobot;
 
       if (jarak < LEBAR_GELOMBANG / 2) {
-        // Fungsi falloff halus (cosine window) — bobot memuncak persis di
-        // pusat gelombang, melembut ke bobot istirahat di tepi gelombang
+        // will-change dinamis: hanya aktif saat huruf sedang bertransisi
+        span.style.willChange = 'font-variation-settings';
+
+        // Fungsi falloff halus (cosine window)
         const t = jarak / (LEBAR_GELOMBANG / 2);
         const kedekatan = (Math.cos(t * Math.PI) + 1) / 2; // 1 di pusat, 0 di tepi
         bobot = ScrollUtils.lerp(BOBOT_ISTIRAHAT, BOBOT_PUNCAK, kedekatan);
       } else {
+        // Lepas will-change untuk membebaskan layer GPU
+        span.style.willChange = 'auto';
         bobot = BOBOT_ISTIRAHAT;
       }
 
@@ -106,5 +122,6 @@
     });
   }
 
-  ScrollUtils.bindScrollProgress(heading, updateGelombang, 0.5);
+  // Gunakan pivot adaptif per perangkat (0.42 mobile, 0.46 tablet, 0.5 desktop)
+  ScrollUtils.bindScrollProgress(heading, updateGelombang, ScrollUtils.dapatkanPivotAdaptif());
 })();

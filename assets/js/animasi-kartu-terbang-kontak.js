@@ -3,12 +3,14 @@
  * ECOLOKA — ANIMASI KARTU KONTAK TERBANG KONVERGEN
  * File: assets/js/animasi-kartu-terbang-kontak.js
  * ==========================================================================
- * Setiap kartu kontak "terbang masuk" dari sudut yang berbeda-beda,
- * lalu mendarat sejajar rapi di posisi grid normalnya. Progress DIHITUNG
- * SENDIRI oleh masing-masing kartu (per-card, BUKAN per-grid) — konsisten
- * dengan perbaikan bug yang sudah diterapkan di halaman Edukasi & Komunitas
- * sebelumnya. Setiap kartu dijamin "mendarat" TEPAT saat kartu itu sendiri
- * berada di titik tengah viewport.
+ * Setiap kartu info kontak "terbang masuk" dari sudut berbeda (kiri-atas,
+ * kanan-atas, kiri-bawah, kanan-bawah) dan mendarat rapi sejajar.
+ * Progress DIHITUNG SENDIRI oleh masing-masing kartu (per-card).
+ *
+ * Optimasi Responsivitas & Performa:
+ * - Pivot adaptif (0.42 di mobile, 0.46 di tablet, 0.5 di desktop)
+ * - Vektor terbang diskalakan adaptif pada mobile (<480px) agar pas di layar
+ * - will-change dinamis (transform, opacity) yang dilepas begitu mendarat
  * ==========================================================================
  */
 
@@ -29,8 +31,6 @@
   const kartuList = Array.from(document.querySelectorAll('.kontak-card'));
   if (kartuList.length === 0) return;
 
-  // Titik awal "terbang" per arah — offset dalam piksel dari posisi akhir,
-  // plus sedikit rotasi awal untuk kesan kertas yang melayang, bukan kaku
   const VEKTOR_ARAH = {
     'kiri-atas':   { x: -130, y: -90, rotasi: -14 },
     'kanan-atas':  { x: 130,  y: -90, rotasi: 14 },
@@ -40,19 +40,33 @@
 
   kartuList.forEach((kartu) => {
     const arah = kartu.dataset.arah;
-    const vektor = VEKTOR_ARAH[arah] || { x: 0, y: 80, rotasi: 0 }; // fallback aman jika data-arah tidak dikenali
+    const vektorAsli = VEKTOR_ARAH[arah] || { x: 0, y: 80, rotasi: 0 };
 
     if (prefersReducedMotion) {
       kartu.style.transform = 'translate(0, 0) rotate(0deg)';
       kartu.style.opacity = 1;
+      kartu.style.willChange = 'auto';
       return;
     }
 
-    // Kondisi awal (sebelum terlihat): offset sesuai arah, sedikit transparan
+    // Hitung offset awal dengan faktor skala layar HP (<480px)
+    const faktorSkala = window.innerWidth < 480 ? 0.55 : 1;
+    const vektor = {
+      x: vektorAsli.x * faktorSkala,
+      y: vektorAsli.y * faktorSkala,
+      rotasi: vektorAsli.rotasi
+    };
+
     kartu.style.transform = `translate(${vektor.x}px, ${vektor.y}px) rotate(${vektor.rotasi}deg)`;
     kartu.style.opacity = 0;
 
     function updateKartu(progress) {
+      if (progress > 0 && progress < 1) {
+        kartu.style.willChange = 'transform, opacity';
+      } else {
+        kartu.style.willChange = 'auto'; // Bebaskan layer GPU setelah mendarat
+      }
+
       const progressPosisi = ScrollUtils.easeOutCubic(progress);
       const progressRotasi = ScrollUtils.easeOutBackSubtle
         ? ScrollUtils.easeOutBackSubtle(progress)
@@ -60,17 +74,13 @@
 
       const x = ScrollUtils.lerp(vektor.x, 0, progressPosisi);
       const y = ScrollUtils.lerp(vektor.y, 0, progressPosisi);
-      // Rotasi memakai easing "overshoot subtle" agar terasa seperti
-      // benar-benar "mendarat dan mengendap", bukan berhenti kaku tiba-tiba
       const rotasi = ScrollUtils.lerp(vektor.rotasi, 0, progressRotasi);
 
       kartu.style.transform = `translate(${x}px, ${y}px) rotate(${rotasi}deg)`;
       kartu.style.opacity = ScrollUtils.easeOutCubic(Math.min(progress / 0.7, 1));
     }
 
-    // KUNCI ANTI-BUG: bind progress ke KARTU ITU SENDIRI, bukan ke grid
-    // pembungkusnya — setiap kartu 100% independen, sesuai permintaan
-    // "viewpoint udah di tengah otomatis sejajar lagi dia" per kartu.
-    ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5);
+    // Pivot adaptif per perangkat
+    ScrollUtils.bindScrollProgress(kartu, updateKartu, ScrollUtils.dapatkanPivotAdaptif());
   });
 })();

@@ -6,8 +6,13 @@
  * Border kartu "digambar" seperti jejak sirkuit (SVG rect + stroke-dashoffset),
  * lalu satu titik cahaya melintas sekali mengelilingi border yang sudah
  * selesai, sebagai penanda "sirkuit teraktivasi". Progress DIHITUNG SENDIRI
- * oleh masing-masing kartu (per-card, bukan per-grid) — konsisten dengan
- * perbaikan bug yang sudah diterapkan di halaman lain.
+ * oleh masing-masing kartu (per-card, bukan per-grid).
+ *
+ * Optimasi Responsivitas & Performa:
+ * - Pivot adaptif (0.42 di mobile, 0.46 di tablet, 0.5 di desktop)
+ * - Dukungan interaksi sentuh (touchstart / touchend) untuk kartu di HP/tablet
+ * - Debounced recalculation saat window resize
+ * - will-change dinamis pada titik cahaya (node)
  * ==========================================================================
  */
 
@@ -27,6 +32,19 @@
 
   const kartuList = Array.from(document.querySelectorAll('.prinsip-card'));
   if (kartuList.length === 0) return;
+
+  // Dukungan interaksi sentuh untuk kartu di layar touchscreen
+  const perangkatSentuh = ScrollUtils.isPerangkatSentuh();
+  if (perangkatSentuh) {
+    kartuList.forEach((kartu) => {
+      kartu.addEventListener('touchstart', () => {
+        kartu.classList.add('prinsip-card--aktif-sentuh');
+      }, { passive: true });
+      kartu.addEventListener('touchend', () => {
+        setTimeout(() => kartu.classList.remove('prinsip-card--aktif-sentuh'), 400);
+      }, { passive: true });
+    });
+  }
 
   kartuList.forEach((kartu) => {
     const rect = kartu.querySelector('.prinsip-card__jejak rect');
@@ -52,6 +70,7 @@
     if (prefersReducedMotion) {
       rect.style.strokeDashoffset = 0;
       node.style.opacity = 0;
+      node.style.willChange = 'auto';
       if (isi) isi.style.opacity = 1;
       return;
     }
@@ -75,12 +94,14 @@
       const progressNode = Math.max(0, Math.min(1, progressNodeRaw));
 
       if (progressNode > 0 && progressNode < 1 && rect.getPointAtLength) {
+        node.style.willChange = 'transform, opacity';
         const titikPanjang = progressNode * panjangKeliling;
         const titik = rect.getPointAtLength(titikPanjang);
         node.style.transform = `translate(${titik.x - 4}px, ${titik.y - 4}px)`;
         node.style.opacity = Math.sin(progressNode * Math.PI);
       } else {
         node.style.opacity = 0;
+        node.style.willChange = 'auto'; // Lepas layer compositing saat diam
       }
 
       if (isi) {
@@ -91,12 +112,18 @@
       }
     }
 
-    window.addEventListener('resize', () => {
-      syncDimensions();
-      panjangKeliling = rect.getTotalLength ? rect.getTotalLength() : 0;
-      rect.style.strokeDasharray = panjangKeliling;
-    }, { passive: true });
+    // Debounced resize handler agar tidak layout thrashing
+    window.addEventListener(
+      'resize',
+      ScrollUtils.debounce(() => {
+        syncDimensions();
+        panjangKeliling = rect.getTotalLength ? rect.getTotalLength() : 0;
+        rect.style.strokeDasharray = panjangKeliling;
+      }, 200),
+      { passive: true }
+    );
 
-    ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5);
+    // Pivot adaptif per perangkat
+    ScrollUtils.bindScrollProgress(kartu, updateKartu, ScrollUtils.dapatkanPivotAdaptif());
   });
 })();

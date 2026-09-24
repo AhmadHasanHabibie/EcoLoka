@@ -4,11 +4,12 @@
  * File: assets/js/animasi-kampanye-komunitas.js
  * ==========================================================================
  * Setiap kartu kampanye di halaman Komunitas mendapat animasi entrance
- * (fade + slide) DAN animasi hutan tumbuh di bagian bawahnya, dengan
- * progress yang DIHITUNG SENDIRI oleh masing-masing kartu (per-card,
- * BUKAN per-grid) — menghindari bug "menggantung" yang pernah terjadi
- * sebelumnya di grid artikel Edukasi. Setiap kartu dijamin selesai
- * beranimasi TEPAT saat kartu itu sendiri berada di titik tengah viewport.
+ * (fade + slide) DAN animasi hutan kecil tumbuh di bagian bawah kartu,
+ * dengan progress yang DIHITUNG SENDIRI oleh masing-masing kartu (per-card).
+ *
+ * Optimasi Responsivitas & Performa:
+ * - Pivot adaptif (0.42 di mobile, 0.46 di tablet, 0.5 di desktop)
+ * - will-change dinamis pada kartu dan pohon, dilepas setelah animasi selesai
  * ==========================================================================
  */
 
@@ -36,17 +37,26 @@
     if (prefersReducedMotion) {
       kartu.style.opacity = 1;
       kartu.style.transform = 'translateY(0)';
-      pohonList.forEach((pohon) => (pohon.style.transform = 'scaleY(1)'));
+      kartu.style.willChange = 'auto';
+      pohonList.forEach((pohon) => {
+        pohon.style.transform = 'scaleY(1)';
+        pohon.style.willChange = 'auto';
+      });
       return;
     }
 
-    // Set kondisi awal TERSEMBUNYI via JS (bukan default CSS), agar tanpa
-    // JS kartu tetap tampil normal 100% (progressive enhancement)
+    // Set kondisi awal TERSEMBUNYI via JS (progressive enhancement)
     kartu.style.opacity = 0;
     kartu.style.transform = 'translateY(28px)';
     pohonList.forEach((pohon) => (pohon.style.transform = 'scaleY(0)'));
 
     function updateKartu(progress) {
+      if (progress > 0 && progress < 1) {
+        kartu.style.willChange = 'opacity, transform';
+      } else {
+        kartu.style.willChange = 'auto'; // Bebaskan layer GPU
+      }
+
       // --- FASE 1 (0 - 0.5): kartu fade + slide masuk ---
       const progressKartu = ScrollUtils.easeOutCubic(
         Math.min(progress / 0.5, 1)
@@ -54,13 +64,16 @@
       kartu.style.opacity = progressKartu;
       kartu.style.transform = `translateY(${ScrollUtils.lerp(28, 0, progressKartu)}px)`;
 
-      // --- FASE 2 (0.3 - 1.0, sedikit tumpang tindih dengan Fase 1 agar mulus):
-      //     pohon tumbuh satu per satu (stagger), dijamin SEMUA pohon
-      //     mencapai tinggi penuh TEPAT saat progress keseluruhan = 1 ---
+      // --- FASE 2 (0.3 - 1.0): pohon tumbuh stagger ---
       const progressHutanMentah = (progress - 0.3) / 0.7;
       const progressHutan = Math.max(0, Math.min(1, progressHutanMentah));
 
       pohonList.forEach((pohon, index) => {
+        if (progressHutan > 0 && progressHutan < 1) {
+          pohon.style.willChange = 'transform';
+        } else {
+          pohon.style.willChange = 'auto';
+        }
         const staggerDelay = index * 0.1;
         let p = (progressHutan - staggerDelay) / (1 - staggerDelay || 1);
         p = ScrollUtils.easeOutCubic(Math.max(0, Math.min(1, p)));
@@ -68,8 +81,7 @@
       });
     }
 
-    // KUNCI ANTI-BUG: bind progress ke KARTU ITU SENDIRI, bukan ke grid/section
-    // pembungkusnya — setiap kartu 100% independen dari kartu lain.
-    ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5);
+    // Pivot adaptif per perangkat
+    ScrollUtils.bindScrollProgress(kartu, updateKartu, ScrollUtils.dapatkanPivotAdaptif());
   });
 })();

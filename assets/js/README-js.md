@@ -88,7 +88,14 @@
   - Animasi menggambar border kartu secara presisi melalui SVG `rect` stroke-dashoffset geometry (`getTotalLength()`).
   - Titik node cahaya amber (`.prinsip-card__node`) melintas mengelilingi border teraktivasi menggunakan koordinat `getPointAtLength()` dengan opacity sinusoidal halus.
   - Isi kartu memudar masuk secara terkoordinasi (tumpang tindih natural dengan penarikan border).
-  - Progress independen per-kartu via `ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5)`.
+### K. Modul Animasi Cincin Dedikasi & Riak Kontribusi Kartu Tim (`assets/js/kartu-tim.js`)
+- **Diterapkan pada:** `tentang.html` (3 kartu kolaborator di section "Dedikasi di Balik Pengembangan EcoLoka": RA, DN, KS).
+- **Fitur:**
+  - **Cincin Dedikasi (Halo Conic-Gradient):** Memanfaatkan CSS native `conic-gradient` yang "dilubangi" radial mask, terisi bertahap dari 0° sampai 360° mengelilingi avatar mengikuti progress scroll, menggunakan warna aksen masing-masing peran kolaborator (`--warna-anggota`).
+  - **Riak Kontribusi (Pulsing Ripple):** Saat cincin genap 360°, satu riak tipis berefek `scale(0.8 -> 2.1)` mengembang keluar dengan opasitas sinusoidal `Math.sin(progress * Math.PI) * 0.6`, merepresentasikan dampak kontribusi yang menyebar.
+  - **Entrance Isi Kartu:** Isi kartu (peran, badge, deskripsi) memudar masuk tumpang tindih secara halus saat cincin dan riak aktif.
+  - **Progress Independen Per-Kartu:** Menggunakan `ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5)` sehingga setiap kartu bergerak mandiri sesuai posisinya di viewport (bebas bug pinning atau stuck state).
+  - **Aksesibilitas & Progressive Enhancement:** Elemen cincin dan riak diberi `aria-hidden="true"`, inisial avatar tetap terbaca jelas oleh pembaca layar, isi kartu default `opacity: 1` tanpa JS, dan mendukung penuh `@media (prefers-reduced-motion: reduce)`.
 
 ---
 

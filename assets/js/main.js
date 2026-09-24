@@ -82,8 +82,8 @@ function initStickyHeader() {
  * - Penguncian scroll latar belakang saat drawer aktif
  */
 function initMobileNavigation() {
-  const navToggle = document.querySelector('.navbar__toggle');
-  const navMenu = document.querySelector('.navbar__nav');
+  const navToggle = document.querySelector('.navbar__toggle, .navbar__tombol-hamburger');
+  const navMenu = document.querySelector('.navbar__nav, .navbar__menu');
   const navOverlay = document.querySelector('.navbar__overlay');
   const navLinks = document.querySelectorAll('.navbar__link');
 
@@ -144,7 +144,7 @@ function initMobileNavigation() {
     if (window.innerWidth >= 992 && navMenu.classList.contains('is-open')) {
       toggleMenu(false);
     }
-  });
+  }, { passive: true });
 }
 
 /**
@@ -295,8 +295,8 @@ function initScrollReveal() {
  * Menampilkan jumlah simbolis pengunjung yang peduli lingkungan hari ini.
  */
 function initVisitorCounter() {
-  const counterEl = document.getElementById('visitor-count-number');
-  if (!counterEl) return;
+  const counterEls = document.querySelectorAll('#counterPejuang, #visitor-count-number, .visitor-counter-val');
+  if (counterEls.length === 0) return;
 
   const BASE_COUNT = 3482;
   let storedCount = BASE_COUNT;
@@ -311,7 +311,10 @@ function initVisitorCounter() {
     }
   } catch (e) {}
 
-  counterEl.textContent = storedCount.toLocaleString('id-ID');
+  const formatted = storedCount.toLocaleString('id-ID');
+  counterEls.forEach((el) => {
+    el.textContent = formatted;
+  });
 }
 
 /**

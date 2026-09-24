@@ -65,15 +65,101 @@ const ScrollUtils = {
   },
 
   /**
+   * Deteksi kelas perangkat berdasarkan lebar viewport
+   * Breakpoint acuan: 360px | 480px | 768px | 1024px | 1280px | 1440px
+   */
+  getKelasPerangkat() {
+    const lebar = window.innerWidth;
+    if (lebar < 480) return 'mobile';
+    if (lebar < 768) return 'mobile-lebar';
+    if (lebar < 1024) return 'tablet';
+    return 'desktop';
+  },
+
+  /**
+   * Deteksi kapabilitas input layar sentuh
+   */
+  isPerangkatSentuh() {
+    return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  },
+
+  /**
+   * Deteksi sinyal perangkat berperforma rendah (hemat baterai & CPU HP menengah-bawah)
+   */
+  isPerformaRendah() {
+    const coreSedikit = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    const hematData = navigator.connection && navigator.connection.saveData;
+    return Boolean(coreSedikit || hematData);
+  },
+
+  /**
+   * Pivot Trigger Adaptif per Perangkat:
+   * Di HP, area fokus baca & jempol pengguna lebih ke atas, sehingga
+   * animasi dipicu sedikit lebih awal (0.42 / 0.46) agar langsung terlihat mulus.
+   */
+  dapatkanPivotAdaptif() {
+    const kelas = ScrollUtils.getKelasPerangkat();
+    if (kelas === 'mobile') return 0.42;
+    if (kelas === 'mobile-lebar') return 0.46;
+    return 0.5; // tablet & desktop tetap viewport-center
+  },
+
+  /**
+   * Alias hitungProgress terintegrasi pivot adaptif
+   */
+  hitungProgress(element, targetViewportFraction = null) {
+    const pivot = (targetViewportFraction !== null && targetViewportFraction !== undefined)
+      ? targetViewportFraction
+      : ScrollUtils.dapatkanPivotAdaptif();
+    return ScrollUtils.calculateViewportProgress(element, pivot);
+  },
+
+  /**
+   * Debounce utilitas untuk event padat seperti window resize / orientasi
+   */
+  debounce(fn, tunda = 200) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), tunda);
+    };
+  },
+
+  /**
+   * Gerbang visibilitas: animasi HANYA berjalan ketika elemen berada
+   * di dalam viewport (+ margin buffer), dan berhenti total saat di luar layar.
+   */
+  pasangGerbangVisibilitas(elemen, mulaiFn, hentikanFn, margin = '20% 0px 20% 0px') {
+    if (!('IntersectionObserver' in window)) {
+      mulaiFn();
+      return null;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            mulaiFn();
+          } else {
+            hentikanFn();
+          }
+        });
+      },
+      { rootMargin: margin }
+    );
+    observer.observe(elemen);
+    return observer;
+  },
+
+  /**
    * Mendaftarkan listener scroll yang HANYA aktif saat elemen berada
-   * dekat/di dalam viewport (+ buffer 300px) demi efisiensi konsumsi daya,
-   * dengan throttling via requestAnimationFrame (60fps mulus).
+   * dekat/di dalam viewport (+ buffer 20%) demi efisiensi konsumsi daya,
+   * dengan throttling via requestAnimationFrame + mode hemat low-end hardware.
    * 
    * @param {HTMLElement} element - Elemen yang diobservasi
    * @param {Function} callback - Menerima parameter progress (0..1)
-   * @param {number} targetViewportFraction - Titik target (default 0.5)
+   * @param {number|null} targetViewportFraction - Titik target (default null -> pivot adaptif per device)
    */
-  bindScrollProgress(element, callback, targetViewportFraction = 0.5) {
+  bindScrollProgress(element, callback, targetViewportFraction = null) {
     if (!element || typeof callback !== 'function') return;
 
     // Aksesibilitas WCAG: Hormati preferensi pengguna yang mematikan gerakan
@@ -87,15 +173,24 @@ const ScrollUtils = {
     }
 
     let ticking = false;
+    let hitungFrame = 0;
+    const performaRendah = ScrollUtils.isPerformaRendah();
+    const intervalThrottle = performaRendah ? 2 : 1; // Update tiap 2 frame (~30fps) di device lemah
 
     function onScroll() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const progress = ScrollUtils.calculateViewportProgress(
-            element,
-            targetViewportFraction
-          );
-          callback(progress);
+          hitungFrame++;
+          if (hitungFrame % intervalThrottle === 0) {
+            const pivot = (targetViewportFraction !== undefined && targetViewportFraction !== null && targetViewportFraction !== 0.5)
+              ? targetViewportFraction
+              : ScrollUtils.dapatkanPivotAdaptif();
+            const progress = ScrollUtils.calculateViewportProgress(
+              element,
+              pivot
+            );
+            callback(progress);
+          }
           ticking = false;
         });
         ticking = true;
@@ -123,7 +218,7 @@ const ScrollUtils = {
           }
         });
       },
-      { rootMargin: '300px 0px 300px 0px' }
+      { rootMargin: '20% 0px 20% 0px' }
     );
 
     observer.observe(element);
@@ -165,10 +260,11 @@ const ScrollUtils = {
           }
         });
       },
-      { rootMargin: '200px 0px 200px 0px' }
+      { rootMargin: '20% 0px 20% 0px' }
     );
 
     observer.observe(element);
   }
 };
+
 

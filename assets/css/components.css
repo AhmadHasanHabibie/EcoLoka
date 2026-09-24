@@ -1,16 +1,23 @@
 /* ==========================================================================
+   BREAKPOINT ACUAN (jangan menyimpang):
+   360px | 480px | 768px | 1024px | 1280px | 1440px
+   ========================================================================== */
+
+/* ==========================================================================
    ECOLOKA — REUSABLE COMPONENTS (components.css)
    Proyek: Website Lomba Web Design INVENTION 2026 — Universitas Udayana
    Fungsi: Tombol, Kartu, Badges, Hero Graphic Box, Stat Card, Banner CTA
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
- * 1. TOMBOL (BUTTONS)
+ * 1. TOMBOL (BUTTONS — TARGET SENTUH MINIMUM WCAG 44x44px)
  * -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
   gap: var(--space-1);
   font-family: var(--font-family-display);
   font-size: var(--font-size-sm);

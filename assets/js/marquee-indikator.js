@@ -172,7 +172,7 @@
         posisi = -lebarSatuSet;
         terapkanWrapDanTransform();
       }, 200);
-    });
+    }, { passive: true });
   }
 
   if (document.readyState === 'loading') {
