@@ -53,6 +53,11 @@
   line-height: 1.25;
 }
 
+.kata-gelombang {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .huruf-gelombang {
   display: inline-block;
   font-variation-settings: 'wght' 600;

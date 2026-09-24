@@ -33,17 +33,34 @@
   ).matches;
 
   function pecahTeksJadiHuruf(elemen) {
-    const teksAsli = elemen.textContent.trim();
+    const teksAsli = elemen.textContent.trim().replace(/\s+/g, ' ');
     elemen.setAttribute('aria-label', teksAsli);
     elemen.setAttribute('role', 'text');
 
     const bungkus = document.createDocumentFragment();
-    teksAsli.split('').forEach((karakter) => {
-      const span = document.createElement('span');
-      span.className = 'huruf-gelombang';
-      span.textContent = karakter === ' ' ? '\u00A0' : karakter;
-      span.setAttribute('aria-hidden', 'true');
-      bungkus.appendChild(span);
+    const daftarKata = teksAsli.split(' ');
+
+    daftarKata.forEach((kata, indexKata) => {
+      const spanKata = document.createElement('span');
+      spanKata.className = 'kata-gelombang';
+
+      kata.split('').forEach((karakter) => {
+        const span = document.createElement('span');
+        span.className = 'huruf-gelombang';
+        span.textContent = karakter;
+        span.setAttribute('aria-hidden', 'true');
+        spanKata.appendChild(span);
+      });
+
+      bungkus.appendChild(spanKata);
+
+      if (indexKata < daftarKata.length - 1) {
+        const spasi = document.createElement('span');
+        spasi.className = 'spasi-gelombang';
+        spasi.textContent = ' ';
+        spasi.setAttribute('aria-hidden', 'true');
+        bungkus.appendChild(spasi);
+      }
     });
 
     elemen.textContent = '';
