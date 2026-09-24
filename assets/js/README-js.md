@@ -19,6 +19,7 @@
 - **`ScrollUtils.calculateViewportProgress(element, targetFraction)`**: Perhitungan progress posisi vertikal elemen terhadap viewport (rentang 0.0 s.d. 1.0).
 - **`ScrollUtils.lerp(start, end, t)`**: Interpolasi linear matematika presisi.
 - **`ScrollUtils.easeOutCubic(t)`**: Easing kurva kubik untuk transisi alami dan responsif.
+- **`ScrollUtils.easeOutBackSubtle(t)`**: Easing kurva overshoot halus (`c1 = 0.5`) yang memberi efek pendaratan hidup (settle) seperti kertas melayang tanpa pantulan kasar.
 - **`ScrollUtils.bindScrollProgress(element, callback)`**: Listener scroll berbasis `IntersectionObserver` (+ buffer 300px) dan throttled `requestAnimationFrame` untuk efisiensi CPU/baterai.
 - **`ScrollUtils.bindScrollDelta(element, callback)`**: Listener reaktif terhadap *delta* scroll vertikal (`deltaY`). Hanya aktif saat elemen berada di dalam viewport (+ buffer 200px), ideal untuk efek berbasis arah scroll tanpa pergerakan otomatis/autoplay.
 
@@ -58,6 +59,21 @@
 ### F. Modul Kontak & FAQ (`assets/js/kontak.js`)
 - **Diterapkan pada:** `kontak.html`.
 - **Fitur:** Accordion FAQ interaktif berstandar aksesibilitas WCAG (keyboard navigation & ARIA state).
+
+### G. Modul Animasi Hutan Tumbuh Kampanye Komunitas (`assets/js/animasi-kampanye-komunitas.js`)
+- **Diterapkan pada:** `komunitas.html` (kartu kampanye di section "Kampanye & Kegiatan yang Sedang Berjalan").
+- **Fitur:**
+  - Entrance animation kartu (fade + slide masuk) terkoordinasi dengan animasi "hutan tumbuh" murni CSS di bagian bawah kartu.
+  - Perhitungan progress independen per-kartu menggunakan `ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5)` — menjamin kartu selesai beranimasi tepat saat kartu berada di tengah viewport (mencegah bug "menggantung").
+  - Menghormati preferensi `@media (prefers-reduced-motion: reduce)` dan graceful degradation saat JavaScript nonaktif.
+
+### H. Modul Animasi Kartu Kontak Terbang Konvergen (`assets/js/animasi-kartu-terbang-kontak.js`)
+- **Diterapkan pada:** `kontak.html` (4 kartu info kontak: Email, WhatsApp, Instagram, Basis Operasional).
+- **Fitur:**
+  - Efek konvergensi 4 arah: Email terbang dari kiri-atas, WhatsApp dari kanan-atas, Instagram dari kiri-bawah, dan Basis Operasional dari kanan-bawah.
+  - Mengkombinasikan translasi `easeOutCubic` dan rotasi `easeOutBackSubtle` (overshoot halus `c1 = 0.5`) yang memberi efek mendarat dan mengendap alami seperti kertas melayang.
+  - Progress dihitung secara mandiri per-kartu dengan `ScrollUtils.bindScrollProgress(kartu, updateKartu, 0.5)` sehingga mendarat sejajar sempurna tepat saat kartu di tengah viewport.
+  - Graceful degradation: tanpa JS atau pada `@media (prefers-reduced-motion: reduce)`, keempat kartu tampil statis, rapi, dan fungsional penuh di posisi grid normalnya.
 
 ---
 

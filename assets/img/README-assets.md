@@ -15,13 +15,15 @@ Sesuai Peraturan Perlombaan INVENTION 2026 Bagian Ketentuan Karya:
 
 ## 2. Inventaris Aset Visual Orisinal EcoLoka (Tahap 3)
 
-Berikut adalah daftar lengkap 4 aset visual utama beresolusi tinggi yang digunakan pada situs EcoLoka:
+Berikut adalah daftar lengkap aset visual utama beresolusi tinggi yang digunakan pada situs EcoLoka:
 
 | Nama Berkas | Resolusi / Format | Deskripsi & Konsep Visual | Peruntukan Halaman | Status Lisensi & Legalitas |
 |---|---|---|---|---|
 | `hero_nature_tech.jpg` | 1024x1024 (1:1), JPEG | Tunas hijau muda yang tumbuh dari tanah humus subur Indonesia dengan jalur sirkuit data bercahaya keemasan lembut di bawah siraman cahaya fajar alami. Melambangkan konvergensi teknologi digital dan ekologi. | **Beranda (`index.html`)** — Kartu sorotan utama Hero Section | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
-| `mangrove_conservation.jpg` | 1024x1024 (1:1), JPEG | Lanskap nyata restorasi pesisir pantai Indonesia dengan deretan bibit mangrove muda yang ditanam di muara berair jernih berlatar langit biru cerah. Melambangkan mitigasi abrasi dan penyerapan karbon biru. | **Tentang Kami (`tentang.html`)** — Dokumentasi Aksi Nyata Pesisir | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
-| `community_action.jpg` | 1024x1024 (1:1), JPEG | Sekelompok pelajar dan relawan muda Indonesia bergotong royong di taman komunitas, mengelola bank sampah terpilah dan kebun urban hidroponik secara kolaboratif. | **Aksi Komunitas (`komunitas.html`)** — Visual Kolaborasi Generasi Muda | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
+| `mangrove_conservation.jpg` | 1024x1024 (1:1), JPEG | Lanskap nyata restorasi pesisir pantai Indonesia dengan deretan bibit mangrove muda yang ditanam di muara berair jernih berlatar langit biru cerah. Melambangkan mitigasi abrasi dan penyerapan karbon biru. | **Tentang Kami (`tentang.html`)** & **Komunitas (`komunitas.html`)** — Kartu Kampanye Mangrove Pesisir | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
+| `community_action.jpg` | 1024x1024 (1:1), JPEG | Sekelompok pelajar dan relawan muda Indonesia bergotong royong di taman komunitas, mengelola bank sampah terpilah dan kebun urban hidroponik secara kolaboratif. | **Aksi Komunitas (`komunitas.html`)** — Visual Kolaborasi & Kartu Bank Sampah | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
+| `campaign_bike.jpg` | 1024x768 (4:3), JPEG | Rombongan pelajar dan mahasiswa Indonesia bersepeda bersama di jalan kota yang asri dan rindang dengan pepohonan tropis dan cahaya pagi cerah. Melambangkan komutasi rendah emisi. | **Komunitas (`komunitas.html`)** — Kartu Kampanye Bike to School / Work | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
+| `campaign_ecobrick.jpg` | 1024x768 (4:3), JPEG | Mahasiswa dan relawan muda bergotong royong dalam workshop pemadatan residu plastik bersih ke dalam botol PET menjadi modul ecobrick ramah lingkungan di kampus Jimbaran Bali. | **Komunitas (`komunitas.html`)** — Kartu Kampanye Workshop Ecobrick | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
 | `lost_digital_forest.jpg` | 1024x1024 (1:1), JPEG | Jalan setapak di tengah hutan hujan tropis yang berkabut dengan pendaran partikel kunang-kunang digital dan cahaya hangat menuntun langkah. Merefleksikan eksplorasi yang tersesat namun tetap teduh dan menenangkan. | **Halaman 404 (`404.html`)** — Ilustrasi "Tersesat di Hutan Digital" | **Karya Orisinal Tim EcoLoka** (Generated for INVENTION 2026, Bebas Royalti Penuh) |
 
 ---

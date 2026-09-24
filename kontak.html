@@ -144,9 +144,9 @@
           </p>
         </div>
 
-        <div class="info-kontak__grid">
+        <div class="info-kontak__grid" id="kontakGrid">
 
-          <article class="kontak-card">
+          <article class="kontak-card" data-arah="kiri-atas">
             <span class="kontak-card__icon" aria-hidden="true">
               <i class="fa-solid fa-envelope"></i>
             </span>
@@ -155,7 +155,7 @@
             <p class="kontak-card__ket">Respon dalam 1–2 hari kerja</p>
           </article>
 
-          <article class="kontak-card">
+          <article class="kontak-card" data-arah="kanan-atas">
             <span class="kontak-card__icon" aria-hidden="true">
               <i class="fa-brands fa-whatsapp"></i>
             </span>
@@ -164,7 +164,7 @@
             <p class="kontak-card__ket">Senin–Jumat, 09.00–17.00 WITA</p>
           </article>
 
-          <article class="kontak-card">
+          <article class="kontak-card" data-arah="kiri-bawah">
             <span class="kontak-card__icon" aria-hidden="true">
               <i class="fa-brands fa-instagram"></i>
             </span>
@@ -173,7 +173,7 @@
             <p class="kontak-card__ket">Update kegiatan &amp; konten edukasi harian</p>
           </article>
 
-          <article class="kontak-card">
+          <article class="kontak-card" data-arah="kanan-bawah">
             <span class="kontak-card__icon" aria-hidden="true">
               <i class="fa-solid fa-location-dot"></i>
             </span>
@@ -343,7 +343,9 @@
     </div>
   </footer>
 
+  <script src="assets/js/scroll-utils.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/kontak.js"></script>
+  <script src="assets/js/animasi-kartu-terbang-kontak.js" defer></script>
 </body>
 </html>

@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/animasi-kampanye-komunitas.css">
 </head>
 <body>
 
@@ -183,7 +184,7 @@
     </section>
 
     <!-- Section: Galeri Kampanye Hijau -->
-    <section class="section section--lg">
+    <section class="section section-galeri-kampanye" id="galeri-kampanye">
       <div class="container">
         <header class="section__header" style="text-align: left; margin-bottom: var(--space-6);">
           <span class="section__tagline"><i class="fa-solid fa-bullhorn"></i> Inisiatif Aktif</span>
@@ -195,118 +196,174 @@
         <div class="grid grid--2-col" id="campaigns-grid">
           
           <!-- Kampanye 1: Mangrove -->
-          <article class="campaign-card reveal-on-scroll">
-            <div class="campaign-card__header">
-              <div class="campaign-card__icon">
-                <i class="fa-solid fa-water"></i>
-              </div>
-              <span class="badge badge--sprout">Pendaftaran Dibuka</span>
+          <article class="kampanye-card campaign-card">
+            <div class="kampanye-card__gambar">
+              <img src="assets/img/mangrove_conservation.jpg" alt="Aksi restorasi 1.000 bibit mangrove pesisir di Teluk Benoa, Bali" width="600" height="450" loading="lazy">
             </div>
-            <h3 class="campaign-card__title">Aksi Restorasi 1.000 Bibit Mangrove Pesisir</h3>
-            <p class="campaign-card__desc">Gerakan penanaman bibit bakau bersama pelajar SMA dan mahasiswa untuk menahan abrasi pantai serta menyerap karbon biru (blue carbon) pesisir.</p>
-            <div class="campaign-card__meta">
-              <div class="campaign-card__meta-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Denpasar & Teluk Benoa, Bali</span>
+            <div class="kampanye-card__body">
+              <div class="campaign-card__header">
+                <div class="campaign-card__icon">
+                  <i class="fa-solid fa-water"></i>
+                </div>
+                <span class="badge badge--sprout">Pendaftaran Dibuka</span>
               </div>
-              <div class="campaign-card__meta-item">
-                <i class="fa-regular fa-calendar"></i>
-                <span>27 September 2026</span>
+              <h3 class="campaign-card__title">Aksi Restorasi 1.000 Bibit Mangrove Pesisir</h3>
+              <p class="campaign-card__desc">Gerakan penanaman bibit bakau bersama pelajar SMA dan mahasiswa untuk menahan abrasi pantai serta menyerap karbon biru (blue carbon) pesisir.</p>
+              <div class="campaign-card__meta">
+                <div class="campaign-card__meta-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Denpasar & Teluk Benoa, Bali</span>
+                </div>
+                <div class="campaign-card__meta-item">
+                  <i class="fa-regular fa-calendar"></i>
+                  <span>27 September 2026</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Partisipasi: <strong>142</strong> / 200 Relawan</span>
+                <span class="u-text-leaf">71%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 71%;"></div>
               </div>
             </div>
-            <div class="progress-label">
-              <span>Partisipasi: <strong>142</strong> / 200 Relawan</span>
-              <span class="u-text-leaf">71%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 71%;"></div>
+            <!-- Strip Hutan Tumbuh (Decoratif murni CSS) -->
+            <div class="kampanye-card__hutan" aria-hidden="true">
+              <span class="pohon-tumbuh pohon-tumbuh--1"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--2"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--3"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--4"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--5"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--6"></span>
             </div>
           </article>
 
           <!-- Kampanye 2: Bank Sampah -->
-          <article class="campaign-card reveal-on-scroll delay-1">
-            <div class="campaign-card__header">
-              <div class="campaign-card__icon">
-                <i class="fa-solid fa-school"></i>
-              </div>
-              <span class="badge badge--sprout">Pendaftaran Dibuka</span>
+          <article class="kampanye-card campaign-card">
+            <div class="kampanye-card__gambar">
+              <img src="assets/img/community_action.jpg" alt="Relawan pelajar gotong royong pemilahan sampah daur ulang dan urban farming" width="600" height="450" loading="lazy">
             </div>
-            <h3 class="campaign-card__title">Kompetisi Bank Sampah Digital Antar Sekolah</h3>
-            <p class="campaign-card__desc">Program pemilahan sampah anorganik di sekolah menengah dengan pencatatan bobot digital terpusat untuk memperebutkan Green School Award 2026.</p>
-            <div class="campaign-card__meta">
-              <div class="campaign-card__meta-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Nasional (Daring / Hybrid)</span>
+            <div class="kampanye-card__body">
+              <div class="campaign-card__header">
+                <div class="campaign-card__icon">
+                  <i class="fa-solid fa-school"></i>
+                </div>
+                <span class="badge badge--sprout">Pendaftaran Dibuka</span>
               </div>
-              <div class="campaign-card__meta-item">
-                <i class="fa-regular fa-calendar"></i>
-                <span>1 – 31 Oktober 2026</span>
+              <h3 class="campaign-card__title">Kompetisi Bank Sampah Digital Antar Sekolah</h3>
+              <p class="campaign-card__desc">Program pemilahan sampah anorganik di sekolah menengah dengan pencatatan bobot digital terpusat untuk memperebutkan Green School Award 2026.</p>
+              <div class="campaign-card__meta">
+                <div class="campaign-card__meta-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Nasional (Daring / Hybrid)</span>
+                </div>
+                <div class="campaign-card__meta-item">
+                  <i class="fa-regular fa-calendar"></i>
+                  <span>1 – 31 Oktober 2026</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Partisipasi: <strong>38</strong> / 50 Relawan</span>
+                <span class="u-text-leaf">76%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 76%;"></div>
               </div>
             </div>
-            <div class="progress-label">
-              <span>Partisipasi: <strong>38</strong> / 50 Relawan</span>
-              <span class="u-text-leaf">76%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 76%;"></div>
+            <!-- Strip Hutan Tumbuh (Decoratif murni CSS) -->
+            <div class="kampanye-card__hutan" aria-hidden="true">
+              <span class="pohon-tumbuh pohon-tumbuh--1"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--2"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--3"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--4"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--5"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--6"></span>
             </div>
           </article>
 
           <!-- Kampanye 3: Gowes -->
-          <article class="campaign-card reveal-on-scroll delay-2">
-            <div class="campaign-card__header">
-              <div class="campaign-card__icon">
-                <i class="fa-solid fa-bicycle"></i>
-              </div>
-              <span class="badge badge--sun">Segera Dimulai</span>
+          <article class="kampanye-card campaign-card">
+            <div class="kampanye-card__gambar">
+              <img src="assets/img/campaign_bike.jpg" alt="Pelajar dan mahasiswa bersepeda bersama dalam gerakan Bike to School / Work" width="600" height="450" loading="lazy">
             </div>
-            <h3 class="campaign-card__title">Bike to School / Work: Sepekan Bebas Polusi</h3>
-            <p class="campaign-card__desc">Tantangan komutasi harian tanpa kendaraan bermotor pribadi. Catat jarak kayuhan Anda di dashboard EcoLoka untuk kalkulasi reduksi emisi gabungan.</p>
-            <div class="campaign-card__meta">
-              <div class="campaign-card__meta-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Berbagai Kota di Indonesia</span>
+            <div class="kampanye-card__body">
+              <div class="campaign-card__header">
+                <div class="campaign-card__icon">
+                  <i class="fa-solid fa-bicycle"></i>
+                </div>
+                <span class="badge badge--sun">Segera Dimulai</span>
               </div>
-              <div class="campaign-card__meta-item">
-                <i class="fa-regular fa-calendar"></i>
-                <span>12 – 18 Oktober 2026</span>
+              <h3 class="campaign-card__title">Bike to School / Work: Sepekan Bebas Polusi</h3>
+              <p class="campaign-card__desc">Tantangan komutasi harian tanpa kendaraan bermotor pribadi. Catat jarak kayuhan Anda di dashboard EcoLoka untuk kalkulasi reduksi emisi gabungan.</p>
+              <div class="campaign-card__meta">
+                <div class="campaign-card__meta-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Berbagai Kota di Indonesia</span>
+                </div>
+                <div class="campaign-card__meta-item">
+                  <i class="fa-regular fa-calendar"></i>
+                  <span>12 – 18 Oktober 2026</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Partisipasi: <strong>520</strong> / 600 Relawan</span>
+                <span class="u-text-leaf">87%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 87%;"></div>
               </div>
             </div>
-            <div class="progress-label">
-              <span>Partisipasi: <strong>520</strong> / 600 Relawan</span>
-              <span class="u-text-leaf">87%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 87%;"></div>
+            <!-- Strip Hutan Tumbuh (Decoratif murni CSS) -->
+            <div class="kampanye-card__hutan" aria-hidden="true">
+              <span class="pohon-tumbuh pohon-tumbuh--1"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--2"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--3"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--4"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--5"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--6"></span>
             </div>
           </article>
 
           <!-- Kampanye 4: Ecobrick -->
-          <article class="campaign-card reveal-on-scroll delay-3">
-            <div class="campaign-card__header">
-              <div class="campaign-card__icon">
-                <i class="fa-solid fa-cubes-stacked"></i>
-              </div>
-              <span class="badge badge--sprout">Pendaftaran Dibuka</span>
+          <article class="kampanye-card campaign-card">
+            <div class="kampanye-card__gambar">
+              <img src="assets/img/campaign_ecobrick.jpg" alt="Workshop pengolahan residu sampah plastik menjadi modul ecobrick ramah lingkungan" width="600" height="450" loading="lazy">
             </div>
-            <h3 class="campaign-card__title">Workshop Pengolahan Residu Plastik Menjadi Ecobrick</h3>
-            <p class="campaign-card__desc">Pelatihan memadatkan sampah sachet plastik tak bernilai jual ke dalam botol PET menjadi modul bata modular ramah lingkungan untuk kursi taman.</p>
-            <div class="campaign-card__meta">
-              <div class="campaign-card__meta-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Kampus Bukit Jimbaran, Universitas Udayana</span>
+            <div class="kampanye-card__body">
+              <div class="campaign-card__header">
+                <div class="campaign-card__icon">
+                  <i class="fa-solid fa-cubes-stacked"></i>
+                </div>
+                <span class="badge badge--sprout">Pendaftaran Dibuka</span>
               </div>
-              <div class="campaign-card__meta-item">
-                <i class="fa-regular fa-calendar"></i>
-                <span>24 Oktober 2026</span>
+              <h3 class="campaign-card__title">Workshop Pengolahan Residu Plastik Menjadi Ecobrick</h3>
+              <p class="campaign-card__desc">Pelatihan memadatkan sampah sachet plastik tak bernilai jual ke dalam botol PET menjadi modul bata modular ramah lingkungan untuk kursi taman.</p>
+              <div class="campaign-card__meta">
+                <div class="campaign-card__meta-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Kampus Bukit Jimbaran, Universitas Udayana</span>
+                </div>
+                <div class="campaign-card__meta-item">
+                  <i class="fa-regular fa-calendar"></i>
+                  <span>24 Oktober 2026</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Partisipasi: <strong>85</strong> / 100 Relawan</span>
+                <span class="u-text-leaf">85%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 85%;"></div>
               </div>
             </div>
-            <div class="progress-label">
-              <span>Partisipasi: <strong>85</strong> / 100 Relawan</span>
-              <span class="u-text-leaf">85%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 85%;"></div>
+            <!-- Strip Hutan Tumbuh (Decoratif murni CSS) -->
+            <div class="kampanye-card__hutan" aria-hidden="true">
+              <span class="pohon-tumbuh pohon-tumbuh--1"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--2"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--3"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--4"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--5"></span>
+              <span class="pohon-tumbuh pohon-tumbuh--6"></span>
             </div>
           </article>
 
@@ -412,6 +469,8 @@
     </div>
   </footer>
 
+  <script src="assets/js/scroll-utils.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/animasi-kampanye-komunitas.js" defer></script>
 </body>
 </html>

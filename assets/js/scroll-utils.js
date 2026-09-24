@@ -52,6 +52,19 @@ const ScrollUtils = {
   },
 
   /**
+   * Easing dengan sedikit "overshoot" halus (melewati posisi akhir sedikit,
+   * lalu mengendap kembali) — memberi kesan "mendarat" yang hidup, seperti
+   * kertas ringan yang melayang lalu menetap, TANPA terasa memantul kasar.
+   * Konstanta c1 sengaja dibuat kecil (0.5) agar efeknya sangat subtle,
+   * sesuai kebutuhan animasi yang "sangat smooth".
+   */
+  easeOutBackSubtle(t) {
+    const c1 = 0.5;
+    const c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+  },
+
+  /**
    * Mendaftarkan listener scroll yang HANYA aktif saat elemen berada
    * dekat/di dalam viewport (+ buffer 300px) demi efisiensi konsumsi daya,
    * dengan throttling via requestAnimationFrame (60fps mulus).

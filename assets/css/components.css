@@ -1979,12 +1979,24 @@
   gap: var(--space-1, 8px);
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-base, 300ms) ease, box-shadow var(--transition-base, 300ms) ease, border-color var(--transition-base, 300ms) ease;
+  will-change: transform, opacity;
+  /* STATE DEFAULT (tanpa JS): posisi normal, terlihat penuh — graceful degradation */
+  transform: translate(0, 0) rotate(0deg);
+  opacity: 1;
 }
 
 .kontak-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) !important;
   box-shadow: 0 12px 24px rgba(27, 67, 50, 0.08);
   border-color: var(--color-accent-sprout);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kontak-card {
+    transform: translate(0, 0) rotate(0deg) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
 }
 
 .kontak-card__icon {
@@ -2033,7 +2045,8 @@
    21. CTA INSTAGRAM KOMUNITAS (KANAL RESMI TRANSPARAN)
    -------------------------------------------------------------------------- */
 .section-cta-instagram {
-  padding-block: var(--space-6, 48px);
+  padding-top: var(--space-3, 24px);
+  padding-bottom: var(--space-8, 64px);
 }
 
 .cta-instagram-box {
