@@ -43,7 +43,10 @@ const ScrollUtils = {
     if (totalTravel <= 0) return 1;
 
     const traveled = viewportHeight - elementCenterY;
-    const progress = traveled / totalTravel;
+    let progress = traveled / totalTravel;
+
+    // Kunci ke 1.0 jika sudah mencapai atau sangat mendekati titik tengah (>= 0.95)
+    if (progress >= 0.95) progress = 1;
 
     const clamped = Math.max(0, Math.min(1, progress));
     return Number.isFinite(clamped) ? clamped : 0;
@@ -111,10 +114,11 @@ const ScrollUtils = {
    * animasi dipicu sedikit lebih awal (0.42 / 0.46) agar langsung terlihat mulus.
    */
   dapatkanPivotAdaptif() {
+    // Di mobile, gunakan 0.52 agar saat elemen dibaca persis di titik tengah layar (0.50),
+    // animasi SUDAH selesai tuntas 100% sempurna tanpa tersangkut atau transparan.
     const kelas = ScrollUtils.getKelasPerangkat();
-    if (kelas === 'mobile') return 0.42;
-    if (kelas === 'mobile-lebar') return 0.46;
-    return 0.5; // tablet & desktop tetap viewport-center
+    if (kelas === 'mobile' || kelas === 'mobile-lebar') return 0.52;
+    return 0.5; // Desktop & tablet tetap titik tengah viewport
   },
 
   /**
@@ -195,7 +199,7 @@ const ScrollUtils = {
         window.requestAnimationFrame(() => {
           hitungFrame++;
           if (hitungFrame % intervalThrottle === 0) {
-            const pivot = (targetViewportFraction !== undefined && targetViewportFraction !== null && targetViewportFraction !== 0.5)
+            const pivot = (targetViewportFraction !== undefined && targetViewportFraction !== null)
               ? targetViewportFraction
               : ScrollUtils.dapatkanPivotAdaptif();
             const progress = ScrollUtils.calculateViewportProgress(

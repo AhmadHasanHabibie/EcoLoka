@@ -30,7 +30,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 350px;
+  min-height: 440px;
   transform-style: preserve-3d;
   will-change: transform;
   transform-origin: center center;
@@ -40,30 +40,44 @@
  * 3. DUA MUKA KARTU (FRONT & BACK)
  * -------------------------------------------------------------------------- */
 .stat-card-face {
-  position: absolute;
-  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: var(--radius-lg);
-  overflow: visible; /* Diubah dari hidden agar teks tidak terpotong */
+  box-sizing: border-box;
 }
 
-/* SISI DEPAN (Muka Data Asli) */
+/* SISI DEPAN (Muka Data Asli) - In-flow agar container flip mengikuti tinggi kartu */
 .stat-card-face--front {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
   transform: rotateY(0deg);
   z-index: 2;
 }
 
-/* Memastikan kartu asli mengisi penuh muka depan */
+/* Memastikan kartu asli mengisi penuh muka depan tanpa bocor */
 .stat-card-face--front.stat-card {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  inset: auto;
+  width: 100%;
   height: 100%;
+  min-height: 440px;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 /* SISI BELAKANG (Punggung Kartu Remi Ekologis) */
 .stat-card-face--back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
   background: linear-gradient(
     145deg,
     var(--color-primary-leaf),
@@ -116,26 +130,30 @@
  */
 @media (max-width: 767px) {
   .stat-card-wrap {
-    height: auto;
+    height: auto !important;
   }
 
   .stat-card-flip {
-    height: auto;
-    min-height: auto;
-    transform: none;
+    height: auto !important;
+    min-height: auto !important;
+    transform: none !important;
+    transform-style: flat;
   }
 
   .stat-card-face {
     position: relative;
     inset: auto;
-    overflow: visible;
+    backface-visibility: visible;
   }
 
   .stat-card-face--front.stat-card {
     position: relative;
     inset: auto;
-    height: auto;
-    min-height: clamp(240px, 32vw, 300px);
+    width: 100%;
+    height: auto !important;
+    min-height: auto !important;
+    padding: var(--space-4) var(--space-3);
+    margin: 0;
     overflow: visible;
   }
 

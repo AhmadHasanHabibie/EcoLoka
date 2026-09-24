@@ -438,9 +438,17 @@
   justify-content: space-between;
   position: relative;
   overflow: visible;
-  min-height: clamp(220px, 30vw, 280px);
-  height: auto;
+  min-height: 440px;
+  height: 100%;
+  box-sizing: border-box;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+@media (max-width: 767px) {
+  .stat-card {
+    min-height: auto;
+    height: auto;
+  }
 }
 
 .stat-card::before {

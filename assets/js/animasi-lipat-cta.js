@@ -78,4 +78,5 @@
 
   // Selesai tepat saat kartu CTA berada di titik tengah viewport (fraction 0.5)
   ScrollUtils.bindScrollProgress(section, updateFolds, 0.5);
+  updateFolds(ScrollUtils.calculateViewportProgress(section, 0.5));
 })();

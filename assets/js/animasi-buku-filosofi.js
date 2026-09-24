@@ -166,6 +166,7 @@
   }
 
   ScrollUtils.bindScrollProgress(section, updateBook, 0.5);
+  updateBook(ScrollUtils.calculateViewportProgress(section, 0.5));
 
   let resizeTimer;
   window.addEventListener('resize', () => {

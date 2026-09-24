@@ -143,37 +143,79 @@
       daun.style.opacity = daunProgress;
     });
 
-    // --- SINKRONISASI KARTU PILAR (SINKRON 1:1 DENGAN TAHAP POHON) ---
-    const isMobile = window.innerWidth < 768;
-    const segmentProgress = [progressAkar, progressBatang, progressTajuk];
-    pilarCards.forEach((card, index) => {
-      if (!card) return;
-      let p = ScrollUtils.easeOutCubic(segmentProgress[index]);
-      if (isMobile) {
-        // Pada mobile, perhitungkan juga posisi card aktual agar solid saat berada di tengah layar
-        const cardProg = ScrollUtils.hitungProgress(card);
-        p = Math.max(p, cardProg);
-      }
-      card.style.opacity = p;
-      card.style.transform = `translateX(${ScrollUtils.lerp(24, 0, p)}px)`;
+    // --- SINKRONISASI KARTU PILAR PADA DESKTOP (SINKRON 1:1 DENGAN TAHAP POHON) ---
+    if (window.innerWidth >= 768) {
+      const segmentProgress = [progressAkar, progressBatang, progressTajuk];
+      pilarCards.forEach((card, index) => {
+        if (!card) return;
+        const p = ScrollUtils.easeOutCubic(segmentProgress[index]);
+        card.style.opacity = p;
+        card.style.transform = `translateX(${ScrollUtils.lerp(24, 0, p)}px)`;
 
-      // Kelas dekoratif bila pilar telah terbuka
-      if (p >= 0.85) {
-        card.classList.add('is-pilar-revealed');
-      } else {
-        card.classList.remove('is-pilar-revealed');
-      }
-    });
+        if (p >= 0.85) {
+          card.classList.add('is-pilar-revealed');
+        } else {
+          card.classList.remove('is-pilar-revealed');
+        }
+      });
+    }
   }
 
-  // Daftarkan listener scroll dengan throttling requestAnimationFrame via ScrollUtils
+  const visual = section.querySelector('.tiga-pilar__visual') || container;
+
+  function initPilarAnimation() {
+    const isMobile = () => window.innerWidth < 768;
+
+    // Target pohon: di mobile amati .tiga-pilar__visual secara langsung agar
+    // pohon selesai mekar 100% tepat saat visual berada di titik tengah layar (pivot 0.5).
+    // Di desktop, amati container yang memuat visual & kartu berdampingan.
+    const getTargetPohon = () => (isMobile() && visual ? visual : container);
+
+    ScrollUtils.bindScrollProgress(getTargetPohon(), (progress) => {
+      updateGrowth(progress);
+    }, 0.5);
+
+    // Di mobile, setiap kartu pilar di bawah pohon punya progress mandiri
+    // sehingga selesai bertransisi penuh saat kartu berada di tengah layar HP.
+    pilarCards.forEach((card) => {
+      if (!card) return;
+      ScrollUtils.bindScrollProgress(card, (progress) => {
+        if (!isMobile()) return;
+        const p = ScrollUtils.easeOutCubic(progress);
+        card.style.opacity = p;
+        card.style.transform = `translateX(${ScrollUtils.lerp(24, 0, p)}px)`;
+
+        if (p >= 0.85) {
+          card.classList.add('is-pilar-revealed');
+        } else {
+          card.classList.remove('is-pilar-revealed');
+        }
+      }, ScrollUtils.dapatkanPivotAdaptif());
+    });
+
+    // Panggil kalkulasi awal segera agar pohon tidak pernah kosong saat refresh / navigasi
+    const initialProgress = ScrollUtils.calculateViewportProgress(getTargetPohon(), 0.5);
+    updateGrowth(initialProgress);
+
+    // Respon real-time saat ukuran viewport / orientasi / address bar berubah
+    document.addEventListener('viewportBerubah', () => {
+      const currentProgress = ScrollUtils.calculateViewportProgress(getTargetPohon(), 0.5);
+      updateGrowth(currentProgress);
+    }, { passive: true });
+
+    window.addEventListener('resize', ScrollUtils.debounce(() => {
+      const currentProgress = ScrollUtils.calculateViewportProgress(getTargetPohon(), 0.5);
+      updateGrowth(currentProgress);
+    }, 150), { passive: true });
+  }
+
+  // Daftarkan listener saat ScrollUtils siap
   if (typeof ScrollUtils !== 'undefined' && typeof ScrollUtils.bindScrollProgress === 'function') {
-    ScrollUtils.bindScrollProgress(section, updateGrowth, 0.5);
+    initPilarAnimation();
   } else {
-    // Fallback jika ScrollUtils dimuat asinkron: tunggu DOMContentLoaded atau window.load
     window.addEventListener('load', () => {
       if (typeof ScrollUtils !== 'undefined' && typeof ScrollUtils.bindScrollProgress === 'function') {
-        ScrollUtils.bindScrollProgress(section, updateGrowth, 0.5);
+        initPilarAnimation();
       }
     });
   }

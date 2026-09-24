@@ -71,8 +71,13 @@
       }
     }
 
-    // Registrasi progress scroll dengan target 45% viewport height
-    ScrollUtils.bindScrollProgress(section, updateAnimation, 0.45);
+    const svgLogo = section.querySelector('#logo3r') || section;
+
+    // Registrasi progress scroll dengan target titik tengah viewport (0.5)
+    ScrollUtils.bindScrollProgress(svgLogo, updateAnimation, 0.5);
+
+    // Initial update agar tidak menunggu scroll pertama
+    updateAnimation(ScrollUtils.calculateViewportProgress(svgLogo, 0.5));
   }
 
   // Inisialisasi saat DOM siap

@@ -82,6 +82,8 @@
     }
 
     // Pivot adaptif per perangkat
-    ScrollUtils.bindScrollProgress(kartu, updateKartu, ScrollUtils.dapatkanPivotAdaptif());
+    const pivot = ScrollUtils.dapatkanPivotAdaptif();
+    ScrollUtils.bindScrollProgress(kartu, updateKartu, pivot);
+    updateKartu(ScrollUtils.calculateViewportProgress(kartu, pivot));
   });
 })();

@@ -78,8 +78,8 @@
         const eased = ScrollUtils.easeOutCubic(progress);
         const translateY = ScrollUtils.lerp(20, 0, eased);
         card.style.transform = `translateY(${translateY}px)`;
-        // Pastikan solid penuh (opacity 1) saat mendekati pivot
-        card.style.opacity = progress >= 0.85 ? 1 : Math.max(0.2, eased);
+        // Pastikan solid penuh (opacity 1) saat mendekati pivot tengah layar
+        card.style.opacity = progress >= 0.7 ? 1 : Math.max(0, eased);
         card.style.zIndex = 1;
       }
 
@@ -92,6 +92,11 @@
         updateCardsDesktop(progress);
       }
     }, 0.5);
+
+    // Initial state render untuk desktop
+    if (!isMobile()) {
+      updateCardsDesktop(ScrollUtils.calculateViewportProgress(section, 0.5));
+    }
 
     // Recalculate saat resize (debounced)
     window.addEventListener(

@@ -123,5 +123,7 @@
   }
 
   // Gunakan pivot adaptif per perangkat (0.42 mobile, 0.46 tablet, 0.5 desktop)
-  ScrollUtils.bindScrollProgress(heading, updateGelombang, ScrollUtils.dapatkanPivotAdaptif());
+  const pivot = ScrollUtils.dapatkanPivotAdaptif();
+  ScrollUtils.bindScrollProgress(heading, updateGelombang, pivot);
+  updateGelombang(ScrollUtils.calculateViewportProgress(heading, pivot));
 })();
