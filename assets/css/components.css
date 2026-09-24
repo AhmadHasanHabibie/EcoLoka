@@ -437,7 +437,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   min-height: 440px;
   height: 100%;
   box-sizing: border-box;
@@ -459,8 +459,9 @@
   right: 0;
   height: 4px;
   background: var(--color-neutral-stone);
-  border-top-left-radius: var(--radius-lg);
-  border-top-right-radius: var(--radius-lg);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  z-index: 2;
   transition: background-color var(--transition-fast);
 }
 
@@ -470,7 +471,7 @@
 }
 
 .stat-card--urgency::before {
-  background: linear-gradient(90deg, var(--color-alert-warning), var(--color-accent-sun));
+  background: linear-gradient(90deg, var(--color-alert-warning), #F47255);
 }
 
 .stat-card--growth::before {
@@ -482,7 +483,7 @@
 }
 
 .stat-card--smart::before {
-  background: linear-gradient(90deg, var(--color-accent-sprout), var(--color-primary-forest));
+  background: linear-gradient(90deg, var(--color-accent-sun), var(--color-accent-sun-light));
 }
 
 .stat-card__top {

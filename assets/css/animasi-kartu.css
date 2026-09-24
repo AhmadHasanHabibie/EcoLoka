@@ -68,7 +68,7 @@
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* SISI BELAKANG (Punggung Kartu Remi Ekologis) */
@@ -154,7 +154,7 @@
     min-height: auto !important;
     padding: var(--space-4) var(--space-3);
     margin: 0;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .stat-card-face--back {
