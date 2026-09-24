@@ -54,6 +54,18 @@
   padding-right: 28px;
 }
 
+@media (max-width: 639px) {
+  .opsi-kartu .radio-card__text {
+    padding-right: 18px;
+  }
+  .opsi-kartu__partikel {
+    top: 8px;
+    right: 10px;
+    width: 22px;
+    height: 32px;
+  }
+}
+
 /* TUNAS (untuk kartu beremisi rendah) */
 .opsi-kartu__partikel .tunas {
   display: block;

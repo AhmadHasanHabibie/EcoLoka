@@ -200,3 +200,8 @@
   --bp-desktop-lebar: 1440px;
 }
 
+@media (max-width: 639px) {
+  :root {
+    --container-padding: 1rem; /* 16px padding on smartphone */
+  }
+}
